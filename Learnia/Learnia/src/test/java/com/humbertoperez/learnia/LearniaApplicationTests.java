@@ -1,4 +1,4 @@
-package com.erosduarte.Learnia;
+package com.humbertoperez.learnia;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
