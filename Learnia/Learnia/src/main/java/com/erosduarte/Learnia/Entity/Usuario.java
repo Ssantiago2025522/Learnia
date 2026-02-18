@@ -1,9 +1,11 @@
 package com.erosduarte.Learnia.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -23,24 +25,26 @@ public class Usuario {
     private String apellidoUsuario;
 
     @NotBlank(message = "El correo no puede estar vacio")
-    @Column(name = "correo_usuario")
+    @Column(name = "correo_usuario", unique = true)
     private String correoUsuario;
 
     @NotBlank(message = "La contraseña no puede estar vacia")
     @Column(name = "contrasena")
     private String contrasenaUsuario;
 
-    @NotBlank(message = "La fecha no puede estar vacia")
+    @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "fecha_registro")
-    private Date fechaRegistro;
+    private LocalDate fechaRegistro;
 
-    @NotBlank(message = "El rol no puede estar vacio")
+    @NotNull
+    @Enumerated(EnumType.STRING)
     @Column(name = "rol")
-    private String  rolUsuario;
+    private RolUsuario  rolUsuario;
 
     @NotBlank(message = "La foto no puede estar vacia")
     @Column(name = "foto")
-    private String fotoUsurio;
+    private String fotoUsuario;
 
     public Integer getIdUsuario() {
         return idUsuario;
@@ -82,27 +86,28 @@ public class Usuario {
         this.contrasenaUsuario = contrasenaUsuario;
     }
 
-    public Date getFechaRegistro() {
-        return fechaRegistro;
-    }
 
-    public void setFechaRegistro(Date fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public String getRolUsuario() {
+    public RolUsuario getRolUsuario() {
         return rolUsuario;
     }
 
-    public void setRolUsuario(String rolUsuario) {
+    public void setRolUsuario(RolUsuario rolUsuario) {
         this.rolUsuario = rolUsuario;
     }
 
-    public String getFotoUsurio() {
-        return fotoUsurio;
+    public String getFotoUsuario() {
+        return fotoUsuario;
     }
 
-    public void setFotoUsurio(String fotoUsurio) {
-        this.fotoUsurio = fotoUsurio;
+    public void setFotoUsuario(String fotoUsuario) {
+        this.fotoUsuario = fotoUsuario;
+    }
+
+    public LocalDate getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDate fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
     }
 }

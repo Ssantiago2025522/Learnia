@@ -1,6 +1,6 @@
-drop database if exists Learnia_db;
-create database Learnia_db;
-use Learnia_db;
+drop database if exists Learnia_db_in5bm;
+create database Learnia_db_in5bm;
+use Learnia_db_in5bm;
 
 create table usuario(
 	id_usuario bigint  auto_increment  primary key,
@@ -9,9 +9,10 @@ create table usuario(
     correo_usuario varchar(100) not null unique,
     contrasena varchar(150) not null,
 	fecha_registro datetime,
-    rol enum("admin", "moderador", "estudiante") not null,
+    rol enum("ADMIN", "MODERADOR", "ESTUDIANTE") not null,
     foto varchar(255) null
 );
+
 
 create table categoria(
 id_categoria bigint auto_increment primary key,
@@ -34,6 +35,7 @@ references usuario(id_usuario),
 constraint fk_id_categoria
 foreign key (id_categoria) 
 references categoria(id_categoria)
+On delete cascade
 );
 
 create table pregunta(
@@ -100,4 +102,8 @@ foreign key (id_respuesta)
 references respuesta(id_respuesta)
 on delete cascade
 );
+
+insert into Usuario(nombre_usuario, apellido_usuario, correo_usuario, contrasena, rol, foto) values("primer_usuarioO", "apellido_usuario", "correooO", "123", "MODERADOR", "foto");
+
+
  
