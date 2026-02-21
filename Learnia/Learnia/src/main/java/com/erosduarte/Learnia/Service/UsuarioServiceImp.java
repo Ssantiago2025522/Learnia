@@ -8,12 +8,11 @@ import java.util.List;
 
 @Service
 public class UsuarioServiceImp implements UsuarioService {
-    private final UsuarioRepository  usuarioRepository;
-    private final UsuarioService usuarioService;
 
-    public UsuarioServiceImp(UsuarioRepository usuarioRepository, UsuarioService usuarioService) {
+    private final UsuarioRepository usuarioRepository;
+
+    public UsuarioServiceImp(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
-        this.usuarioService = usuarioService;
     }
 
     @Override
@@ -34,11 +33,11 @@ public class UsuarioServiceImp implements UsuarioService {
 
     @Override
     public Usuario buscarPorId(Integer id) {
-        return usuarioRepository.findById();
+        return usuarioRepository.findById(id).orElse(null);
     }
 
     @Override
     public void eliminar(Integer id) {
-
+        usuarioRepository.deleteById(id);
     }
 }
