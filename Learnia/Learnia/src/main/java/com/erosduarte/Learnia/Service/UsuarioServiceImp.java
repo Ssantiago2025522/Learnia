@@ -1,11 +1,13 @@
 package com.erosduarte.Learnia.Service;
 
+import com.erosduarte.Learnia.Dto.LoginDTO;
 import com.erosduarte.Learnia.Entity.Usuario;
 import com.erosduarte.Learnia.Exception.ResourceNotFoundException;
 import com.erosduarte.Learnia.Repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsuarioServiceImp implements UsuarioService {
@@ -51,5 +53,20 @@ public class UsuarioServiceImp implements UsuarioService {
             throw new ResourceNotFoundException(("Usuario con id no existente o no encontrado: " + id));
         }
          usuarioRepository.deleteById(id);
+    }
+
+    @Override
+    public String login(LoginDTO loginDTO) {
+        Optional<Usuario> usuario = usuarioRepository.findByCorreoUsuario(loginDTO.getCorreoUsuario());
+
+        if(usuario.isPresent()){
+            if(usuario.get().getContrasenaUsuario().equals(loginDTO.getContrasenaUsuario())){
+                return "Login exitoso";
+            }else{
+                return "Contraseña incorrecta";
+            }
+        }else{
+            return "Usuario no encontrado";
+        }
     }
 }

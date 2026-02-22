@@ -1,5 +1,6 @@
 package com.erosduarte.Learnia.Controller;
 
+import com.erosduarte.Learnia.Dto.LoginDTO;
 import com.erosduarte.Learnia.Entity.Usuario;
 import com.erosduarte.Learnia.Service.UsuarioService;
 import jakarta.validation.Valid;
@@ -45,5 +46,10 @@ public class UsuarioController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public  void eliminar(@PathVariable Integer id){
          usuarioService.eliminar(id);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody  LoginDTO loginDTO){
+        return ResponseEntity.ok(usuarioService.login(loginDTO));
     }
 }

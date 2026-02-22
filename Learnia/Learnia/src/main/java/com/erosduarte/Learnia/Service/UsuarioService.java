@@ -1,5 +1,6 @@
 package com.erosduarte.Learnia.Service;
 
+import com.erosduarte.Learnia.Dto.LoginDTO;
 import com.erosduarte.Learnia.Entity.Usuario;
 import jakarta.persistence.criteria.CriteriaBuilder;
 
@@ -11,4 +12,5 @@ public interface UsuarioService {
     Usuario actualizar(Integer id, Usuario usuario);
     Usuario buscarPorId(Integer id);
     void eliminar(Integer id);
+    String login(LoginDTO loginDTO);
 }
