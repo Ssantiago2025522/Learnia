@@ -1,4 +1,4 @@
-package com.erosduarte.Learnia.Exception;
+package com.proyecto.Learnia.Exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

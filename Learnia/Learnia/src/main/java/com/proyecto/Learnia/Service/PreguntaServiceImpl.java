@@ -1,13 +1,13 @@
-package com.erosduarte.Learnia.Service;
+package com.proyecto.Learnia.Service;
 
 import java.util.List;
 
-import com.erosduarte.Learnia.Exception.ResourceNotFoundException;
+import com.proyecto.Learnia.Exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.erosduarte.Learnia.Entity.Pregunta;
-import com.erosduarte.Learnia.Repository.PreguntaRepository;
+import com.proyecto.Learnia.Entity.Pregunta;
+import com.proyecto.Learnia.Repository.PreguntaRepository;
 
 @Service
 public class PreguntaServiceImpl implements PreguntaService {
@@ -44,7 +44,6 @@ public class PreguntaServiceImpl implements PreguntaService {
 
         existente.setTitulo(pregunta.getTitulo());
         existente.setDescripcion(pregunta.getDescripcion());
-        existente.setUsuario(pregunta.getUsuario());
         existente.setIdCategoria(pregunta.getIdCategoria());
 
         return preguntaRepository.save(existente);

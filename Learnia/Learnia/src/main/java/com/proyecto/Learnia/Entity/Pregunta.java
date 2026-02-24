@@ -1,4 +1,4 @@
-package com.erosduarte.Learnia.Entity;
+package com.proyecto.Learnia.Entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -20,10 +20,6 @@ public class Pregunta {
 
     @Column(name = "fecha_publicacion")
     private LocalDateTime fechaPublicacion;
-
-    @ManyToOne
-    @JoinColumn(name = "id_usuario", nullable = false)
-    private Usuario usuario;
 
     @Column(name = "id_categoria", nullable = false)
     private Long idCategoria;
@@ -71,11 +67,4 @@ public class Pregunta {
         this.idCategoria = idCategoria;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 }
