@@ -1,8 +1,8 @@
-package com.erosduarte.Learnia.Service;
+package com.proyecto.Learnia.Service;
 
-import com.erosduarte.Learnia.Entity.Voto;
-import com.erosduarte.Learnia.Repository.VotoRepository;
-import com.erosduarte.Learnia.exception.ResourceNotFoundException;
+import com.proyecto.Learnia.Entity.Voto;
+import com.proyecto.Learnia.Repository.VotoRepository;
+import com.proyecto.Learnia.Exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

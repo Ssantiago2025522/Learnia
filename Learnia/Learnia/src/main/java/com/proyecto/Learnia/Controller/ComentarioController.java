@@ -1,7 +1,7 @@
-package com.erosduarte.Learnia.Controller;
+package com.proyecto.Learnia.Controller;
 
-import com.erosduarte.Learnia.Entity.Comentario;
-import com.erosduarte.Learnia.Service.ComentarioService;
+import com.proyecto.Learnia.Entity.Comentario;
+import com.proyecto.Learnia.Service.ComentarioService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

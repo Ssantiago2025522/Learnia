@@ -1,4 +1,4 @@
-package com.erosduarte.Learnia.exception;
+package com.proyecto.Learnia.Exception;
 
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;

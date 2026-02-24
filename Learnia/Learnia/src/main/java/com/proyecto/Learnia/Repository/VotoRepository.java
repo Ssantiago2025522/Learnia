@@ -1,6 +1,6 @@
-package com.erosduarte.Learnia.Repository;
+package com.proyecto.Learnia.Repository;
 
-import com.erosduarte.Learnia.Entity.Voto;
+import com.proyecto.Learnia.Entity.Voto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VotoRepository extends JpaRepository<Voto, Long> {

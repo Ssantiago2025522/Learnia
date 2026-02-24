@@ -1,6 +1,6 @@
-package com.erosduarte.Learnia.Service;
+package com.proyecto.Learnia.Service;
 
-import com.erosduarte.Learnia.Entity.Voto;
+import com.proyecto.Learnia.Entity.Voto;
 
 import java.util.List;
 

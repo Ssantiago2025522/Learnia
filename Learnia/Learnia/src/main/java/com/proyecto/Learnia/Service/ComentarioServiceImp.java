@@ -1,8 +1,8 @@
-package com.erosduarte.Learnia.Service;
+package com.proyecto.Learnia.Service;
 
-import com.erosduarte.Learnia.Entity.Comentario;
-import com.erosduarte.Learnia.Repository.ComentarioRepository;
-import com.erosduarte.Learnia.exception.ResourceNotFoundException;
+import com.proyecto.Learnia.Entity.Comentario;
+import com.proyecto.Learnia.Repository.ComentarioRepository;
+import com.proyecto.Learnia.Exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

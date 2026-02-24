@@ -1,7 +1,7 @@
-package com.erosduarte.Learnia.Controller;
+package com.proyecto.Learnia.Controller;
 
-import com.erosduarte.Learnia.Entity.Voto;
-import com.erosduarte.Learnia.Service.VotoService;
+import com.proyecto.Learnia.Entity.Voto;
+import com.proyecto.Learnia.Service.VotoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
