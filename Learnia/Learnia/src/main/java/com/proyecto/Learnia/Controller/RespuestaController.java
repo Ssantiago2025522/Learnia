@@ -1,11 +1,11 @@
-package com.erosduarte.Learnia.Controller;
+package com.proyecto.Learnia.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-import com.erosduarte.Learnia.Entity.Respuesta;
-import com.erosduarte.Learnia.Service.RespuestaService;
+import com.proyecto.Learnia.Entity.Respuesta;
+import com.proyecto.Learnia.Service.RespuestaService;
 
 @RestController
 @RequestMapping("/respuestas")

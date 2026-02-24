@@ -1,12 +1,11 @@
-package com.erosduarte.Learnia.Service.Impl;
+package com.proyecto.Learnia.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
-import com.erosduarte.Learnia.Entity.Respuesta;
-import com.erosduarte.Learnia.Repository.RespuestaRepository;
-import com.erosduarte.Learnia.Service.RespuestaService;
+import com.proyecto.Learnia.Entity.Respuesta;
+import com.proyecto.Learnia.Repository.RespuestaRepository;
 
 @Service
 public class RespuestaServiceImpl implements RespuestaService {

@@ -1,7 +1,7 @@
-package com.erosduarte.Learnia.Service;
+package com.proyecto.Learnia.Service;
 
 import java.util.List;
-import com.erosduarte.Learnia.Entity.Respuesta;
+import com.proyecto.Learnia.Entity.Respuesta;
 
 public interface RespuestaService {
 
