@@ -1,8 +1,8 @@
-package com.erosduarte.Learnia.Controller;
+package com.proyecto.Learnia.Controller;
 
-import com.erosduarte.Learnia.Dto.LoginDTO;
-import com.erosduarte.Learnia.Entity.Usuario;
-import com.erosduarte.Learnia.Service.UsuarioService;
+import com.proyecto.Learnia.Dto.LoginDTO;
+import com.proyecto.Learnia.Entity.Usuario;
+import com.proyecto.Learnia.Service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

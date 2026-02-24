@@ -1,7 +1,6 @@
-package com.erosduarte.Learnia.Repository;
+package com.proyecto.Learnia.Repository;
 
-import com.erosduarte.Learnia.Entity.Usuario;
-import com.fasterxml.jackson.annotation.OptBoolean;
+import com.proyecto.Learnia.Entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

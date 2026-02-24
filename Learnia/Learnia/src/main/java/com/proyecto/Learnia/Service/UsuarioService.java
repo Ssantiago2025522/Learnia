@@ -1,8 +1,7 @@
-package com.erosduarte.Learnia.Service;
+package com.proyecto.Learnia.Service;
 
-import com.erosduarte.Learnia.Dto.LoginDTO;
-import com.erosduarte.Learnia.Entity.Usuario;
-import jakarta.persistence.criteria.CriteriaBuilder;
+import com.proyecto.Learnia.Dto.LoginDTO;
+import com.proyecto.Learnia.Entity.Usuario;
 
 import java.util.List;
 

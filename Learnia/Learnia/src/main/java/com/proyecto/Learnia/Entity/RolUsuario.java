@@ -1,9 +1,6 @@
-package com.erosduarte.Learnia.Entity;
+package com.proyecto.Learnia.Entity;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.management.StringValueExp;
 
 public enum RolUsuario {
     ADMIN,

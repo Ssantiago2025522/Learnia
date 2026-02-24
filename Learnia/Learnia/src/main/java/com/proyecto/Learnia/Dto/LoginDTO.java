@@ -1,4 +1,4 @@
-package com.erosduarte.Learnia.Dto;
+package com.proyecto.Learnia.Dto;
 
 public class LoginDTO {
     private String correoUsuario;

@@ -1,9 +1,9 @@
-package com.erosduarte.Learnia.Service;
+package com.proyecto.Learnia.Service;
 
-import com.erosduarte.Learnia.Dto.LoginDTO;
-import com.erosduarte.Learnia.Entity.Usuario;
-import com.erosduarte.Learnia.Exception.ResourceNotFoundException;
-import com.erosduarte.Learnia.Repository.UsuarioRepository;
+import com.proyecto.Learnia.Dto.LoginDTO;
+import com.proyecto.Learnia.Entity.Usuario;
+import com.proyecto.Learnia.Exception.ResourceNotFoundException;
+import com.proyecto.Learnia.Repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
