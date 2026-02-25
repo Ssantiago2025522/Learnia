@@ -14,6 +14,6 @@ LearniaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("Api funcionando de manera correcta");
+		System.out.println("Api funciona");
 	}
 }

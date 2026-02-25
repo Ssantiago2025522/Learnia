@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/votos")
+@RequestMapping("api/votos")
 public class VotoController {
 
     private final VotoService votoService;

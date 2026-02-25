@@ -9,9 +9,17 @@
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
         </processorPath>
+<<<<<<< HEAD
         <module name="Learnia" />
       </profile>
     </annotationProcessing>
+=======
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Learnia" target="21" />
+    </bytecodeTargetLevel>
+>>>>>>> origin/Feature/pregunta-crud
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
