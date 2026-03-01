@@ -107,9 +107,9 @@ on delete cascade
 insert into Usuario(nombre_usuario, apellido_usuario, correo_usuario, contrasena, rol, foto) values("primer_usuarioO", "apellido_usuario", "correooO", "123", "MODERADOR", "foto");
 insert into Categoria(nombre, descripcion) values("pdf", "archivo");
 insert into Recurso(titulo_recurso, descripcion_recurso, tipo_recurso, url_archivo, fecha_subida, id_usuario, id_categoria) values("pdf", "archivo pdf", "documento", "url archivo", "2025-02-02",1, 1);
-insert into Pregunta(id_pregunta, titulo_pregunta, descripcion_pregunta, fecha_publicacion, id_usuario, id_categoria) values("1", "que es spring boot?", "Spring Boot es un framework", "2025-02-22", "1", "1");
-insert into Respuesta(id_respuesta, contenido_respuesta, fecha_respuesta, id_usuario, id_pregunta)values("1", "spring boot", "2025-02-23", "1", "1");
-insert into Comentario(contenido_comentario, fecha_comentario, id_usuario, id_recurso, id_respuesta)values("1", "Excelente", "2025-10-12", "1", "1", "1"); 
-insert into voto(tipo_voto, id_usuario, id_respuesta)values("like", "1", "1");
+insert into Pregunta(titulo, descripcion, fecha_publicacion, id_usuario, id_categoria) values( "que es spring boot?", "Spring Boot es un framework", "2025-02-22", "1", "1");
+insert into Respuesta( contenido, fecha_respuesta, id_usuario, id_pregunta)values( "spring boot", "2025-02-23", "1", "1");
+insert into Comentario(contenido, fecha, id_usuario, id_recurso, id_respuesta)values( "Excelente", "2025-10-12", "1", "1", "1"); 
+insert into voto(tipo, id_usuario, id_respuesta)values("like", "1", "1");
 
  
