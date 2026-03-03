@@ -1,10 +1,18 @@
 package com.proyecto.Learnia.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "pregunta")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Pregunta {
 
     @Id
@@ -13,9 +21,11 @@ public class Pregunta {
     private Long idPregunta;
 
     @Column(nullable = false, length = 200)
+    @Size(min = 15, max = 200, message = "El título debe tener entre 15 y 200 caracteres")
     private String titulo;
 
     @Column(nullable = false, columnDefinition = "TEXT")
+    @Size(min = 20, max = 200, message = "La descripción debe tener entre 20 y 200 caracteres")
     private String descripcion;
 
     @Column(name = "fecha_publicacion")
@@ -25,57 +35,6 @@ public class Pregunta {
     private Long idCategoria;
 
     @Column(name = "id_usuario", nullable = false)
-    private Long  idUsuario;
-
-    // Getters y Setters
-
-
-    public Long getIdPregunta() {
-        return idPregunta;
-    }
-
-    public void setIdPregunta(Long idPregunta) {
-        this.idPregunta = idPregunta;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public LocalDateTime getFechaPublicacion() {
-        return fechaPublicacion;
-    }
-
-    public void setFechaPublicacion(LocalDateTime fechaPublicacion) {
-        this.fechaPublicacion = fechaPublicacion;
-    }
-
-    public Long getIdCategoria() {
-        return idCategoria;
-    }
-
-    public Long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Long idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public void setIdCategoria(Long idCategoria) {
-        this.idCategoria = idCategoria;
-    }
+    private Long idUsuario;
 
 }
