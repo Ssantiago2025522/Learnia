@@ -2,9 +2,7 @@ package com.humbertoperez.Learnia.Service;
 
 import com.humbertoperez.Learnia.Entity.Recurso;
 import com.humbertoperez.Learnia.Entity.TipoRecurso;
-import com.humbertoperez.Learnia.Exception.ResourceNotFoundException;
 import com.humbertoperez.Learnia.Repository.RecursoRepository;
-import com.humbertoperez.Learnia.service.*
 import org.springframework.stereotype.Service;
 
 import java.util.List;

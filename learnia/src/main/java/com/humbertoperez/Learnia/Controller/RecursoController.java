@@ -1,4 +1,4 @@
-package com.humbertoperez.Learnia.controller;
+package com.humbertoperez.Learnia.Controller;
 
 import com.humbertoperez.Learnia.Entity.Recurso;
 import com.humbertoperez.Learnia.Entity.TipoRecurso;
