@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="278b867a-dbe7-460a-a4e6-b6716b72329a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/Entity/Comentario.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/Entity/Comentario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/Entity/Voto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/Entity/Voto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/Service/VotoServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/Service/VotoServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/entity/Categoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/entity/Categoria.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +24,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MarioHernandez-max&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Ssantiago2025522/Learnia.git&quot;,
+    &quot;accountId&quot;: &quot;e9d3a758-b5af-4fc5-a932-6c83a355e3a6&quot;
+  }
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -45,7 +54,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "feature/integracion-crud",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Informatica/Downloads/Learnia",
+    "last_opened_file_path": "C:/Users/Informatica/Learnia",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>

@@ -2,9 +2,16 @@ package com.proyecto.Learnia.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 
 @Entity
 @Table(name = "categoria")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,36 +19,13 @@ public class Categoria {
     private Integer idCategoria;
 
     @NotBlank(message = "El nombre no puede ir vacio")
+    @Size(min = 5,max = 20,message = "nombre de categoria incorrecto, el nombre de la categoria tiene que tener entre 5 y 20 caracteres ")
     @Column(name = "nombre")
     private String nombreCategoria;
 
     @NotBlank(message = "La descripcion no puede ir vacia")
+    @Size(min = 5,max = 100,message = "La descripcion tiene que tener entre 5 a 100 caracteres")
     @Column(name = "descripcion")
     private String descripcionCategoria;
-
-    public Integer getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(Integer idCategoria) {
-        this.idCategoria = idCategoria;
-    }
-
-    public String getNombreCategoria() {
-        return nombreCategoria;
-    }
-
-
-    public void setNombreCategoria(String nombreCategoria) {
-        this.nombreCategoria = nombreCategoria;
-    }
-
-    public String getDescripcionCategoria() {
-        return descripcionCategoria;
-    }
-
-    public void setDescripcionCategoria(String descripcionCategoria) {
-        this.descripcionCategoria = descripcionCategoria;
-    }
-
 }
+
