@@ -13,9 +13,14 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()    // Permite login y registro
-                        .requestMatchers("/api/usuario/**").permitAll() // <-- ESTA ES LA LÍNEA QUE FALTA
-                        .anyRequest().authenticated()                   // Cualquier otra ruta requiere login
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/usuario/**").permitAll()
+                        .requestMatchers("/api/categorias/**").permitAll()
+                        .requestMatchers("/api/comentarios/**").permitAll()
+                        .requestMatchers("/api/preguntas/**").permitAll()
+                        .requestMatchers("/api/respuestas/**").permitAll()
+                        .requestMatchers("/api/votos/**").permitAll()
+                        .anyRequest().authenticated()
                 )
                 .build();
     }

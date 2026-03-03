@@ -8,7 +8,7 @@ import com.proyecto.Learnia.Entity.Respuesta;
 import com.proyecto.Learnia.Service.RespuestaService;
 
 @RestController
-@RequestMapping("api/respuestas")
+@RequestMapping("/api/respuestas")
 public class RespuestaController {
 
     @Autowired
