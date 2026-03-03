@@ -1,8 +1,8 @@
-package com.humbertoperez.Learnia.Controller;
+package com.proyecto.Learnia.Controller;
 
-import com.humbertoperez.Learnia.Entity.Recurso;
-import com.humbertoperez.Learnia.Entity.TipoRecurso;
-import com.humbertoperez.Learnia.Service.RecursoService;
+import com.proyecto.Learnia.Entity.Recurso;
+import com.proyecto.Learnia.Entity.TipoRecurso;
+import com.proyecto.Learnia.Service.RecursoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,7 @@
-package com.humbertoperez.Learnia.Service;
+package com.proyecto.Learnia.Service;
 
-import com.humbertoperez.Learnia.Entity.Recurso;
-import com.humbertoperez.Learnia.Entity.TipoRecurso;
+import com.proyecto.Learnia.Entity.Recurso;
+import com.proyecto.Learnia.Entity.TipoRecurso;
 
 import java.util.List;
 

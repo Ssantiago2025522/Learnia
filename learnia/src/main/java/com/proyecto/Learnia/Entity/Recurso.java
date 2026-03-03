@@ -1,4 +1,4 @@
-package com.humbertoperez.Learnia.Entity;
+package com.proyecto.Learnia.Entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
