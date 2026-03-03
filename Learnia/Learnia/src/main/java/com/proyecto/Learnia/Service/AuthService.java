@@ -3,6 +3,7 @@ package com.proyecto.Learnia.Service;
 import com.proyecto.Learnia.Dto.LoginRequest;
 import com.proyecto.Learnia.Dto.LoginResponse;
 import com.proyecto.Learnia.Dto.RegisterRequest;
+import com.proyecto.Learnia.Entity.RolUsuario;
 import com.proyecto.Learnia.Entity.Usuario;
 import com.proyecto.Learnia.Repository.UsuarioRepository;
 import org.apache.catalina.User;
@@ -25,6 +26,7 @@ public class AuthService {
         }
         String hash = passwordEncoder.encode(req.contrasenaUsuario);
         Usuario usuario = new Usuario(req.nombreUsuario, req.correoUsuario, hash);
+        usuario.setRolUsuario(RolUsuario.ESTUDIANTE);
         usuarioRepository.save(usuario);
     }
 

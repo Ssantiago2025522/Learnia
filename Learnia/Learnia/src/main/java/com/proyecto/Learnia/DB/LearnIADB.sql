@@ -4,12 +4,13 @@ use Learnia_db_in5bm;
 
 create table usuario(
 	id_usuario bigint  auto_increment  primary key,
-    username varchar(100) not null,
+    nombre_usuario varchar(100) not null,
+    apellido_usuario varchar(100) not null,
     correo_usuario varchar(100) not null unique,
     contrasena varchar(150) not null,
 	fecha_registro datetime,
-    rol enum("ADMIN", "MODERADOR", "ESTUDIANTE"),
-    foto varchar(255) 
+    rol enum("ADMIN", "MODERADOR", "ESTUDIANTE") not null,
+    foto varchar(255) null
 );
 
 
@@ -103,11 +104,12 @@ references respuesta(id_respuesta)
 on delete cascade
 );
 
-insert into Usuario(username,  correo_usuario, contrasena, rol, foto) values("primer_usuarioO", "correooO", "123", "MODERADOR", "foto");
+insert into Usuario(nombre_usuario, apellido_usuario, correo_usuario, contrasena, rol, foto) values("primer_usuarioO", "apellido_usuario", "correooO", "123", "MODERADOR", "foto");
 insert into Categoria(nombre, descripcion) values("pdf", "archivo");
 insert into Recurso(titulo_recurso, descripcion_recurso, tipo_recurso, url_archivo, fecha_subida, id_usuario, id_categoria) values("pdf", "archivo pdf", "documento", "url archivo", "2025-02-02",1, 1);
-insert into Pregunta(titulo, descripcion, fecha_publicacion, id_usuario, id_categoria) values( "que es spring boot?", "Spring Boot es un framework", "2025-02-22", "1", "1");
-insert into Respuesta( contenido, fecha_respuesta, id_usuario, id_pregunta)values( "spring boot", "2025-02-23", "1", "1");
+insert into Pregunta(id_pregunta, titulo, descripcion
+, fecha_publicacion, id_usuario, id_categoria) values("1", "que es spring boot?", "Spring Boot es un framework", "2025-02-22", "1", "1");
+insert into Respuesta(id_respuesta, contenido, fecha_respuesta, id_usuario, id_pregunta)values("1", "spring boot", "2025-02-23", "1", "1");
 insert into Comentario(contenido, fecha, id_usuario, id_recurso, id_respuesta)values( "Excelente", "2025-10-12", "1", "1", "1"); 
 insert into voto(tipo, id_usuario, id_respuesta)values("like", "1", "1");
 

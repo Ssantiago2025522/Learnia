@@ -48,11 +48,11 @@ public class Usuario {
     @Column(name = "foto")
     private String fotoUsuario;
 
-
     public Usuario(String nombreUsuario, String correoUsuario, String contrasenaUsuario) {
         this.nombreUsuario = nombreUsuario;
         this.correoUsuario = correoUsuario;
         this.contrasenaUsuario = contrasenaUsuario;
+        this.fechaRegistro = LocalDate.now();
     }
 
     public  Usuario(){
