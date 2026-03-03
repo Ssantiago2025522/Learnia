@@ -2,8 +2,15 @@ package com.proyecto.Learnia.Entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 @Entity
+@Table(name = "voto")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Voto {
 
     @Id
@@ -28,17 +35,5 @@ public class Voto {
         like,
         dislike
     }
-
-    // Getters y Setters
-    public Long getIdVoto() { return idVoto; }
-    public void setIdVoto(Long idVoto) { this.idVoto = idVoto; }
-
-    public TipoVoto getTipo() { return tipo; }
-    public void setTipo(TipoVoto tipo) { this.tipo = tipo; }
-
-    public Long getIdUsuario() { return idUsuario; }
-    public void setIdUsuario(Long idUsuario) { this.idUsuario = idUsuario; }
-
-    public Long getIdRespuesta() { return idRespuesta; }
-    public void setIdRespuesta(Long idRespuesta) { this.idRespuesta = idRespuesta; }
 }
+
