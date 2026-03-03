@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="278b867a-dbe7-460a-a4e6-b6716b72329a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/erosduarte/Learnia/Controller/RespuestaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/erosduarte/Learnia/Entity/Respuesta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/erosduarte/Learnia/Repository/RespuestaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/erosduarte/Learnia/Service/RespuestaService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/erosduarte/Learnia/Service/RespuestaServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/Entity/Comentario.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/Entity/Comentario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/Entity/Voto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/Entity/Voto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/Service/VotoServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/Service/VotoServiceImp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,12 +27,36 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="3ARD4Tc63zFIRoZJ0xW9vMOm5ux" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "Feature/pregunta-crud"
+    "Application.LearniaApplication.executor": "Debug",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "feature/integracion-crud",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Informatica/Downloads/Learnia",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="278b867a-dbe7-460a-a4e6-b6716b72329a" name="Changes" comment="" />
+      <created>1772550030602</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1772550030602</updated>
+    </task>
     <servers />
   </component>
 </project>

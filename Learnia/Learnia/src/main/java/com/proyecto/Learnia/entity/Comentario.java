@@ -3,10 +3,17 @@ package com.proyecto.Learnia.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "comentario")
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Comentario {
 
     @Id
@@ -31,22 +38,4 @@ public class Comentario {
     @Column(name = "id_respuesta")
     private Long idRespuesta;
 
-    // Getters y Setters
-    public Long getIdComentario() { return idComentario; }
-    public void setIdComentario(Long idComentario) { this.idComentario = idComentario; }
-
-    public String getContenido() { return contenido; }
-    public void setContenido(String contenido) { this.contenido = contenido; }
-
-    public LocalDateTime getFecha() { return fecha; }
-    public void setFecha(LocalDateTime fecha) { this.fecha = fecha; }
-
-    public Long getIdUsuario() { return idUsuario; }
-    public void setIdUsuario(Long idUsuario) { this.idUsuario = idUsuario; }
-
-    public Long getIdRecurso() { return idRecurso; }
-    public void setIdRecurso(Long idRecurso) { this.idRecurso = idRecurso; }
-
-    public Long getIdRespuesta() { return idRespuesta; }
-    public void setIdRespuesta(Long idRespuesta) { this.idRespuesta = idRespuesta; }
 }

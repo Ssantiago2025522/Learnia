@@ -39,6 +39,7 @@ public class VotoServiceImp implements VotoService {
 
         existente.setTipo(voto.getTipo());
         existente.setIdRespuesta(voto.getIdRespuesta());
+        existente.setIdUsuario(voto.getIdUsuario());
 
         return votoRepository.save(existente);
     }
