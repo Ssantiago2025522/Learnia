@@ -5,6 +5,7 @@ import com.proyecto.Learnia.repository.ComentarioRepository;
 import com.proyecto.Learnia.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -24,6 +25,7 @@ public class ComentarioServiceImp implements ComentarioService {
     @Override
     public Comentario crear(Comentario comentario) {
         comentario.setIdComentario(null);
+        comentario.setFecha(LocalDateTime.now());
         return comentarioRepository.save(comentario);
     }
 

@@ -3,6 +3,8 @@ package com.proyecto.Learnia.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.proyecto.Learnia.entity.Respuesta;
@@ -22,6 +24,7 @@ public class RespuestaServiceImpl implements RespuestaService {
 
     @Override
     public Respuesta guardar(Respuesta respuesta) {
+        respuesta.setFechaRespuesta(LocalDateTime.now());
         return respuestaRepository.save(respuesta);
     }
 
@@ -35,7 +38,7 @@ public class RespuestaServiceImpl implements RespuestaService {
     public Respuesta actualizar(Long id, Respuesta nuevaRespuesta) {
         Respuesta existente = buscarPorId(id);
         existente.setContenido(nuevaRespuesta.getContenido());
-        existente.setIdpregunta(nuevaRespuesta.getIdpregunta());
+        existente.setIdPregunta(nuevaRespuesta.getIdPregunta());
         existente.setFechaRespuesta(nuevaRespuesta.getFechaRespuesta());
         existente.setIdUsuario(nuevaRespuesta.getIdUsuario());
         return respuestaRepository.save(existente);

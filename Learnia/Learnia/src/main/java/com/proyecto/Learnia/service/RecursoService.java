@@ -13,7 +13,5 @@ public interface RecursoService {
     Recurso buscarPorIdRec(Long id);
     void eliminar(Long id);
 
-    List<Recurso> buscarPorUsuario(Long idUsuario);
-    List<Recurso> buscraPorCategoria(Long idCategoria);
-    List<Recurso> buscarPorTipo(TipoRecurso tipoRecurso);
+
 }

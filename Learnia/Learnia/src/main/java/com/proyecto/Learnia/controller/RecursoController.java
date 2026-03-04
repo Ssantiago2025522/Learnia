@@ -47,18 +47,5 @@ public class RecursoController {
         recursoService.eliminar(id.longValue());
     }
 
-    @GetMapping("/usuario/{idUsuario}")
-    public Recurso buscarUsuario(@PathVariable Long idUsuario) {
-        return (Recurso) recursoService.buscarPorUsuario(idUsuario);
-    }
 
-    @GetMapping("/categoria/{idCategoria}")
-    public Recurso buscarCategoria(@PathVariable Long idCategoria) {
-        return (Recurso) recursoService.buscraPorCategoria(idCategoria);
-    }
-
-    @GetMapping("/tipo/{tipoRecurso}")
-    public Recurso buscarTipo(@PathVariable TipoRecurso tipoRecurso) {
-        return (Recurso) recursoService.buscarPorTipo(tipoRecurso);
-    }
 }

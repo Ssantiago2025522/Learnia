@@ -6,6 +6,7 @@ import com.proyecto.Learnia.exception.ResourceNotFoundException;
 import com.proyecto.Learnia.repository.RecursoRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -25,6 +26,7 @@ public class RecursoServiceImpl implements RecursoService{
 
     @Override
     public Recurso crearReC(Recurso recurso) {
+        recurso.setFechaSubida(LocalDateTime.now());
         return recursoRepository.save(recurso);
     }
 
@@ -42,7 +44,8 @@ public class RecursoServiceImpl implements RecursoService{
         existe.setTipoRecurso(recurso.getTipoRecurso());
         existe.setUrlArchivo(recurso.getUrlArchivo());
         existe.setFechaSubida(recurso.getFechaSubida());
-
+        existe.setIdCategoria(recurso.getIdCategoria());
+        existe.setIdUsuario(recurso.getIdUsuario());
         return recursoRepository.save(existe);
     }
 
@@ -54,18 +57,5 @@ public class RecursoServiceImpl implements RecursoService{
         recursoRepository.deleteById(id);
     }
 
-    @Override
-    public List<Recurso> buscarPorUsuario(Long idUsuario) {
-        return recursoRepository.findByUsuario_idUsuario(idUsuario);
-    }
 
-    @Override
-    public List<Recurso> buscraPorCategoria(Long idCategoria) {
-        return recursoRepository.findByCategoria_idCategoria(idCategoria);
-    }
-
-    @Override
-    public List<Recurso> buscarPorTipo(TipoRecurso tipoRecurso) {
-        return recursoRepository.findByTipoRecurso(tipoRecurso);
-    }
 }

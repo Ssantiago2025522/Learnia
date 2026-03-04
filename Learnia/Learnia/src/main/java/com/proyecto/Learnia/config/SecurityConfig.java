@@ -20,6 +20,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/preguntas/**").permitAll()
                         .requestMatchers("/api/respuestas/**").permitAll()
                         .requestMatchers("/api/votos/**").permitAll()
+                        .requestMatchers("/api/recurso/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .build();

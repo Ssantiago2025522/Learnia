@@ -26,8 +26,7 @@ public class Recurso {
     private String tituloRecurso;
 
     @Column(name = "descripcion_recurso")
-    @Min(value = 5, message = "Debe ser mayor a 5")
-    @Max(value = 200, message = "Maximo de 200 caracteres")
+    @Size(min = 5, max = 200, message = "La descripcion debe estar entre 5 y 200 caracteres")
     private String descripcionRecurso;
 
     @NotNull(message = "Debe de seleccionar el tipo de recurso")
@@ -41,4 +40,13 @@ public class Recurso {
 
     @Column(name = "fecha_subida")
     private LocalDateTime fechaSubida;
+
+
+    @NotNull
+    @Column(name = "id_usuario")
+    private Long idUsuario;
+
+    @NotNull
+    @Column(name = "id_categoria")
+    private  Long idCategoria;
 }

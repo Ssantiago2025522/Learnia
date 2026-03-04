@@ -14,7 +14,7 @@ public class RespuestaController {
     @Autowired
     private RespuestaService respuestaService;
 
-    @GetMapping
+    @GetMapping("/get")
     public List<Respuesta> listar() {
         return respuestaService.listar();
     }

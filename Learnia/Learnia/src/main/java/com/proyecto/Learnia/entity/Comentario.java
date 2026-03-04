@@ -3,6 +3,7 @@ package com.proyecto.Learnia.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -22,6 +23,7 @@ public class Comentario {
     private Long idComentario;
 
     @NotBlank(message = "El contenido no puede estar vacío")
+    @Size(min = 1,max = 500, message = "El comentario tiene que tener entre 1 y 500 caracteres")
     @Column(nullable = false, columnDefinition = "TEXT")
     private String contenido;
 

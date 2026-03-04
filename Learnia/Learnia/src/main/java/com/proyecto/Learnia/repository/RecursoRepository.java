@@ -9,7 +9,4 @@ import java.util.List;
 public interface RecursoRepository extends JpaRepository<Recurso, Long> {
 
 
-    List<Recurso> findByUsuario_idUsuario(Long idUsuario);
-    List<Recurso> findByCategoria_idCategoria(Long idCategoria);
-    List<Recurso> findByTipoRecurso(TipoRecurso tipoRecurso);
 }

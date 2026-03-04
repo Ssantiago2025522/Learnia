@@ -1,5 +1,6 @@
 package com.proyecto.Learnia.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.proyecto.Learnia.exception.ResourceNotFoundException;
@@ -22,6 +23,7 @@ public class PreguntaServiceImpl implements PreguntaService {
 
     @Override
     public Pregunta guardar(Pregunta pregunta) {
+        pregunta.setFechaPublicacion(LocalDateTime.now());
         return preguntaRepository.save(pregunta);
     }
 
