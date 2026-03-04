@@ -23,7 +23,7 @@ create table Recurso(
 id_recurso bigint auto_increment primary key,
 titulo_recurso varchar(200) not null,
 descripcion_recurso text,
-tipo_recurso enum("documento" , "presentacion" , "audio") not null,
+tipo_recurso enum("DOCUMENTO" , "PRESENTACION" , "AUDIO") not null,
 url_archivo varchar(255) not null,
 fecha_subida datetime default current_timestamp,
 id_usuario bigint not null,
@@ -105,7 +105,7 @@ on delete cascade
 
 insert into Usuario(username, correo_usuario, contrasena, rol, foto) values("primer_usuarioO",  "correooO", "123", "MODERADOR", "foto");
 insert into Categoria(nombre, descripcion) values("pdf", "archivo");
-insert into Recurso(titulo_recurso, descripcion_recurso, tipo_recurso, url_archivo, fecha_subida, id_usuario, id_categoria) values("pdf", "archivo pdf", "documento", "url archivo", "2025-02-02",1, 1);
+insert into Recurso(titulo_recurso, descripcion_recurso, tipo_recurso, url_archivo, fecha_subida, id_usuario, id_categoria) values("pdf", "archivo pdf", "DOCUMENTO", "url archivo", "2025-02-02",1, 1);
 insert into Pregunta(id_pregunta, titulo, descripcion
 , fecha_publicacion, id_usuario, id_categoria) values("1", "que es spring boot?", "Spring Boot es un framework", "2025-02-22", "1", "1");
 insert into Respuesta(id_respuesta, contenido, fecha_respuesta, id_usuario, id_pregunta)values("1", "spring boot", "2025-02-23", "1", "1");
