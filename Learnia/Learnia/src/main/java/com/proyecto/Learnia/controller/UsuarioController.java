@@ -19,7 +19,7 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @GetMapping("/get")
+    @GetMapping
     public List<Usuario> listar(){
         return usuarioService.listar();
     }

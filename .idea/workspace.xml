@@ -5,8 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="278b867a-dbe7-460a-a4e6-b6716b72329a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/controller/CategoriaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/controller/CategoriaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/controller/ComentarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/controller/ComentarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/controller/PreguntaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/controller/PreguntaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/controller/RecursoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/controller/RecursoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/controller/RespuestaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/controller/RespuestaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/controller/VotoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/controller/VotoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

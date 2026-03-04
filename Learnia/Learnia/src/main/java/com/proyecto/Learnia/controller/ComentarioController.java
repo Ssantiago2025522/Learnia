@@ -19,7 +19,7 @@ public class ComentarioController {
         this.comentarioService = comentarioService;
     }
 
-    @GetMapping("/get")
+    @GetMapping
     public List<Comentario> listar() {
         return comentarioService.listar();
     }

@@ -19,7 +19,7 @@ public class VotoController {
         this.votoService = votoService;
     }
 
-    @GetMapping("/get")
+    @GetMapping
     public List<Voto> listar() {
         return votoService.listar();
     }

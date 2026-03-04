@@ -20,7 +20,7 @@ public class RecursoController {
         this.recursoService = recursoService;
     }
 
-    @GetMapping("/get")
+    @GetMapping
     public List<Recurso> listar() {
         return recursoService.listar();
     }
