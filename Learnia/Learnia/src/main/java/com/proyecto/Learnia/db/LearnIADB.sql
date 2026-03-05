@@ -96,7 +96,7 @@ on delete cascade
  
 Create table voto(
 id_voto bigint auto_increment primary key,
-tipo enum('LIKE', 'DISLIKE') not null,
+tipoVoto enum('LIKE', 'DISLIKE') not null,
 id_usuario bigint not null,
 id_respuesta bigint not null,
 constraint fk_idusuario
@@ -116,7 +116,7 @@ insert into Pregunta(id_pregunta, titulo, descripcion
 , fecha_publicacion, id_usuario, id_categoria) values("1", "que es spring boot?", "Spring Boot es un framework", "2025-02-22", "1", "1");
 insert into Respuesta(id_respuesta, contenido, fecha_respuesta, id_usuario, id_pregunta)values("1", "spring boot", "2025-02-23", "1", "1");
 insert into Comentario(contenido, fecha, id_usuario, id_recurso, id_respuesta)values( "Excelente", "2025-10-12", "1", "1", "1"); 
-insert into voto(tipo, id_usuario, id_respuesta)values("like", "1", "1");
+insert into voto(tipoVoto, id_usuario, id_respuesta)values("like", "1", "1");
 
 
 
