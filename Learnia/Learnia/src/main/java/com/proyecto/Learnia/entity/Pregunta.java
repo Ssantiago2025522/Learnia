@@ -31,10 +31,14 @@ public class Pregunta {
     @Column(name = "fecha_publicacion")
     private LocalDateTime fechaPublicacion;
 
-    @Column(name = "id_categoria", nullable = false)
-    private Long idCategoria;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario", nullable = false)
+    @NotNull(message = "La pregunta debe tener un autor")
+    private Usuario usuario;
 
-    @Column(name = "id_usuario", nullable = false)
-    private Long idUsuario;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_categoria", nullable = false)
+    @NotNull(message = "La pregunta debe pertenecer a una categoría")
+    private Categoria categoria;
 
 }

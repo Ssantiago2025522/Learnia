@@ -30,14 +30,19 @@ public class Comentario {
     @Column(nullable = false)
     private LocalDateTime fecha = LocalDateTime.now();
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario", nullable = false)
     @NotNull(message = "El usuario es obligatorio")
-    @Column(name = "id_usuario", nullable = false)
-    private Long idUsuario;
+    private Usuario usuario;
 
-    @Column(name = "id_recurso")
-    private Long idRecurso;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_recurso")
+    @NotNull(message = "El Recurso no puede estar vacio")
+    private Recurso recurso;
 
-    @Column(name = "id_respuesta")
-    private Long idRespuesta;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_respuesta")
+    @NotNull(message = "La respuesta no puede estar vacia")
+    private Respuesta respuesta;
 
 }

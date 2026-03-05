@@ -23,17 +23,15 @@ public class Voto {
     @Column(nullable = false)
     private TipoVoto tipo;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario", nullable = false)
     @NotNull(message = "El usuario es obligatorio")
-    @Column(name = "id_usuario", nullable = false)
-    private Long idUsuario;
+    private Usuario usuario;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_respuesta", nullable = false)
     @NotNull(message = "La respuesta es obligatoria")
-    @Column(name = "id_respuesta", nullable = false)
-    private Long idRespuesta;
+    private Respuesta respuesta;
 
-    public enum TipoVoto {
-        like,
-        dislike
-    }
 }
 

@@ -2,6 +2,7 @@ package com.proyecto.Learnia.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -30,6 +31,7 @@ public class Usuario {
 
 
     @NotBlank(message = "El correo no puede estar vacio")
+    @Email(message = "Formato de correo invalido")
     @Size(min = 5, max = 100, message = "Numero de caracteres invalido en el correo" )
     @Column(name = "correo_usuario", unique = true)
     private String correoUsuario;

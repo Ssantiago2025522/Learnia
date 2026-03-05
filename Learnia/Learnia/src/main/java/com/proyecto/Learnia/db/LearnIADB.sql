@@ -9,7 +9,7 @@ create table usuario(
     contrasena varchar(150) not null,
 	fecha_registro datetime,
     rol enum("ADMIN", "MODERADOR", "ESTUDIANTE") not null,
-    foto varchar(255) 
+    foto varchar(255) 	
 );
 
 
@@ -19,7 +19,7 @@ nombre varchar(100) ,
 descripcion text
 );
 
-create table Recurso(
+create table recurso(
 id_recurso bigint auto_increment primary key,
 titulo_recurso varchar(200) not null,
 descripcion_recurso text,
@@ -70,7 +70,7 @@ references pregunta(id_pregunta)
 on delete cascade
 );
 
-Create table Comentario(
+Create table comentario(
 id_comentario bigint auto_increment primary key,
 contenido text not null,
 fecha datetime default current_timestamp,
@@ -91,7 +91,7 @@ on delete cascade
  
 Create table voto(
 id_voto bigint auto_increment primary key,
-tipo enum('like', 'dislike') not null,
+tipo enum('LIKE', 'DISLIKE') not null,
 id_usuario bigint not null,
 id_respuesta bigint not null,
 constraint fk_idusuario
@@ -111,5 +111,7 @@ insert into Pregunta(id_pregunta, titulo, descripcion
 insert into Respuesta(id_respuesta, contenido, fecha_respuesta, id_usuario, id_pregunta)values("1", "spring boot", "2025-02-23", "1", "1");
 insert into Comentario(contenido, fecha, id_usuario, id_recurso, id_respuesta)values( "Excelente", "2025-10-12", "1", "1", "1"); 
 insert into voto(tipo, id_usuario, id_respuesta)values("like", "1", "1");
+
+
 
  

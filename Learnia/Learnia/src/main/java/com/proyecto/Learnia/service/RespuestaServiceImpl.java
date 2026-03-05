@@ -38,9 +38,9 @@ public class RespuestaServiceImpl implements RespuestaService {
     public Respuesta actualizar(Long id, Respuesta nuevaRespuesta) {
         Respuesta existente = buscarPorId(id);
         existente.setContenido(nuevaRespuesta.getContenido());
-        existente.setIdPregunta(nuevaRespuesta.getIdPregunta());
+        existente.setPregunta(nuevaRespuesta.getPregunta());
         existente.setFechaRespuesta(nuevaRespuesta.getFechaRespuesta());
-        existente.setIdUsuario(nuevaRespuesta.getIdUsuario());
+        existente.setUsuario(nuevaRespuesta.getUsuario());
         return respuestaRepository.save(existente);
 
     }

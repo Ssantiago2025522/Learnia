@@ -21,7 +21,7 @@ public class AuthService {
 
     public void register(RegisterRequest req){
         if(usuarioRepository.existsByCorreoUsuario(req.correoUsuario)){
-            throw new IllegalArgumentException("El correo ya esta registrado");
+            throw new RuntimeException("El correo " + req.correoUsuario + " ya esta registrado");
         }
         String hash = passwordEncoder.encode(req.contrasenaUsuario);
         Usuario usuario = new Usuario(req.nombreUsuario, req.correoUsuario, hash);
@@ -31,11 +31,11 @@ public class AuthService {
 
     public LoginResponse login(LoginRequest req){
         Usuario usuario = usuarioRepository.findByCorreoUsuario(req.correoUsuario)
-                .orElseThrow(() -> new IllegalArgumentException("Las credenciales son incorrectas o no existen"));
+                .orElseThrow(() -> new RuntimeException("Las credenciales son incorrectas o no existen"));
 
         boolean ok = passwordEncoder.matches(req.contrasenaUsuario, usuario.getContrasenaUsuario());
-        if(!ok) throw new IllegalArgumentException("Contraseña incorrecta");
+        if(!ok) throw new RuntimeException("Credenciales incorrectas: Contraseña incorrecta");
 
-        return new LoginResponse("Login correcto : ", usuario.getIdUsuario(), usuario.getNombreUsuario(), usuario.getCorreoUsuario()) ;
+        return new LoginResponse("Bienvenido : ", usuario.getIdUsuario(), usuario.getNombreUsuario(), usuario.getCorreoUsuario()) ;
     }
 }

@@ -8,8 +8,14 @@ public enum RolUsuario {
     ESTUDIANTE;
 
     @JsonCreator
-    public static RolUsuario from(String value){
-        return RolUsuario.valueOf(value.toUpperCase());
+    public static RolUsuario from(String value) {
+        if (value == null) return null;
+        String valorBusqueda = value.trim().toUpperCase();
+        for (RolUsuario rol : RolUsuario.values()) {
+            if (rol.name().equals(valorBusqueda)) {
+                return rol;
+            }
+        }
+        throw new IllegalArgumentException("El rol '" + value + "' no existe. Los valores permitidos son: ADMIN, MODERADOR, ESTUDIANTE.");
     }
-
 }

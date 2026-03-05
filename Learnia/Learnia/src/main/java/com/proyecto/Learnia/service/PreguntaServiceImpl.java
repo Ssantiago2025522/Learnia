@@ -46,8 +46,8 @@ public class PreguntaServiceImpl implements PreguntaService {
 
         existente.setTitulo(pregunta.getTitulo());
         existente.setDescripcion(pregunta.getDescripcion());
-        existente.setIdCategoria(pregunta.getIdCategoria());
-        existente.setIdUsuario(pregunta.getIdUsuario());
+        existente.setCategoria(pregunta.getCategoria());
+        existente.setUsuario(pregunta.getUsuario());
         return preguntaRepository.save(existente);
     }
 }

@@ -42,11 +42,13 @@ public class Recurso {
     private LocalDateTime fechaSubida;
 
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario", nullable = false)
     @NotNull
-    @Column(name = "id_usuario")
-    private Long idUsuario;
+    private Usuario usuario;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_categoria", nullable = false)
     @NotNull
-    @Column(name = "id_categoria")
-    private  Long idCategoria;
+    private Categoria categoria;
 }

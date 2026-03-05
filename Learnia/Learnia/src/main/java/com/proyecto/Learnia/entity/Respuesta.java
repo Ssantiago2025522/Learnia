@@ -27,10 +27,14 @@ public class Respuesta {
     @Column(name = "fecha_respuesta")
     private LocalDateTime fechaRespuesta;
 
-    @Column(name = "id_usuario", nullable = false)
-    private Long idUsuario;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario", nullable = false)
+    @NotNull(message = "La respuesta debe tener un autor")
+    private Usuario usuario;
 
-    @Column(name = "id_pregunta", nullable = false)
-    private Long idPregunta;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_pregunta", nullable = false)
+    @NotNull(message = "La respuesta debe estar ligada a una pregunta")
+    private Pregunta pregunta;
 
 }

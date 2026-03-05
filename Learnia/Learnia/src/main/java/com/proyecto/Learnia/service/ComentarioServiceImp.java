@@ -40,9 +40,10 @@ public class ComentarioServiceImp implements ComentarioService {
         Comentario existente = buscarPorId(id);
 
         existente.setContenido(comentario.getContenido());
-        existente.setIdRecurso(comentario.getIdRecurso());
-        existente.setIdRespuesta(comentario.getIdRespuesta());
-
+        existente.setFecha(comentario.getFecha());
+        existente.setRecurso(comentario.getRecurso());
+        existente.setRespuesta(comentario.getRespuesta());
+        existente.setUsuario(comentario.getUsuario());
         return comentarioRepository.save(existente);
     }
 

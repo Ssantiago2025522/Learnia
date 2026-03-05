@@ -44,8 +44,8 @@ public class RecursoServiceImpl implements RecursoService{
         existe.setTipoRecurso(recurso.getTipoRecurso());
         existe.setUrlArchivo(recurso.getUrlArchivo());
         existe.setFechaSubida(recurso.getFechaSubida());
-        existe.setIdCategoria(recurso.getIdCategoria());
-        existe.setIdUsuario(recurso.getIdUsuario());
+        existe.setCategoria(recurso.getCategoria());
+        existe.setUsuario(recurso.getUsuario());
         return recursoRepository.save(existe);
     }
 

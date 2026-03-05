@@ -36,10 +36,33 @@ public class GlobalExceptionHandler {
 
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<?> handleBadJson(HttpMessageNotReadableException ex){
-            return  ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body(Map.of("message", "Json Invalido o incorrecto"));
+    public ResponseEntity<?> handleBadJson(HttpMessageNotReadableException ex) {
+        Throwable cause = ex.getMostSpecificCause();
+        String message = "Json Invalido o incorrecto";
+        if (cause instanceof IllegalArgumentException) {
+            message = cause.getMessage();
+        }
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of("message", message));
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<?> handleRuntime(RuntimeException ex) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(Map.of(
+                        "message", ex.getMessage(),
+                        "status", HttpStatus.BAD_REQUEST.value()
+                ));
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<Map<String, String>> handleInvalidRole(IllegalArgumentException ex) {
+        Map<String, String> response = new HashMap<>();
+        response.put("error", "Validación de Enum fallida");
+        response.put("mensaje", ex.getMessage()); // Aquí saldrá tu mensaje personalizado
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

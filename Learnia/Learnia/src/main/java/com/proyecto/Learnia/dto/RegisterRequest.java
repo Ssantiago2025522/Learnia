@@ -10,8 +10,8 @@ public class RegisterRequest {
     @Size(min = 2, max = 100, message = "Numero de caracteres invalido en el nombre")
     public String nombreUsuario;
 
-    @Email
-    @NotBlank
+    @Email(message = "Formato del correo invalido")
+    @NotBlank(message = "El correo es obligatorio")
     @Size(min = 5, max = 100, message = "Numero de caracteres invalido en el correo" )
     public String correoUsuario;
 
