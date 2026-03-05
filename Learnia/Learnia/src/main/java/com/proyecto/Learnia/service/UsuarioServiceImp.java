@@ -2,6 +2,7 @@ package com.proyecto.Learnia.service;
 
 import com.proyecto.Learnia.entity.Usuario;
 import com.proyecto.Learnia.exception.ResourceNotFoundException;
+import com.proyecto.Learnia.exception.SuccesException;
 import com.proyecto.Learnia.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,7 @@ public class UsuarioServiceImp implements UsuarioService {
             throw new ResourceNotFoundException(("Usuario con id no existente o no encontrado: " + id));
         }
          usuarioRepository.deleteById(id);
+         throw new SuccesException("Usuario eliminado correctamente");
     }
 
 

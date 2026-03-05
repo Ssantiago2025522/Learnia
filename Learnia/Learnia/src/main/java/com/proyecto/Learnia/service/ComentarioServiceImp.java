@@ -1,6 +1,7 @@
 package com.proyecto.Learnia.service;
 
 import com.proyecto.Learnia.entity.Comentario;
+import com.proyecto.Learnia.exception.SuccesException;
 import com.proyecto.Learnia.repository.ComentarioRepository;
 import com.proyecto.Learnia.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
@@ -53,5 +54,6 @@ public class ComentarioServiceImp implements ComentarioService {
             throw new ResourceNotFoundException("Comentario no encontrado con ID: " + id);
         }
         comentarioRepository.deleteById(id);
+        throw new SuccesException("Comentario eliminado correctamente");
     }
 }

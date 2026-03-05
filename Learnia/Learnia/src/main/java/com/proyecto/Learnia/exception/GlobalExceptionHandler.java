@@ -57,6 +57,11 @@ public class GlobalExceptionHandler {
                 ));
     }
 
+    @ExceptionHandler(SuccesException.class)
+    public org.springframework.http.ResponseEntity<java.util.Map<String, String>> handleSuccess(SuccesException ex) {
+        return org.springframework.http.ResponseEntity.ok(java.util.Map.of("message", ex.getMessage()));
+    }
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<Map<String, String>> handleInvalidRole(IllegalArgumentException ex) {
         Map<String, String> response = new HashMap<>();

@@ -5,6 +5,7 @@ import com.proyecto.Learnia.entity.Pregunta;
 import com.proyecto.Learnia.entity.Usuario;
 import com.proyecto.Learnia.entity.Categoria;
 import com.proyecto.Learnia.exception.ResourceNotFoundException;
+import com.proyecto.Learnia.exception.SuccesException;
 import com.proyecto.Learnia.repository.PreguntaRepository;
 import com.proyecto.Learnia.repository.UsuarioRepository;
 import com.proyecto.Learnia.repository.CategoriaRepository;
@@ -74,6 +75,7 @@ public class PreguntaServiceImpl implements PreguntaService {
             throw new ResourceNotFoundException("No se puede eliminar, ID no encontrado: " + id);
         }
         preguntaRepository.deleteById(id);
+        throw new SuccesException("Pregunta eliminada correctamente");
     }
 
     private Pregunta mapearYGuardar(Pregunta entidad, PreguntaDTO dto) {

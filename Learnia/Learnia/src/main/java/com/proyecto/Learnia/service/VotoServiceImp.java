@@ -4,6 +4,7 @@ import com.proyecto.Learnia.dto.VotoDTO;
 import com.proyecto.Learnia.entity.Respuesta;
 import com.proyecto.Learnia.entity.Usuario;
 import com.proyecto.Learnia.entity.Voto;
+import com.proyecto.Learnia.exception.SuccesException;
 import com.proyecto.Learnia.repository.RespuestaRepository;
 import com.proyecto.Learnia.repository.UsuarioRepository;
 import com.proyecto.Learnia.repository.VotoRepository;
@@ -69,5 +70,6 @@ public class VotoServiceImp implements VotoService {
             throw new ResourceNotFoundException("Voto no encontrado con ID: " + id);
         }
         votoRepository.deleteById(id);
+        throw new SuccesException("Voto eliminado correctamente");
     }
 }

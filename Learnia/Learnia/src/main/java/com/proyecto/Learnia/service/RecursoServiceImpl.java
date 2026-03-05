@@ -6,6 +6,7 @@ import com.proyecto.Learnia.entity.Recurso;
 import com.proyecto.Learnia.entity.TipoRecurso;
 import com.proyecto.Learnia.entity.Usuario;
 import com.proyecto.Learnia.exception.ResourceNotFoundException;
+import com.proyecto.Learnia.exception.SuccesException;
 import com.proyecto.Learnia.repository.CategoriaRepository;
 import com.proyecto.Learnia.repository.RecursoRepository;
 import com.proyecto.Learnia.repository.UsuarioRepository;
@@ -77,6 +78,8 @@ public class RecursoServiceImpl implements RecursoService{
             throw new ResourceNotFoundException("Recurso no encontrado por id: " + id);
         }
         recursoRepository.deleteById(id);
+        throw new SuccesException("Recurso eliminado correctamente");
+
     }
 
 

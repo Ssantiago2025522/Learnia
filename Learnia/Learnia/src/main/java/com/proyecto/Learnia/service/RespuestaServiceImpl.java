@@ -5,6 +5,7 @@ import com.proyecto.Learnia.entity.Pregunta;
 import com.proyecto.Learnia.entity.Respuesta;
 import com.proyecto.Learnia.entity.Usuario;
 import com.proyecto.Learnia.exception.ResourceNotFoundException;
+import com.proyecto.Learnia.exception.SuccesException;
 import com.proyecto.Learnia.repository.PreguntaRepository;
 import com.proyecto.Learnia.repository.RespuestaRepository;
 import com.proyecto.Learnia.repository.UsuarioRepository;
@@ -78,6 +79,6 @@ public class RespuestaServiceImpl implements RespuestaService {
             throw new ResourceNotFoundException("Respuesta no encontrada con ID: " + id);
         }
         respuestaRepository.deleteById(id);
-        System.out.println("Respuesta con ID " + id + " eliminada correctamente");
+        throw new SuccesException("Respuesta eliminada correctamente");
     }
 }
