@@ -25,17 +25,17 @@ public class CategoriaController {
     }
 
     @GetMapping("/{id}")
-    public Categoria obtener(@PathVariable Integer id) {
+    public Categoria obtener(@PathVariable Long id) {
         return categoriaService.buscarPorId(id);
     }
 
     @PutMapping("/{id}")
-    public Categoria editar(@PathVariable Integer id, @Valid @RequestBody Categoria categoria) {
+    public Categoria editar(@PathVariable Long id, @Valid @RequestBody Categoria categoria) {
         return categoriaService.actualizar(id, categoria);
     }
 
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Integer id) {
-        categoriaService.eliminar(id);
+        categoriaService.eliminar(Long.valueOf(id));
     }
 }
