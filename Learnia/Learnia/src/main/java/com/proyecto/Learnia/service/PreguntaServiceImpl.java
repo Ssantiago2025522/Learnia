@@ -41,15 +41,31 @@ public class PreguntaServiceImpl implements PreguntaService {
 
     @Override
     public Pregunta guardar(PreguntaDTO dto) {
+        Usuario usuario = usuarioRepository.findById(dto.getIdUsuario())
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con ID: " + dto.getIdUsuario()));
+        Categoria categoria = categoriaRepository.findById(dto.getIdCategoria())
+                .orElseThrow(() -> new ResourceNotFoundException("Categoría no encontrada con ID: " + dto.getIdCategoria()));
         Pregunta pregunta = new Pregunta();
+        pregunta.setTitulo(dto.getTitulo());
+        pregunta.setDescripcion(dto.getDescripcion());
+        pregunta.setUsuario(usuario);
+        pregunta.setCategoria(categoria);
         pregunta.setFechaPublicacion(LocalDateTime.now());
-        return mapearYGuardar(pregunta, dto);
+        return preguntaRepository.save(pregunta);
     }
 
     @Override
     public Pregunta actualizar(Long id, PreguntaDTO dto) {
         Pregunta existente = buscarPorId(id);
-        return mapearYGuardar(existente, dto);
+        Usuario usuario = usuarioRepository.findById(dto.getIdUsuario())
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con ID: " + dto.getIdUsuario()));
+        Categoria categoria = categoriaRepository.findById(dto.getIdCategoria())
+                .orElseThrow(() -> new ResourceNotFoundException("Categoría no encontrada con ID: " + dto.getIdCategoria()));
+        existente.setTitulo(dto.getTitulo());
+        existente.setDescripcion(dto.getDescripcion());
+        existente.setUsuario(usuario);
+        existente.setCategoria(categoria);
+        return preguntaRepository.save(existente);
     }
 
     @Override
