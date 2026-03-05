@@ -1,5 +1,6 @@
 package com.proyecto.Learnia.controller;
 
+import com.proyecto.Learnia.dto.RecursoDTO;
 import com.proyecto.Learnia.entity.Recurso;
 import com.proyecto.Learnia.entity.TipoRecurso;
 import com.proyecto.Learnia.service.RecursoService;
@@ -26,8 +27,8 @@ public class RecursoController {
     }
 
     @PostMapping
-    public ResponseEntity<Recurso> crear(@Valid @RequestBody Recurso recurso) {
-        Recurso crear = recursoService.crearReC(recurso);
+    public ResponseEntity<Recurso> crear(@Valid @RequestBody RecursoDTO recursoDTO) {
+        Recurso crear = recursoService.crear(recursoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(crear);
     }
 

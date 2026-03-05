@@ -21,7 +21,7 @@ public class Voto {
     @NotNull(message = "El tipo de voto es obligatorio")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private TipoVoto tipo;
+    private TipoVoto tipoVoto;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario", nullable = false)

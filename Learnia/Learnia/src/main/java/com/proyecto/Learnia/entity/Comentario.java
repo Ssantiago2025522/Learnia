@@ -42,7 +42,7 @@ public class Comentario {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_respuesta")
-    @NotNull(message = "La respuesta no puede estar vacia")
+    @NotNull(message = "La respuesta no puede")
     private Respuesta respuesta;
 
 }

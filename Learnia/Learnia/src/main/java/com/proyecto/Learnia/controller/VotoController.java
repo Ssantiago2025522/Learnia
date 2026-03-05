@@ -1,5 +1,6 @@
 package com.proyecto.Learnia.controller;
 
+import com.proyecto.Learnia.dto.VotoDTO;
 import com.proyecto.Learnia.entity.Voto;
 import com.proyecto.Learnia.service.VotoService;
 import jakarta.validation.Valid;
@@ -25,9 +26,9 @@ public class VotoController {
     }
 
     @PostMapping
-    public ResponseEntity<Voto> crear(@Valid @RequestBody Voto voto) {
+    public ResponseEntity<Voto> crear(@Valid @RequestBody VotoDTO votoDTO) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(votoService.crear(voto));
+                .body(votoService.crear(votoDTO));
     }
 
     @GetMapping("/{id}")
