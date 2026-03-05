@@ -1,52 +1,80 @@
 package com.proyecto.Learnia.service;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.proyecto.Learnia.dto.RespuestaDTO;
+import com.proyecto.Learnia.entity.Pregunta;
+import com.proyecto.Learnia.entity.Respuesta;
+import com.proyecto.Learnia.entity.Usuario;
+import com.proyecto.Learnia.exception.ResourceNotFoundException;
+import com.proyecto.Learnia.repository.PreguntaRepository;
+import com.proyecto.Learnia.repository.RespuestaRepository;
+import com.proyecto.Learnia.repository.UsuarioRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.proyecto.Learnia.entity.Respuesta;
-import com.proyecto.Learnia.repository.RespuestaRepository;
-
-@Slf4j
 @Service
 public class RespuestaServiceImpl implements RespuestaService {
 
-    @Autowired
-    private RespuestaRepository respuestaRepository;
+    private final RespuestaRepository respuestaRepository;
+    private final UsuarioRepository usuarioRepository;
+    private final PreguntaRepository preguntaRepository;
 
+    public RespuestaServiceImpl(RespuestaRepository respuestaRepository,
+                                UsuarioRepository usuarioRepository,
+                                PreguntaRepository preguntaRepository) {
+        this.respuestaRepository = respuestaRepository;
+        this.usuarioRepository = usuarioRepository;
+        this.preguntaRepository = preguntaRepository;
+    }
     @Override
     public List<Respuesta> listar() {
         return respuestaRepository.findAll();
     }
 
     @Override
-    public Respuesta guardar(Respuesta respuesta) {
+    public Respuesta crear(RespuestaDTO dto) {
+
+        Usuario usuario = usuarioRepository.findById(dto.getIdUsuario())
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con ID: " + dto.getIdUsuario()));
+
+        Pregunta pregunta = preguntaRepository.findById(dto.getIdPregunta())
+                .orElseThrow(() -> new ResourceNotFoundException("Pregunta no encontrada con ID: " + dto.getIdPregunta()));
+
+        Respuesta respuesta = new Respuesta();
+        respuesta.setContenido(dto.getContenido());
+        respuesta.setUsuario(usuario);
+        respuesta.setPregunta(pregunta);
         respuesta.setFechaRespuesta(LocalDateTime.now());
+
         return respuestaRepository.save(respuesta);
     }
 
     @Override
     public Respuesta buscarPorId(Long id) {
         return respuestaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Respuesta no encontrada"));
+                .orElseThrow(() -> new ResourceNotFoundException("Respuesta no encontrada con ID: " + id));
     }
 
     @Override
     public Respuesta actualizar(Long id, Respuesta nuevaRespuesta) {
+
         Respuesta existente = buscarPorId(id);
+
         existente.setContenido(nuevaRespuesta.getContenido());
         existente.setPregunta(nuevaRespuesta.getPregunta());
-        existente.setFechaRespuesta(nuevaRespuesta.getFechaRespuesta());
         existente.setUsuario(nuevaRespuesta.getUsuario());
-        return respuestaRepository.save(existente);
+        existente.setFechaRespuesta(nuevaRespuesta.getFechaRespuesta());
 
+        return respuestaRepository.save(existente);
     }
 
     @Override
     public void eliminar(Long id) {
+        if (!respuestaRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Respuesta no encontrada con ID: " + id);
+        }
         respuestaRepository.deleteById(id);
     }
 }
