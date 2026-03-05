@@ -1,5 +1,6 @@
 package com.proyecto.Learnia.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -30,11 +31,13 @@ public class Respuesta {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_usuario", nullable = false)
     @NotNull(message = "La respuesta debe tener un autor")
+    @JsonIgnoreProperties({"respuestas", "preguntas", "contrasena"})
     private Usuario usuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_pregunta", nullable = false)
     @NotNull(message = "La respuesta debe estar ligada a una pregunta")
+    @JsonIgnoreProperties("respuestas")
     private Pregunta pregunta;
 
 }

@@ -17,6 +17,7 @@ create table categoria(
 id_categoria bigint auto_increment primary key,
 nombre varchar(100) ,
 descripcion text
+
 );
 
 create table recurso(
@@ -30,7 +31,8 @@ id_usuario bigint not null,
 id_categoria bigint not null,
 constraint fk_id_usuario
 foreign key (id_usuario) 
-references usuario(id_usuario),
+references usuario(id_usuario)
+On delete cascade,
 constraint fk_id_categoria
 foreign key (id_categoria) 
 references categoria(id_categoria)
@@ -47,7 +49,8 @@ id_usuario bigint not null,
 id_categoria bigint not null,
 constraint fk_id_usuarios
 foreign key (id_usuario) 
-references usuario(id_usuario),
+references usuario(id_usuario)
+On delete cascade,
 constraint fk_id_categorias
 foreign key (id_categoria) 
 references categoria(id_categoria)
@@ -79,10 +82,12 @@ id_recurso bigint null,
 id_respuesta bigint null,
 constraint fk_usuario
 foreign key (id_usuario)
-references usuario(id_usuario),
+references usuario(id_usuario)
+On delete cascade,
 constraint fk_respuesta
 foreign key (id_respuesta)
-references respuesta(id_respuesta),
+references respuesta(id_respuesta)
+On delete cascade,
 constraint fk_recurso
 foreign key (id_recurso)
 references recurso(id_recurso)
@@ -96,7 +101,8 @@ id_usuario bigint not null,
 id_respuesta bigint not null,
 constraint fk_idusuario
 foreign key (id_usuario)
-references usuario(id_usuario),
+references usuario(id_usuario)
+On delete cascade,
 constraint fk_id_respuesta
 foreign key (id_respuesta)
 references respuesta(id_respuesta)

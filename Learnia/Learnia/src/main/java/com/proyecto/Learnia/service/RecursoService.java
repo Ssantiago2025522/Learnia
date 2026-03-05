@@ -10,7 +10,7 @@ public interface RecursoService {
 
     List<Recurso> listar();
     Recurso crear(RecursoDTO recursoDTO);
-    Recurso actualizarReC(Long id, Recurso recurso);
+    Recurso actualizarReC(Long id, RecursoDTO dto);
     Recurso buscarPorIdRec(Long id);
     void eliminar(Long id);
 

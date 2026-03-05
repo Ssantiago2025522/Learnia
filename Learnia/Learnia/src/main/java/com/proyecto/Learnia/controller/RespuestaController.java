@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/respuestas")
@@ -38,8 +39,8 @@ public class RespuestaController {
 
     @PutMapping("/{id}")
     public Respuesta actualizar(@PathVariable Long id,
-                                @Valid @RequestBody Respuesta respuesta) {
-        return respuestaService.actualizar(id, respuesta);
+                                @Valid @RequestBody RespuestaDTO dto) {
+        return respuestaService.actualizar(id, dto);
     }
 
     @DeleteMapping("/{id}")

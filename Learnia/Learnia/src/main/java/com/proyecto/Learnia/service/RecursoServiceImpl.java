@@ -56,16 +56,18 @@ public class RecursoServiceImpl implements RecursoService{
     }
 
     @Override
-    public Recurso actualizarReC(Long id, Recurso recurso) {
+    public Recurso actualizarReC(Long id, RecursoDTO dto) {
         Recurso existe = buscarPorIdRec(id);
-
-        existe.setTituloRecurso(recurso.getTituloRecurso());
-        existe.setDescripcionRecurso(recurso.getDescripcionRecurso());
-        existe.setTipoRecurso(recurso.getTipoRecurso());
-        existe.setUrlArchivo(recurso.getUrlArchivo());
-        existe.setFechaSubida(recurso.getFechaSubida());
-        existe.setCategoria(recurso.getCategoria());
-        existe.setUsuario(recurso.getUsuario());
+        Usuario usuario = usuarioRepository.findById(dto.getIdUsuario())
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+        Categoria categoria = categoriaRepository.findById(dto.getIdCategoria())
+                .orElseThrow(() -> new ResourceNotFoundException("Categoría no encontrada"));
+        existe.setTituloRecurso(dto.getTituloRecurso());
+        existe.setDescripcionRecurso(dto.getDescripcionRecurso());
+        existe.setTipoRecurso(dto.getTipoRecurso());
+        existe.setUrlArchivo(dto.getUrlArchivo());
+        existe.setUsuario(usuario);
+        existe.setCategoria(categoria);
         return recursoRepository.save(existe);
     }
 

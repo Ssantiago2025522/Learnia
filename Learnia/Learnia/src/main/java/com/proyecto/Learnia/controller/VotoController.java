@@ -38,8 +38,8 @@ public class VotoController {
 
     @PutMapping("/{id}")
     public Voto actualizar(@PathVariable Long id,
-                           @Valid @RequestBody Voto voto) {
-        return votoService.actualizar(id, voto);
+                           @Valid @RequestBody VotoDTO dto) {
+        return votoService.actualizar(id, dto);
     }
 
     @DeleteMapping("/{id}")

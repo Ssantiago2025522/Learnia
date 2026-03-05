@@ -9,6 +9,6 @@ public interface RespuestaService {
     List<Respuesta> listar();
     Respuesta crear(RespuestaDTO dto);
     Respuesta buscarPorId(Long id);
-    Respuesta actualizar(Long id, Respuesta respuesta);
+    Respuesta actualizar(Long id, RespuestaDTO dto);
     void eliminar(Long id);
 }

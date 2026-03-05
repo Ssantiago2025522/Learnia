@@ -38,8 +38,8 @@ public class RecursoController {
     }
 
     @PutMapping("/{id}")
-    public Recurso actualizar(@PathVariable Integer id, @Valid @RequestBody Recurso recurso) {
-        return recursoService.actualizarReC(id.longValue(), recurso);
+    public Recurso actualizar(@PathVariable Integer id, @Valid @RequestBody RecursoDTO dto) {
+        return recursoService.actualizarReC(id.longValue(), dto);
     }
 
     @DeleteMapping("/{id}")

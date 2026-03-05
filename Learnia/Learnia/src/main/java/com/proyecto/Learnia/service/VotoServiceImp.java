@@ -51,13 +51,15 @@ public class VotoServiceImp implements VotoService {
     }
 
     @Override
-    public Voto actualizar(Long id, Voto voto) {
+    public Voto actualizar(Long id, VotoDTO dto) {
         Voto existente = buscarPorId(id);
-
-        existente.setTipoVoto(voto.getTipoVoto());
-        existente.setRespuesta(voto.getRespuesta());
-        existente.setUsuario(voto.getUsuario());
-
+        Usuario usuario = usuarioRepository.findById(dto.getIdUsuario())
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con ID: " + dto.getIdUsuario()));
+        Respuesta respuesta = respuestaRepository.findById(dto.getIdRespuesta())
+                .orElseThrow(() -> new ResourceNotFoundException("Respuesta no encontrada con ID: " + dto.getIdRespuesta()));
+        existente.setTipoVoto(dto.getTipoVoto());
+        existente.setUsuario(usuario);
+        existente.setRespuesta(respuesta);
         return votoRepository.save(existente);
     }
 

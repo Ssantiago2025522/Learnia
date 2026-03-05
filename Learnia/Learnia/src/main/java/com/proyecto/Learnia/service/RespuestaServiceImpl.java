@@ -58,14 +58,16 @@ public class RespuestaServiceImpl implements RespuestaService {
     }
 
     @Override
-    public Respuesta actualizar(Long id, Respuesta nuevaRespuesta) {
-
+    public Respuesta actualizar(Long id, RespuestaDTO dto) {
         Respuesta existente = buscarPorId(id);
-
-        existente.setContenido(nuevaRespuesta.getContenido());
-        existente.setPregunta(nuevaRespuesta.getPregunta());
-        existente.setUsuario(nuevaRespuesta.getUsuario());
-        existente.setFechaRespuesta(nuevaRespuesta.getFechaRespuesta());
+        Usuario usuario = usuarioRepository.findById(dto.getIdUsuario())
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+        Pregunta pregunta = preguntaRepository.findById(dto.getIdPregunta())
+                .orElseThrow(() -> new ResourceNotFoundException("Pregunta no encontrada"));
+        existente.setContenido(dto.getContenido());
+        existente.setUsuario(usuario);
+        existente.setPregunta(pregunta);
+        existente.setFechaRespuesta(LocalDateTime.now());
 
         return respuestaRepository.save(existente);
     }
@@ -76,5 +78,6 @@ public class RespuestaServiceImpl implements RespuestaService {
             throw new ResourceNotFoundException("Respuesta no encontrada con ID: " + id);
         }
         respuestaRepository.deleteById(id);
+        System.out.println("Respuesta con ID " + id + " eliminada correctamente");
     }
 }

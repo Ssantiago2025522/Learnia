@@ -9,6 +9,6 @@ public interface VotoService {
     List<Voto> listar();
     Voto crear(VotoDTO votoDTO);
     Voto buscarPorId(Long id);
-    Voto actualizar(Long id, Voto voto);
+    Voto actualizar(Long id, VotoDTO dto);
     void eliminar(Long id);
 }
