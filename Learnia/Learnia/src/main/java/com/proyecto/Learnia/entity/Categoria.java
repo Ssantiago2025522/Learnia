@@ -16,7 +16,7 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria")
-    private Integer idCategoria;
+    private Long idCategoria;
 
     @NotBlank(message = "El nombre no puede ir vacio")
     @Size(min = 5,max = 20,message = "nombre de categoria incorrecto, el nombre de la categoria tiene que tener entre 5 y 20 caracteres ")

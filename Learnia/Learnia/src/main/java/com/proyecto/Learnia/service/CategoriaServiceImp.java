@@ -23,12 +23,12 @@ public class CategoriaServiceImp implements CategoriaService {
     }
 
     @Override
-    public Categoria buscarPorId(Integer id) {
+    public Categoria buscarPorId(Long id) {
         return categoriaRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Categoria actualizar(Integer id, Categoria categoria) {
+    public Categoria actualizar(Long id, Categoria categoria) {
         Categoria existente = categoriaRepository.findById(id).orElse(null);
         if (existente != null) {
             existente.setNombreCategoria(categoria.getNombreCategoria());
@@ -39,7 +39,7 @@ public class CategoriaServiceImp implements CategoriaService {
     }
 
     @Override
-    public void eliminar(Integer id) {
+    public void eliminar(Long id) {
         categoriaRepository.deleteById(id);
     }
 }

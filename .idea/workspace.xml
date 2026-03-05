@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4f1f843e-c5a5-4a18-a712-f02c4ec756cf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/dto/RespuestaDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Learnia.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Learnia.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/controller/RespuestaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/controller/RespuestaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/entity/Comentario.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/entity/Comentario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/service/RespuestaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/service/RespuestaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/service/RespuestaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/java/com/proyecto/Learnia/service/RespuestaServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Learnia/Learnia/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Learnia/Learnia/src/main/resources/application.properties" afterDir="false" />
-    </list>
+    <list default="true" id="4f1f843e-c5a5-4a18-a712-f02c4ec756cf" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,31 +27,31 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="3AVXq1qVuJwNieefYceeq2TmFR1" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.LearniaApplication.executor": "Debug",
-    "git-widget-placeholder": "feature/integracion-crud",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/santi/Downloads/Learnia"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.LearniaApplication.executor&quot;: &quot;Debug&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/integracion-crud&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/santi/Downloads/Learnia&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90" />
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.240" />
       </set>
     </attachedChunks>
   </component>

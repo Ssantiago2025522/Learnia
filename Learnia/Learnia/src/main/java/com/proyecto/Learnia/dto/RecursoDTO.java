@@ -14,5 +14,5 @@ public class RecursoDTO {
     private String urlArchivo;
     private LocalDateTime fechaSubida;
     private Long idUsuario;
-    private Integer idCategoria;
+    private Long idCategoria;
 }
