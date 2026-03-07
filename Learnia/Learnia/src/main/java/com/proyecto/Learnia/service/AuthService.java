@@ -35,7 +35,6 @@ public class AuthService {
 
         boolean ok = passwordEncoder.matches(req.contrasenaUsuario, usuario.getContrasenaUsuario());
         if(!ok) throw new RuntimeException("Credenciales incorrectas: Contraseña incorrecta");
-
         return new LoginResponse("Bienvenido : ", usuario.getIdUsuario(), usuario.getNombreUsuario(), usuario.getCorreoUsuario()) ;
     }
 }

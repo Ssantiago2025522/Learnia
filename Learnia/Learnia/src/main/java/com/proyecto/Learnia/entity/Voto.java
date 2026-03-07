@@ -20,7 +20,7 @@ public class Voto {
 
     @NotNull(message = "El tipo de voto es obligatorio")
     @Enumerated(EnumType.STRING)
-    @Column(name = "tipoVoto", nullable = false)
+    @Column(name = "tipo_voto", nullable = false)
     private TipoVoto tipoVoto;
 
     @ManyToOne(fetch = FetchType.LAZY)
