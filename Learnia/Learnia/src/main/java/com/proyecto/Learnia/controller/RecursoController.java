@@ -1,0 +1,52 @@
+package com.proyecto.Learnia.controller;
+
+import com.proyecto.Learnia.dto.RecursoDTO;
+import com.proyecto.Learnia.entity.Recurso;
+import com.proyecto.Learnia.entity.TipoRecurso;
+import com.proyecto.Learnia.service.RecursoService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/recurso")
+public class RecursoController {
+
+    private final RecursoService recursoService;
+
+    public RecursoController(RecursoService recursoService) {
+        this.recursoService = recursoService;
+    }
+
+    @GetMapping
+    public List<Recurso> listar() {
+        return recursoService.listar();
+    }
+
+    @PostMapping
+    public ResponseEntity<Recurso> crear(@Valid @RequestBody RecursoDTO recursoDTO) {
+        Recurso crear = recursoService.crear(recursoDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(crear);
+    }
+
+    @GetMapping("/{id}")
+    public Recurso buscar(@PathVariable Integer id) {
+        return recursoService.buscarPorIdRec(id.longValue());
+    }
+
+    @PutMapping("/{id}")
+    public Recurso actualizar(@PathVariable Integer id, @Valid @RequestBody RecursoDTO dto) {
+        return recursoService.actualizarReC(id.longValue(), dto);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void eliminar(@PathVariable Integer id) {
+        recursoService.eliminar(id.longValue());
+    }
+
+
+}

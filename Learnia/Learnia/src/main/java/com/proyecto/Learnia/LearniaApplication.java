@@ -1,11 +1,14 @@
 package com.proyecto.Learnia;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LearniaApplication implements CommandLineRunner {
+@Slf4j
+public class
+		LearniaApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LearniaApplication.class, args);
@@ -13,6 +16,6 @@ public class LearniaApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		System.out.println("Api funcionando de manera correcta");
-	}
+        log.info("Api funcionando correctamente");
+    }
 }
