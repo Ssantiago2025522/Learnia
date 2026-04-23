@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+
+    <style>
+        body {
+        font-family: Arial;
+        background: #0f172a;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        }
+
+        .card {
+        background: #1e293b;
+        padding: 30px;
+        border-radius: 12px;
+        width: 320px;
+        }
+
+        input {
+        width: 100%;
+        padding: 10px;
+        margin: 6px 0;
+        border-radius: 8px;
+        border: none;
+        }
+
+        button {
+        width: 100%;
+        padding: 10px;
+        background: #38bdf8;
+        border: none;
+        border-radius: 8px;
+        margin-top: 10px;
+        cursor: pointer;
+        }
+
+        .error {
+        color: #f87171;
+        font-size: 12px;
+        }
+
+        .success {
+        color: #4ade80;
+        text-align: center;
+        }
+       </style>
+
+</head>
+
+<body>
+<div class="card">
+    <h2>Crear cuenta</h2>
+
+    <form th:action="@{/register}" th:object="${user}" method="post">
+
+        <input type="text" th:field="*{nombreUsuario}" placeholder="Nombre">
+        <p class="error" th:errors="*{nombreUsuario}"></p>
+
+        <input type="text" th:field="*{correoUsuario}" placeholder="Correo">
+        <p class="error" th:errors="*{correoUsuario}"></p>
+
+        <input type="text" th:field="*{contrasenaUsuario}" placeholder="Contraseña">
+        <p class="error" th:errors="*{contrasenaUsuario}"></p>
+
+        <button type = "submit">Registrarse</button>
+
+    </form>
+
+    <p class="succes" th:if="${success}" th:text="${success}"></p>
+    <p class="error" th:if="${error}" th:text="${error}"></p>
+
+
+</div>
+</body>
+</html>
