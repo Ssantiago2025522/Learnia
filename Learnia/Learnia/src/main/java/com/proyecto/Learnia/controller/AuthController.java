@@ -19,6 +19,7 @@ public class AuthController {
         this.authService = authService;
     }
 
+
     @PostMapping("/register")
     public  String register(@Valid  @RequestBody RegisterRequest req){
             authService.register(req);

@@ -3,6 +3,12 @@ package com.proyecto.Learnia.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+
 
 public class RegisterRequest {
 
@@ -19,4 +25,27 @@ public class RegisterRequest {
     @Size(min = 8, max = 100, message = "Numero de caracteres invalido en la contraseña")
     public String contrasenaUsuario;
 
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getCorreoUsuario() {
+        return correoUsuario;
+    }
+
+    public void setCorreoUsuario(String correoUsuario) {
+        this.correoUsuario = correoUsuario;
+    }
+
+    public String getContrasenaUsuario() {
+        return contrasenaUsuario;
+    }
+
+    public void setContrasenaUsuario(String contrasenaUsuario) {
+        this.contrasenaUsuario = contrasenaUsuario;
+    }
 }
