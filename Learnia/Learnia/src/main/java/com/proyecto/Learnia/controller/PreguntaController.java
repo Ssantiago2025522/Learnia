@@ -20,19 +20,16 @@ public class PreguntaController {
         this.preguntaService = preguntaService;
     }
 
-    // LISTAR TODO: GET http://localhost:8080/api/preguntas
     @GetMapping
     public List<Pregunta> listar() {
         return preguntaService.listar();
     }
 
-    // GUARDAR: POST http://localhost:8080/api/preguntas
     @PostMapping
     public ResponseEntity<Pregunta> guardar(@Valid @RequestBody PreguntaDTO dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(preguntaService.guardar(dto));
     }
 
-    // BUSCAR: GET http://localhost:8080/api/preguntas/{id}
     @GetMapping("/{id}")
     public ResponseEntity<Pregunta> buscar(@PathVariable Long id) {
         return ResponseEntity.ok(preguntaService.buscarPorId(id));

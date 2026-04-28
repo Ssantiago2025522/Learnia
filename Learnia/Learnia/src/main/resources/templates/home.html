@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learnia | Pasa de preguntar a comprender</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deepBlue: '#2C3E50',
+                        terracota: '#D35400',
+                        natureGreen: '#27AE60',
+                        eduCian: '#2980B9',
+                        solarYellow: '#F1C40F'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .hero-gradient { background: linear-gradient(135deg, #f0f7ff 0%, #d9f0ff 100%); }
+    </style>
+</head>
+<body class="bg-white font-sans text-deepBlue">
+
+<nav class="bg-white px-8 py-4 flex justify-between items-center sticky top-0 z-50 border-b-2 border-eduCian/10 shadow-sm">
+    <div class="text-3xl font-black tracking-tighter text-deepBlue">LEAR<span class="text-eduCian">NIA</span></div>
+    <div class="flex items-center space-x-8 text-xs font-bold tracking-widest">
+        <a th:href="@{/login}" class="text-deepBlue hover:text-eduCian transition duration-300">INICIAR SESIÓN</a>
+        <a th:href="@{/registro}" class="text-deepBlue hover:text-eduCian transition duration-300">REGISTRARSE</a>
+        <a th:href="@{/preguntar}" class="bg-terracota text-white px-8 py-3 rounded-full hover:bg-orange-700 transition duration-300 shadow-lg shadow-terracota/20 uppercase">
+            Haz una pregunta
+        </a>
+    </div>
+</nav>
+
+<header class="hero-gradient py-20 px-6 overflow-hidden">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-8">
+            <h1 class="text-6xl font-black leading-tight text-deepBlue">Pasa de preguntar a <span class="text-eduCian">comprender</span></h1>
+            <p class="text-xl text-gray-600 leading-relaxed">Únete a la comunidad de estudiantes más grande. Colabora, enseña y aprende de forma efectiva.</p>
+
+            <div class="relative max-w-lg group">
+                <input type="text" placeholder="¿Qué quieres aprender hoy?"
+                       class="w-full p-5 pl-8 rounded-2xl border-2 border-white bg-white/80 backdrop-blur-sm shadow-xl focus:border-eduCian focus:ring-0 text-lg transition-all outline-none">
+                <button class="absolute right-3 top-3 bg-deepBlue text-white p-3 rounded-xl w-12 h-12 flex items-center justify-center hover:bg-eduCian transition-colors">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </div>
+        <div class="hidden md:block relative">
+            <div class="absolute -top-10 -right-10 w-64 h-64 bg-solarYellow rounded-full filter blur-3xl opacity-20"></div>
+            <img src="https://img.freepik.com/vector-gratis/estudiantes-estudiando-biblioteca_23-2147514338.jpg"
+                 class="rounded-[2rem] shadow-2xl border-8 border-white transform rotate-2 hover:rotate-0 transition-transform duration-500" alt="Estudiando">
+        </div>
+    </div>
+</header>
+
+<section class="py-8 bg-white border-b-2 border-gray-50">
+    <div class="max-w-6xl mx-auto px-6 flex items-center">
+        <button onclick="scrollCat(-200)" class="w-10 h-10 border-2 border-deepBlue rounded-full flex items-center justify-center hover:bg-deepBlue hover:text-white transition-all">
+            <i class="fa-solid fa-chevron-left text-xs"></i>
+        </button>
+        <div id="catBox" class="flex-1 flex overflow-x-auto no-scrollbar space-x-12 px-10">
+            <div class="flex items-center space-x-3 min-w-max cursor-pointer font-bold text-sm hover:text-terracota transition"><i class="fa-solid fa-border-all text-eduCian"></i> <span>Todas</span></div>
+            <div class="flex items-center space-x-3 min-w-max cursor-pointer font-bold text-sm hover:text-terracota transition"><i class="fa-solid fa-calculator text-eduCian"></i> <span>Matemáticas</span></div>
+            <div class="flex items-center space-x-3 min-w-max cursor-pointer font-bold text-sm hover:text-terracota transition"><i class="fa-solid fa-book text-terracota"></i> <span>Programación</span></div>
+            <div class="flex items-center space-x-3 min-w-max cursor-pointer font-bold text-sm hover:text-terracota transition"><i class="fa-solid fa-chart-pie text-eduCian"></i> <span>Fisica Fundamental</span></div>
+            <div class="flex items-center space-x-3 min-w-max cursor-pointer font-bold text-sm hover:text-terracota transition"><span class="bg-deepBlue text-solarYellow text-[10px] px-2 py-0.5 rounded-full">ES</span> <span>Castellano</span></div>
+        </div>
+        <button onclick="scrollCat(200)" class="w-10 h-10 border-2 border-deepBlue rounded-full flex items-center justify-center hover:bg-deepBlue hover:text-white transition-all">
+            <i class="fa-solid fa-chevron-right text-xs"></i>
+        </button>
+    </div>
+</section>
+
+<section class="py-24 bg-white text-center px-6 relative">
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 text-9xl text-eduCian/5 font-serif">“</div>
+    <h2 class="text-4xl font-black mb-12 text-deepBlue max-w-3xl mx-auto">Llevado por estudiantes, apoyado por padres.</h2>
+    <div class="max-w-3xl mx-auto bg-deepBlue p-12 rounded-[3rem] relative shadow-2xl overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-eduCian/20 rounded-bl-full"></div>
+        <p class="italic text-white text-2xl font-light leading-relaxed mb-8">"Si no sabes, <span class="text-solarYellow font-bold uppercase">no copies</span>, mejor pregunta y aprende con <span class="text-eduCian font-bold">LEARNIA</span>"</p>
+        <div class="text-eduCian font-black text-xl tracking-widest uppercase">Mario Roberto Hernandez</div>
+    </div>
+</section>
+
+<section class="py-20 max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-24 items-center">
+    <div class="space-y-16">
+        <div class="group">
+            <div class="w-16 h-1 bg-terracota mb-6 group-hover:w-32 transition-all duration-500"></div>
+            <h3 class="text-4xl font-black mb-6 uppercase">Haz preguntas</h3>
+            <p class="text-gray-500 text-lg">¿Estás bloqueado en geometría o en una práctica? No hay retos demasiado grandes para nuestra comunidad.</p>
+        </div>
+        <div class="group">
+            <div class="w-16 h-1 bg-eduCian mb-6 group-hover:w-32 transition-all duration-500"></div>
+            <h3 class="text-4xl font-black mb-6 uppercase">Recibe ayuda</h3>
+            <p class="text-gray-500 text-lg">Profesores y estudiantes destacados están listos para guiarte paso a paso en tus dudas más difíciles.</p>
+        </div>
+    </div>
+
+    <div class="relative">
+        <div class="absolute -inset-4 bg-eduCian/10 rounded-[3rem] -rotate-3"></div>
+        <div class="relative bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100">
+            <div class="flex items-center space-x-4 mb-8">
+                <div class="w-12 h-12 bg-eduCian/10 rounded-full flex items-center justify-center text-eduCian">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div class="text-xs font-black text-eduCian uppercase tracking-widest">Matemáticas • 5 Puntos</div>
+            </div>
+            <p class="font-bold text-2xl mb-8 text-deepBlue">5 + 4x = 2x + 2. ¿Cuál es el valor de x?</p>
+
+            <div class="bg-natureGreen/10 p-6 rounded-2xl border-l-4 border-natureGreen">
+                <div class="flex items-center space-x-2 text-natureGreen font-black text-sm mb-3">
+                    <i class="fa-solid fa-check-double"></i>
+                    <span>SOLUCIÓN VERIFICADA</span>
+                </div>
+                <p class="text-deepBlue leading-relaxed">El valor de la variable es <span class="font-bold text-natureGreen">x = -1.5</span>. Se agrupan términos semejantes y se despeja la incógnita.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-deepBlue text-white py-16 px-6 mt-20">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 mb-16">
+        <div class="col-span-2 md:col-span-1">
+            <div class="text-3xl font-black tracking-tighter mb-6">LEARNIA</div>
+            <p class="text-gray-400 text-sm">Transformando la educación a través de la colaboración.</p>
+        </div>
+        <div>
+            <h4 class="font-bold mb-6 text-eduCian tracking-widest uppercase text-xs">Comunidad</h4>
+            <ul class="text-sm space-y-4 text-gray-300">
+                <li class="hover:text-solarYellow cursor-pointer transition">Blog de Learnia</li>
+                <li class="hover:text-solarYellow cursor-pointer transition">Guía para padres</li>
+                <li class="hover:text-solarYellow cursor-pointer transition">Expertos</li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-bold mb-6 text-eduCian tracking-widest uppercase text-xs">Ayuda</h4>
+            <ul class="text-sm space-y-4 text-gray-300">
+                <li class="hover:text-solarYellow cursor-pointer transition">Soporte técnico</li>
+                <li class="hover:text-solarYellow cursor-pointer transition">Privacidad</li>
+                <li class="hover:text-solarYellow cursor-pointer transition">Contacto</li>
+            </ul>
+        </div>
+    </div>
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center border-t border-white/10 pt-10">
+        <p class="text-gray-500 text-sm">© 2026 LEAR<span class="text-eduCian">NIA</span>. Todos los derechos reservados.</p>
+        <div class="flex space-x-6 mt-6 md:mt-0">
+            <a href="#" class="text-2xl hover:text-solarYellow transition-transform hover:-translate-y-1"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="text-2xl hover:text-solarYellow transition-transform hover:-translate-y-1"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="text-2xl hover:text-solarYellow transition-transform hover:-translate-y-1"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function scrollCat(amt) {
+        document.getElementById('catBox').scrollBy({ left: amt, behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
