@@ -1,4 +1,4 @@
-package com.erosduarte.Learnia.Exception;
+package com.proyecto.Learnia.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {

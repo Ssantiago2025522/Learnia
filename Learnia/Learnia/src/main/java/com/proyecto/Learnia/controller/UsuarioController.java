@@ -1,8 +1,7 @@
-package com.erosduarte.Learnia.Controller;
+package com.proyecto.Learnia.controller;
 
-import com.erosduarte.Learnia.Dto.LoginDTO;
-import com.erosduarte.Learnia.Entity.Usuario;
-import com.erosduarte.Learnia.Service.UsuarioService;
+import com.proyecto.Learnia.entity.Usuario;
+import com.proyecto.Learnia.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/usuario")
+@RequestMapping("/api/usuario")
 public class UsuarioController {
     private final UsuarioService usuarioService;
 
@@ -20,7 +19,7 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    @GetMapping("/get")
+    @GetMapping
     public List<Usuario> listar(){
         return usuarioService.listar();
     }
@@ -33,23 +32,20 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public  Usuario buscar(@PathVariable  Integer id){
+    public  Usuario buscar(@PathVariable  Long id){
         return usuarioService.buscarPorId(id);
     }
 
     @PutMapping("/{id}")
-    public Usuario actualizar(@PathVariable  Integer id, @Valid @RequestBody Usuario usuario){
+    public Usuario actualizar(@PathVariable  Long id, @Valid @RequestBody Usuario usuario){
         return usuarioService.actualizar(id, usuario);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public  void eliminar(@PathVariable Integer id){
-         usuarioService.eliminar(id);
+    public  void eliminar(@PathVariable Long id){
+        usuarioService.eliminar(id);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody  LoginDTO loginDTO){
-        return ResponseEntity.ok(usuarioService.login(loginDTO));
-    }
+
 }
