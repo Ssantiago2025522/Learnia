@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -8,121 +7,172 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         min-height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(135deg, #1a2535, #2C3E50, #2980B9);
+        background: radial-gradient(circle at top right, #fffdf2 0%, #f0f7ff 100%);
         padding: 20px;
     }
 
     .contenedor {
         width: 100%;
-        max-width: 420px;
+        max-width: 450px;
     }
 
     .tarjeta {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(8px);
-        border-radius: 24px;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-        padding: 35px 30px;
+        background: #ffffff;
+        border-radius: 30px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+        padding: 40px;
         text-align: center;
-        animation: aparecer 0.6s ease;
+        border: 1px solid #f1f5f9;
+        animation: slideUp 0.5s ease-out;
     }
 
-    @keyframes aparecer {
-        from { opacity: 0; transform: translateY(20px); }
-        to   { opacity: 1; transform: translateY(0); }
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo-texto {
+        font-size: 28px;
+        font-weight: 900;
+        color: #1e40af;
+        letter-spacing: -1px;
+        margin-bottom: 30px;
+        display: block;
+        text-transform: uppercase;
     }
 
     .titulo {
-        font-size: 30px;
-        color: #2C3E50;
-        margin-bottom: 10px;
-        font-weight: 700;
+        font-size: 32px;
+        color: #1e293b;
+        margin-bottom: 8px;
+        font-weight: 800;
     }
 
     .subtitulo {
         font-size: 15px;
-        color: #475569;
-        margin-bottom: 25px;
+        color: #64748b;
+        margin-bottom: 35px;
     }
 
     .mensaje {
-        margin-bottom: 18px;
-        padding: 12px 14px;
-        border-radius: 12px;
+        margin-bottom: 20px;
+        padding: 14px;
+        border-radius: 16px;
         font-size: 14px;
-        font-weight: 500;
-        text-align: center;
+        font-weight: 600;
     }
 
     .error {
-        background: #fee2e2;
-        color: #b91c1c;
-        border: 1px solid #fecaca;
+        background: #fff1f2;
+        color: #e11d48;
+        border: 1px solid #ffe4e6;
+    }
+
+    .exito {
+        background: #f0fdf4;
+        color: #166534;
+        border: 1px solid #dcfce7;
     }
 
     .campo {
-        margin-bottom: 18px;
+        margin-bottom: 20px;
         text-align: left;
     }
 
     .campo label {
         display: block;
         font-size: 13px;
-        color: #64748b;
-        margin-bottom: 6px;
+        color: #1e293b;
+        margin-bottom: 8px;
+        font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.5px;
-        font-weight: 600;
     }
 
     .campo input {
         width: 100%;
-        padding: 14px 16px;
-        border: 1px solid #dbeafe;
-        border-radius: 14px;
+        padding: 16px 20px;
+        border: 2px solid #f1f5f9;
+        border-radius: 18px;
         font-size: 15px;
         outline: none;
         background: #f8fafc;
-        transition: all 0.3s ease;
+        transition: all 0.2s ease;
+        color: #334155;
     }
 
     .campo input:focus {
-        border-color: #2980B9;
+        border-color: #3b82f6;
         background: #ffffff;
-        box-shadow: 0 0 0 4px rgba(41, 128, 185, 0.12);
+        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
     }
 
     .boton {
         width: 100%;
-        padding: 14px 20px;
+        padding: 16px;
         border: none;
-        border-radius: 14px;
-        background: linear-gradient(135deg, #2980B9, #27AE60);
+        border-radius: 18px;
+        background: #ea580c; /* Naranja de tu landing */
         color: white;
         font-size: 16px;
-        font-weight: bold;
+        font-weight: 800;
         cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 10px 20px rgba(41, 128, 185, 0.25);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 10px 15px -3px rgba(234, 88, 12, 0.3);
+        margin-top: 10px;
     }
 
     .boton:hover {
+        background: #c2410c;
         transform: translateY(-2px);
-        box-shadow: 0 14px 24px rgba(41, 128, 185, 0.35);
+        box-shadow: 0 20px 25px -5px rgba(234, 88, 12, 0.4);
     }
 
-    .boton:active {
-        transform: scale(0.98);
+    .divisor {
+        margin: 30px 0;
+        display: flex;
+        align-items: center;
+        color: #94a3b8;
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .divisor::before, .divisor::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .divisor:not(:empty)::before { margin-right: 1em; }
+    .divisor:not(:empty)::after { margin-left: 1em; }
+
+    .boton-registro {
+        display: block;
+        width: 100%;
+        padding: 15px;
+        border: 2px solid #e2e8f0;
+        border-radius: 18px;
+        color: #475569;
+        font-size: 15px;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .boton-registro:hover {
+        background: #f8fafc;
+        border-color: #3b82f6;
+        color: #3b82f6;
     }
 
     @media (max-width: 480px) {
-        .tarjeta { padding: 28px 22px; }
-        .titulo  { font-size: 25px; }
+        .tarjeta { padding: 30px 20px; }
+        .titulo { font-size: 26px; }
     }
   </style>
 </head>
@@ -130,24 +180,34 @@
 
 <div class="contenedor">
   <div class="tarjeta">
-    <h2 class="titulo">Iniciar Sesión</h2>
-    <p class="subtitulo">Ingrese sus credenciales para continuar</p>
+    <span class="logo-texto">Learnia</span>
+    <h2 class="titulo">¡Hola de nuevo!</h2>
+    <p class="subtitulo">Ingresa tus datos para continuar aprendiendo</p>
 
     <div th:if="${param.error}" class="mensaje error">
-      Usuario o contraseña incorrectos
+      Credenciales incorrectas. Intenta de nuevo.
+    </div>
+
+    <div th:if="${param.success}" class="mensaje exito">
+      ¡Registro completado! Ya puedes ingresar.
     </div>
 
     <form th:action="@{/login}" method="post">
       <div class="campo">
-        <label for="correoUsuario">Correo Electronico</label>
-        <input type="text" id="correoUsuario" name="correoUsuario" placeholder="Ingrese su correo" required>
+        <label for="correoUsuario">Correo Electrónico</label>
+        <input type="email" id="correoUsuario" name="correoUsuario" placeholder="tu@correo.com" required>
       </div>
       <div class="campo">
         <label for="contrasenaUsuario">Contraseña</label>
-        <input type="contrasenaUsuario" id="contrasenaUsuario" name="contrasenaUsuario" placeholder="Ingrese su contraseña" required>
+        <input type="password" id="contrasenaUsuario" name="contrasenaUsuario" placeholder="••••••••" required>
       </div>
+
       <button type="submit" class="boton">Ingresar</button>
     </form>
+
+    <div class="divisor">O si eres nuevo</div>
+
+    <a th:href="@{/register}" class="boton-registro">Crear una cuenta</a>
   </div>
 </div>
 
