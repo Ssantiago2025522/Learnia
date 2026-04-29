@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Usuario - Estructura Base</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --azul-profundo: #2C3E50;
+            --naranja-terracota: #D35400;
+            --verde-naturaleza: #27AE60;
+            --cian-educativo: #2980B9;
+            --amarillo-solar: #F1C40F;
+            --blanco-fondo: #FDFEFE;
+            --gris-claro: #ECF0F1;
+            --gris-texto: #7F8C8D;
+            --font-sans: 'Inter', system-ui, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--blanco-fondo);
+            color: var(--azul-profundo);
+            font-family: var(--font-sans);
+        }
+
+        /* ─── SIDEBAR ─── */
+        aside {
+            width: 240px;
+            min-width: 240px;
+            background-color: var(--azul-profundo);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1.2rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .perfil-seccion { text-align: center; margin-bottom: 2rem; }
+        .avatar {
+            width: 80px; height: 80px;
+            background-color: var(--gris-claro);
+            border-radius: 50%; margin: 0 auto 0.8rem;
+            display: flex; align-items: center; justify-content: center;
+            border: 3px solid var(--amarillo-solar);
+        }
+        .avatar i { font-size: 2.2rem; color: var(--azul-profundo); }
+        .perfil-seccion h2 { font-size: 0.95rem; font-weight: 700; }
+
+        nav { flex: 1; }
+        nav a {
+            display: flex; align-items: center; gap: 10px;
+            padding: 0.75rem 1rem; color: rgba(255,255,255,0.75);
+            text-decoration: none; border-radius: 8px;
+            font-size: 0.9rem; cursor: pointer; transition: all 0.2s;
+            margin-bottom: 4px;
+        }
+        nav a:hover, nav a.activo { background-color: rgba(255,255,255,0.12); color: white; }
+        nav a.activo { border-left: 3px solid var(--amarillo-solar); padding-left: calc(1rem - 3px); }
+
+        /* SECCIÓN ACERCA DE (Lateral Inferior) */
+        .acerca-de { margin-top: auto; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
+        .acerca-de h3 { font-size: 0.85rem; margin-bottom: 1rem; font-weight: 700; color: white; }
+        .acerca-item { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
+
+        /* ─── MAIN ─── */
+        main { flex: 1; padding: 2.5rem 3rem; overflow-y: auto; }
+        .vista { display: none; animation: fadeIn 0.3s ease; }
+        .vista.activa { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* DASHBOARD */
+        .dashboard-titulo { font-size: 2.2rem; font-weight: 900; margin-bottom: 0.3rem; }
+        .dashboard-separador { height: 3px; background: linear-gradient(to right, var(--naranja-terracota), transparent); margin-bottom: 2.5rem; border: none; }
+
+        .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .dash-card { background: white; border-radius: 12px; padding: 1.8rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border-top: 4px solid transparent; }
+        .dash-card.verde { border-top-color: var(--verde-naturaleza); }
+        .dash-card.amarillo { border-top-color: var(--amarillo-solar); }
+        .dash-card h3 { font-size: 1rem; color: var(--cian-educativo); margin-bottom: 0.7rem; }
+        .dash-card p { font-size: 0.9rem; color: var(--gris-texto); line-height: 1.5; margin-bottom: 1rem; }
+
+        .btn-naranja { background-color: var(--naranja-terracota); color: white; border: none; padding: 0.6rem 1.3rem; border-radius: 8px; font-weight: 600; cursor: pointer; }
+
+        /* VISTA PREGUNTAS */
+        h1.titulo-seccion { font-weight: 900; font-size: 2.2rem; text-align: center; margin-bottom: 3rem; position: relative; text-transform: uppercase; }
+        h1.titulo-seccion::after { content: ''; position: absolute; bottom: -10px; left: 10%; width: 80%; height: 4px; background: linear-gradient(to right, var(--verde-naturaleza), var(--amarillo-solar), var(--naranja-terracota)); }
+
+        .contenedor-central { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+        .sin-items { text-align: center; padding: 3rem; background: white; border: 2px dashed #D0D7DE; border-radius: 16px; width: 100%; max-width: 600px; }
+
+        /* BOTÓN SOLO VISUAL (Sin funcionalidad de input por ahora) */
+        .btn-haz-pregunta {
+            background-color: #EBEDF0;
+            color: var(--azul-profundo);
+            border: 2px solid #D0D7DE;
+            padding: 0.8rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.2s;
+        }
+        .btn-haz-pregunta:hover { background-color: white; border-color: var(--cian-educativo); }
+    </style>
+</head>
+<body>
+
+<aside>
+    <div class="perfil-seccion">
+        <div class="avatar"><i class="fa-solid fa-user"></i></div>
+        <h2>Nombre de Usuario</h2>
+    </div>
+    <nav>
+        <a class="activo" onclick="mostrarVista('dashboard', this)">
+            <i class="fa-solid fa-gauge-high"></i> Dashboard
+        </a>
+        <a onclick="mostrarVista('preguntas', this)">
+            <i class="fa-solid fa-circle-question"></i> Preguntas hechas
+        </a>
+        <a onclick="mostrarVista('respuestas', this)">
+            <i class="fa-solid fa-comments"></i> Respuestas dadas
+        </a>
+    </nav>
+    <div class="acerca-de">
+        <h3>Acerca de</h3>
+        <div class="acerca-item"><i class="fa-solid fa-calendar-day"></i><span>Registrado: <strong>16 Marzo 2025</strong></span></div>
+        <div class="acerca-item"><i class="fa-solid fa-triangle-exclamation"></i><span>Avisos: <strong>0</strong> (solo tú)</span></div>
+    </div>
+</aside>
+
+<main>
+    <div id="vista-dashboard" class="vista activa">
+        <h1 class="dashboard-titulo">Dashboard</h1>
+        <hr class="dashboard-separador">
+        <div class="cards-grid">
+            <div class="dash-card verde">
+                <h3>Actividad Reciente</h3>
+                <p>Aquí puedes visualizar el resumen de tus interacciones en la plataforma.</p>
+                <button class="btn-naranja" onclick="mostrarVista('preguntas', document.querySelector('nav a:nth-child(2)'))">Ver detalles</button>
+            </div>
+            <div class="dash-card amarillo">
+                <h3>Estadísticas</h3>
+                <p>Has respondido a 15 preguntas esta semana. ¡Sigue así!</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="vista-preguntas" class="vista">
+        <h1 class="titulo-seccion">Preguntas Hechas</h1>
+        <div class="contenedor-central">
+            <div class="sin-items">
+                <i class="fa-solid fa-box-open" style="font-size: 3rem; color: var(--amarillo-solar); margin-bottom: 1rem; display: block;"></i>
+                <p><strong>¡Vaya! Parece que el baúl está vacío.</strong></p>
+                <p style="color: var(--gris-texto); font-size: 0.85rem;">Tus preguntas aparecerán aquí abajo.</p>
+            </div>
+            <!-- Botón disponible para futuro procedimiento -->
+            <button class="btn-haz-pregunta">Haz una pregunta</button>
+        </div>
+    </div>
+
+    <div id="vista-respuestas" class="vista">
+        <h1 class="titulo-seccion">Respuestas Dadas</h1>
+        <div class="contenedor-central">
+            <div class="sin-items">
+                <i class="fa-regular fa-message" style="font-size: 3rem; color: var(--amarillo-solar); margin-bottom: 1rem; display: block;"></i>
+                <p>Todavía no has respondido ninguna pregunta.</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    function mostrarVista(nombre, enlace) {
+        document.querySelectorAll('.vista').forEach(v => v.classList.remove('activa'));
+        document.querySelectorAll('nav a').forEach(a => a.classList.remove('activo'));
+        document.getElementById('vista-' + nombre).classList.add('activa');
+        if (enlace) enlace.classList.add('activo');
+    }
+</script>
+
+</body>
+</html>
