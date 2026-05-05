@@ -1,13 +1,12 @@
-drop database if exists Learnia_db_in5bm;
+	drop database if exists Learnia_db_in5bm;
 create database Learnia_db_in5bm;
 use Learnia_db_in5bm;
 
 create table usuario(
 	id_usuario bigint  auto_increment  primary key,
     nombre_usuario varchar(100) not null,
-    apellido_usuario varchar(100) not null,
     correo_usuario varchar(100) not null unique,
-    contrasena varchar(150) not null,
+    contrasena varchar(255) not null,
 	fecha_registro datetime,
     rol enum("ADMIN", "MODERADOR", "ESTUDIANTE") not null,
     foto varchar(255) null
@@ -103,7 +102,7 @@ references respuesta(id_respuesta)
 on delete cascade
 );
 
-insert into Usuario(nombre_usuario, apellido_usuario, correo_usuario, contrasena, rol, foto) values("primer_usuarioO", "apellido_usuario", "correooO", "123", "MODERADOR", "foto");
+insert into Usuario(nombre_usuario,  correo_usuario, contrasena, rol, foto) values("primer_usuarioO",  "correooO", "123", "MODERADOR", "foto");
 
 
  
