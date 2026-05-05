@@ -102,10 +102,10 @@
     <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
         <div class="space-y-10">
             <div class="inline-flex items-center space-x-2 px-4 py-2 bg-white rounded-2xl shadow-sm border border-gray-100 text-eduCian text-xs font-black tracking-widest uppercase">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-natureGreen opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-natureGreen"></span>
-                    </span>
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-natureGreen opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-natureGreen"></span>
+                </span>
                 <span>Comunidad Activa 2026</span>
             </div>
 
@@ -117,13 +117,21 @@
                 La red de aprendizaje colaborativo donde estudiantes y expertos resuelven retos juntos.
             </p>
 
-            <div class="relative max-w-xl group">
-                <div class="absolute -inset-1 bg-gradient-to-r from-eduCian to-natureGreen rounded-[2rem] blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                <div class="relative flex bg-white rounded-[2rem] shadow-2xl overflow-hidden">
-                    <input type="text" placeholder="¿Qué ejercicio resolvemos hoy?" class="w-full p-7 pl-10 text-lg outline-none font-medium">
-                    <button class="bg-deepBlue text-white px-10 hover:bg-eduCian transition-all flex items-center justify-center">
-                        <i class="fa-solid fa-arrow-right text-xl"></i>
-                    </button>
+            <!-- PANEL DE ESTADÍSTICAS (Sustituye al buscador) -->
+            <div class="flex items-center space-x-12 pt-4">
+                <div class="text-center md:text-left">
+                    <div class="text-4xl font-black text-deepBlue">10k+</div>
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Estudiantes</div>
+                </div>
+                <div class="w-px h-10 bg-gray-200"></div>
+                <div class="text-center md:text-left">
+                    <div class="text-4xl font-black text-eduCian">500+</div>
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Tutores</div>
+                </div>
+                <div class="w-px h-10 bg-gray-200"></div>
+                <div class="text-center md:text-left">
+                    <div class="text-4xl font-black text-natureGreen">95%</div>
+                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Éxito</div>
                 </div>
             </div>
         </div>
@@ -135,6 +143,47 @@
         </div>
     </div>
 </header>
+
+<!-- SECCIÓN: QUIÉNES SOMOS -->
+<section class="py-32 bg-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+
+            <!-- CUADRO DE IMAGEN -->
+            <div class="relative group">
+                <div class="absolute -inset-4 bg-gradient-to-tr from-eduCian/20 to-natureGreen/20 rounded-[4rem] blur-2xl opacity-50 group-hover:opacity-100 transition duration-700"></div>
+                <div class="relative rounded-[3.5rem] overflow-hidden shadow-2xl border-8 border-slate-50 bg-slate-100">
+                    <img th:src="@{/img/equipo.jpg}" alt="Nuestro Equipo" class="w-full h-[500px] object-cover transition duration-700 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-gradient-to-t from-deepBlue/40 to-transparent"></div>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <div class="space-y-4">
+                    <h2 class="text-natureGreen text-xs font-black uppercase tracking-[0.4em]">Propósito</h2>
+                    <h3 class="text-5xl font-black text-deepBlue tracking-tighter">¿Quiénes somos en <span class="text-eduCian">Learnia</span>?</h3>
+                </div>
+
+                <p class="text-xl text-gray-500 leading-relaxed font-medium">
+                    Somos una comunidad apasionada por la educación colaborativa. En 2026, nacimos con la idea de que nadie debe aprender solo; conectamos el talento de expertos con la curiosidad de estudiantes para transformar dudas en certezas.
+                </p>
+
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="p-6 rounded-3xl bg-slate-50 border border-gray-100">
+                        <i class="fa-solid fa-users-rays text-eduCian text-2xl mb-4"></i>
+                        <h4 class="font-black text-deepBlue text-xs uppercase tracking-widest mb-2">Comunidad</h4>
+                        <p class="text-sm text-gray-500">Unidos por el deseo de compartir y crecer.</p>
+                    </div>
+                    <div class="p-6 rounded-3xl bg-slate-50 border border-gray-100">
+                        <i class="fa-solid fa-graduation-cap text-natureGreen text-2xl mb-4"></i>
+                        <h4 class="font-black text-deepBlue text-xs uppercase tracking-widest mb-2">Excelencia</h4>
+                        <p class="text-sm text-gray-500">Soluciones validadas paso a paso.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <section class="py-16 bg-white overflow-hidden">
     <div class="max-w-7xl mx-auto px-6">
@@ -230,7 +279,7 @@
                 </p>
             </div>
             <div class="relative min-h-[500px]">
-                <img th:src="@{/img/mario.jpg}" alt="Colaboración" class="absolute inset-0 w-full h-full object-cover">
+                <img th:src="@{/img/ejemplo.jpg}" alt="Colaboración" class="absolute inset-0 w-full h-full object-cover">
                 <div class="absolute inset-0 bg-deepBlue/20 backdrop-blur-[2px]"></div>
             </div>
         </div>
@@ -281,23 +330,19 @@
     };
 
     function selectCategory(element) {
-        // Actualizar botones
         document.querySelectorAll('#catBox button').forEach(btn => {
             btn.classList.remove('active-cat', 'bg-white', 'shadow-xl');
         });
         element.classList.add('active-cat', 'bg-white', 'shadow-xl');
 
-        // Cargar Datos
         const categoryKey = element.getAttribute('data-category');
         const data = examplesData[categoryKey] || examplesData.default;
 
-        // Animación de la tarjeta
         const card = document.getElementById('exampleCard');
         card.classList.remove('fade-in');
-        void card.offsetWidth; // Trigger reflow
+        void card.offsetWidth;
         card.classList.add('fade-in');
 
-        // Actualizar Contenido HTML
         document.getElementById('exampleIcon').className = `fa-solid ${data.icon}`;
         document.getElementById('exampleIconContainer').className = `w-16 h-16 ${data.bgColor} rounded-3xl flex items-center justify-center text-white text-2xl shadow-xl shadow-eduCian/20`;
         document.getElementById('exampleCategory').innerText = data.category;
@@ -309,28 +354,21 @@
 
     function createParticles(e, category) {
         if (Math.random() > 0.15) return;
-
         const button = e.currentTarget;
         const rect = button.getBoundingClientRect();
         const particle = document.createElement('i');
         const data = examplesData[category] || examplesData.default;
-
         particle.className = `fa-solid ${data.icon} particle`;
-
-        // Asignar color según categoría
         let color = '#2980B9';
         if(category === 'programacion' || category === 'quimica') color = '#D35400';
         if(category === 'fisica') color = '#27AE60';
         particle.style.color = color;
-
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
         particle.style.left = x + 'px';
         particle.style.top = y + 'px';
-
         particle.style.setProperty('--x', `${(Math.random() - 0.5) * 120}px`);
         particle.style.setProperty('--y', `${(Math.random() - 0.5) * 120}px`);
-
         button.appendChild(particle);
         setTimeout(() => particle.remove(), 800);
     }
