@@ -28,8 +28,6 @@
             color: var(--azul-profundo);
             font-family: var(--font-sans);
         }
-
-        /* ─── SIDEBAR ─── */
         aside {
             width: 240px;
             min-width: 240px;
@@ -65,18 +63,15 @@
         nav a:hover, nav a.activo { background-color: rgba(255,255,255,0.12); color: white; }
         nav a.activo { border-left: 3px solid var(--amarillo-solar); padding-left: calc(1rem - 3px); }
 
-        /* SECCIÓN ACERCA DE (Lateral Inferior) */
         .acerca-de { margin-top: auto; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
         .acerca-de h3 { font-size: 0.85rem; margin-bottom: 1rem; font-weight: 700; color: white; }
         .acerca-item { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
 
-        /* ─── MAIN ─── */
         main { flex: 1; padding: 2.5rem 3rem; overflow-y: auto; }
         .vista { display: none; animation: fadeIn 0.3s ease; }
         .vista.activa { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* DASHBOARD */
         .dashboard-titulo { font-size: 2.2rem; font-weight: 900; margin-bottom: 0.3rem; }
         .dashboard-separador { height: 3px; background: linear-gradient(to right, var(--naranja-terracota), transparent); margin-bottom: 2.5rem; border: none; }
 
@@ -89,14 +84,12 @@
 
         .btn-naranja { background-color: var(--naranja-terracota); color: white; border: none; padding: 0.6rem 1.3rem; border-radius: 8px; font-weight: 600; cursor: pointer; }
 
-        /* VISTA PREGUNTAS */
         h1.titulo-seccion { font-weight: 900; font-size: 2.2rem; text-align: center; margin-bottom: 3rem; position: relative; text-transform: uppercase; }
         h1.titulo-seccion::after { content: ''; position: absolute; bottom: -10px; left: 10%; width: 80%; height: 4px; background: linear-gradient(to right, var(--verde-naturaleza), var(--amarillo-solar), var(--naranja-terracota)); }
 
         .contenedor-central { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
         .sin-items { text-align: center; padding: 3rem; background: white; border: 2px dashed #D0D7DE; border-radius: 16px; width: 100%; max-width: 600px; }
 
-        /* BOTÓN SOLO VISUAL (Sin funcionalidad de input por ahora) */
         .btn-haz-pregunta {
             background-color: #EBEDF0;
             color: var(--azul-profundo);
