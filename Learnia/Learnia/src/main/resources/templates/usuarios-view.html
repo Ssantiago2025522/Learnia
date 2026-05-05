@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Usuario - Estructura Base</title>
+    <title>Panel de Usuario - Gris Plata y Azul</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -12,7 +12,7 @@
             --naranja-terracota: #D35400;
             --verde-naturaleza: #27AE60;
             --cian-educativo: #2980B9;
-            --amarillo-solar: #F1C40F;
+            --plata-suave: #B2BABB;
             --blanco-fondo: #FDFEFE;
             --gris-claro: #ECF0F1;
             --gris-texto: #7F8C8D;
@@ -27,7 +27,22 @@
             background-color: var(--blanco-fondo);
             color: var(--azul-profundo);
             font-family: var(--font-sans);
+            position: relative;
         }
+
+        /* ─── MARCA DE AGUA GLOBAL ─── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Ctext x='10' y='40' font-family='Georgia,serif' font-size='18' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,100,100)'%3EΣ%3C/text%3E%3Ctext x='80' y='80' font-family='monospace' font-size='13' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,100,100)'%3Eif(x%3E0)%3C/text%3E%3Ctext x='160' y='55' font-family='Georgia,serif' font-size='16' fill='%2327AE60' fill-opacity='0.055' transform='rotate(-35,200,80)'%3EF%3D ma%3C/text%3E%3Ctext x='240' y='30' font-family='Georgia,serif' font-size='22' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,260,50)'%3Eπ%3C/text%3E%3Ctext x='310' y='70' font-family='monospace' font-size='12' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,340,80)'%3E%7B code%7D%3C/text%3E%3Ctext x='20' y='140' font-family='Georgia,serif' font-size='19' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,60,160)'%3E∫dx%3C/text%3E%3Ctext x='120' y='160' font-family='Georgia,serif' font-size='15' fill='%23D35400' fill-opacity='0.055' transform='rotate(-35,150,170)'%3EE%3Dmc²%3C/text%3E%3Ctext x='220' y='130' font-family='monospace' font-size='13' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,250,140)'%3Efor(i%3D0)%3C/text%3E%3Ctext x='320' y='155' font-family='Georgia,serif' font-size='20' fill='%2327AE60' fill-opacity='0.055' transform='rotate(-35,350,165)'%3E√x%3C/text%3E%3Ctext x='50' y='220' font-family='monospace' font-size='14' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,80,230)'%3Eclass()%3C/text%3E%3Ctext x='160' y='240' font-family='Georgia,serif' font-size='18' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,190,250)'%3Eλ%3C/text%3E%3Ctext x='250' y='210' font-family='Georgia,serif' font-size='16' fill='%23D35400' fill-opacity='0.055' transform='rotate(-35,270,220)'%3EΔv%2FΔt%3C/text%3E%3Ctext x='340' y='235' font-family='Georgia,serif' font-size='22' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,360,245)'%3Eθ%3C/text%3E%3Ctext x='10' y='300' font-family='Georgia,serif' font-size='17' fill='%2327AE60' fill-opacity='0.055' transform='rotate(-35,30,310)'%3Ex²%2By²%3C/text%3E%3Ctext x='110' y='320' font-family='monospace' font-size='12' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,140,330)'%3Ereturn n%3C/text%3E%3Ctext x='210' y='290' font-family='Georgia,serif' font-size='20' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,240,300)'%3E∞%3C/text%3E%3Ctext x='300' y='315' font-family='Georgia,serif' font-size='16' fill='%23D35400' fill-opacity='0.055' transform='rotate(-35,325,325)'%3Epv%3DnRT%3C/text%3E%3Ctext x='30' y='380' font-family='monospace' font-size='13' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,60,390)'%3Earray[]%3C/text%3E%3Ctext x='140' y='370' font-family='Georgia,serif' font-size='19' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,165,380)'%3Eα β γ%3C/text%3E%3Ctext x='250' y='390' font-family='Georgia,serif' font-size='17' fill='%2327AE60' fill-opacity='0.055' transform='rotate(-35,275,400)'%3Esin(θ)%3C/text%3E%3Ctext x='340' y='360' font-family='monospace' font-size='12' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,365,370)'%3Edef fn()%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 400px 400px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        aside, main { position: relative; z-index: 1; }
 
         /* ─── SIDEBAR ─── */
         aside {
@@ -49,7 +64,7 @@
             background-color: var(--gris-claro);
             border-radius: 50%; margin: 0 auto 0.8rem;
             display: flex; align-items: center; justify-content: center;
-            border: 3px solid var(--amarillo-solar);
+            border: 3px solid var(--plata-suave);
         }
         .avatar i { font-size: 2.2rem; color: var(--azul-profundo); }
         .perfil-seccion h2 { font-size: 0.95rem; font-weight: 700; }
@@ -63,9 +78,8 @@
             margin-bottom: 4px;
         }
         nav a:hover, nav a.activo { background-color: rgba(255,255,255,0.12); color: white; }
-        nav a.activo { border-left: 3px solid var(--amarillo-solar); padding-left: calc(1rem - 3px); }
+        nav a.activo { border-left: 3px solid var(--plata-suave); padding-left: calc(1rem - 3px); }
 
-        /* SECCIÓN ACERCA DE (Lateral Inferior) */
         .acerca-de { margin-top: auto; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
         .acerca-de h3 { font-size: 0.85rem; margin-bottom: 1rem; font-weight: 700; color: white; }
         .acerca-item { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
@@ -78,25 +92,107 @@
 
         /* DASHBOARD */
         .dashboard-titulo { font-size: 2.2rem; font-weight: 900; margin-bottom: 0.3rem; }
-        .dashboard-separador { height: 3px; background: linear-gradient(to right, var(--naranja-terracota), transparent); margin-bottom: 2.5rem; border: none; }
+        .dashboard-separador { height: 3px; background: var(--cian-educativo); margin-bottom: 2.5rem; border: none; width: 100%; max-width: 400px; }
 
         .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-        .dash-card { background: white; border-radius: 12px; padding: 1.8rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border-top: 4px solid transparent; }
+        .dash-card {
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(4px);
+            border-radius: 12px;
+            padding: 1.8rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-top: 4px solid transparent;
+        }
         .dash-card.verde { border-top-color: var(--verde-naturaleza); }
-        .dash-card.amarillo { border-top-color: var(--amarillo-solar); }
+        .dash-card.plata { border-top-color: var(--plata-suave); }
         .dash-card h3 { font-size: 1rem; color: var(--cian-educativo); margin-bottom: 0.7rem; }
         .dash-card p { font-size: 0.9rem; color: var(--gris-texto); line-height: 1.5; margin-bottom: 1rem; }
 
-        .btn-naranja { background-color: var(--naranja-terracota); color: white; border: none; padding: 0.6rem 1.3rem; border-radius: 8px; font-weight: 600; cursor: pointer; }
+        /* ─── ACTIVIDAD RECIENTE MEJORADA ─── */
+        .actividad-card {
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(4px);
+            border-radius: 12px;
+            padding: 1.8rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-top: 4px solid var(--verde-naturaleza);
+            grid-column: 1 / -1;
+        }
+        .actividad-card h3 {
+            font-size: 1.05rem;
+            color: var(--cian-educativo);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .actividad-lista { display: flex; flex-direction: column; gap: 0.75rem; }
+        .actividad-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.9rem 1rem;
+            border-radius: 10px;
+            background: var(--gris-claro);
+            border-left: 4px solid transparent;
+            transition: background 0.2s;
+        }
+        .actividad-item:hover { background: #e8ecef; }
+        .actividad-item.tipo-mat { border-left-color: var(--cian-educativo); }
+        .actividad-item.tipo-fis { border-left-color: var(--naranja-terracota); }
+        .actividad-item.tipo-prog { border-left-color: var(--verde-naturaleza); }
 
-        /* VISTA PREGUNTAS */
+        .actividad-icono {
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .actividad-icono.mat { background: rgba(41,128,185,0.15); color: var(--cian-educativo); }
+        .actividad-icono.fis { background: rgba(211,84,0,0.15); color: var(--naranja-terracota); }
+        .actividad-icono.prog { background: rgba(39,174,96,0.15); color: var(--verde-naturaleza); }
+
+        .actividad-info { flex: 1; }
+        .actividad-info strong { font-size: 0.88rem; color: var(--azul-profundo); display: block; }
+        .actividad-info span { font-size: 0.78rem; color: var(--gris-texto); }
+
+        .actividad-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.25rem 0.65rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .badge-mat { background: rgba(41,128,185,0.12); color: var(--cian-educativo); }
+        .badge-fis { background: rgba(211,84,0,0.12); color: var(--naranja-terracota); }
+        .badge-prog { background: rgba(39,174,96,0.12); color: var(--verde-naturaleza); }
+
+        .actividad-footer {
+            margin-top: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .actividad-footer p { font-size: 0.8rem; color: var(--gris-texto); }
+
+        .btn-naranja { background-color: var(--naranja-terracota); color: white; border: none; padding: 0.6rem 1.3rem; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.85rem; transition: background 0.2s; }
+        .btn-naranja:hover { background-color: #b94600; }
+
+        /* VISTA PREGUNTAS / RESPUESTAS */
         h1.titulo-seccion { font-weight: 900; font-size: 2.2rem; text-align: center; margin-bottom: 3rem; position: relative; text-transform: uppercase; }
-        h1.titulo-seccion::after { content: ''; position: absolute; bottom: -10px; left: 10%; width: 80%; height: 4px; background: linear-gradient(to right, var(--verde-naturaleza), var(--amarillo-solar), var(--naranja-terracota)); }
+        h1.titulo-seccion::after { content: ''; position: absolute; bottom: -10px; left: 25%; width: 50%; height: 4px; background: var(--cian-educativo); }
 
         .contenedor-central { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
-        .sin-items { text-align: center; padding: 3rem; background: white; border: 2px dashed #D0D7DE; border-radius: 16px; width: 100%; max-width: 600px; }
+        .sin-items {
+            text-align: center; padding: 3rem;
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(4px);
+            border: 2px dashed #D0D7DE; border-radius: 16px; width: 100%; max-width: 600px;
+        }
 
-        /* BOTÓN SOLO VISUAL (Sin funcionalidad de input por ahora) */
         .btn-haz-pregunta {
             background-color: #EBEDF0;
             color: var(--azul-profundo);
@@ -141,15 +237,20 @@
         <h1 class="dashboard-titulo">Dashboard</h1>
         <hr class="dashboard-separador">
         <div class="cards-grid">
+
+            <!-- ACTIVIDAD RECIENTE -->
             <div class="dash-card verde">
                 <h3>Actividad Reciente</h3>
                 <p>Aquí puedes visualizar el resumen de tus interacciones en la plataforma.</p>
                 <button class="btn-naranja" onclick="mostrarVista('preguntas', document.querySelector('nav a:nth-child(2)'))">Ver detalles</button>
             </div>
-            <div class="dash-card amarillo">
+
+            <!-- ESTADÍSTICAS -->
+            <div class="dash-card plata">
                 <h3>Estadísticas</h3>
                 <p>Has respondido a 15 preguntas esta semana. ¡Sigue así!</p>
             </div>
+
         </div>
     </div>
 
@@ -157,11 +258,10 @@
         <h1 class="titulo-seccion">Preguntas Hechas</h1>
         <div class="contenedor-central">
             <div class="sin-items">
-                <i class="fa-solid fa-box-open" style="font-size: 3rem; color: var(--amarillo-solar); margin-bottom: 1rem; display: block;"></i>
+                <i class="fa-solid fa-box-open" style="font-size: 3rem; color: var(--plata-suave); margin-bottom: 1rem; display: block;"></i>
                 <p><strong>¡Vaya! Parece que el baúl está vacío.</strong></p>
                 <p style="color: var(--gris-texto); font-size: 0.85rem;">Tus preguntas aparecerán aquí abajo.</p>
             </div>
-            <!-- Botón disponible para futuro procedimiento -->
             <button class="btn-haz-pregunta">Haz una pregunta</button>
         </div>
     </div>
@@ -170,7 +270,7 @@
         <h1 class="titulo-seccion">Respuestas Dadas</h1>
         <div class="contenedor-central">
             <div class="sin-items">
-                <i class="fa-regular fa-message" style="font-size: 3rem; color: var(--amarillo-solar); margin-bottom: 1rem; display: block;"></i>
+                <i class="fa-regular fa-message" style="font-size: 3rem; color: var(--plata-suave); margin-bottom: 1rem; display: block;"></i>
                 <p>Todavía no has respondido ninguna pregunta.</p>
             </div>
         </div>
@@ -185,6 +285,5 @@
         if (enlace) enlace.classList.add('activo');
     }
 </script>
-
 </body>
 </html>
