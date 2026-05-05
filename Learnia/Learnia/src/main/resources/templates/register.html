@@ -156,6 +156,13 @@
             text-decoration: underline;
         }
 
+        .logo-imagen {
+            max-width: 100px;
+            height: auto;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
         @media (max-width: 480px) {
             .tarjeta { padding: 30px 20px; }
         }
@@ -166,6 +173,7 @@
 <div class="contenedor">
     <div class="tarjeta">
         <span class="logo-texto">Learnia</span>
+        <img th:src="@{/img/learnia.png}" alt="Learnia Logo" class="logo-imagen"/>
         <h2 class="titulo">Crear cuenta</h2>
         <p class="subtitulo">Únete a la comunidad educativa</p>
 
