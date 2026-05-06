@@ -34,7 +34,7 @@ public class RespuestaServiceImpl implements RespuestaService {
         Respuesta respuesta = new Respuesta();
         respuesta.setContenido(contenido);
         respuesta.setFechaRespuesta(LocalDateTime.now());
-        respuesta.setPregunta(pregunta);
+        respuesta.setIdRespuesta(pregunta);
         respuesta.setUsuario(usuario);
 
         return respuestaRepository.save(respuesta);
