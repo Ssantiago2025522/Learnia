@@ -2,6 +2,8 @@ package com.proyecto.Learnia.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.proyecto.Learnia.Entity.Respuesta;
@@ -19,9 +21,21 @@ public class RespuestaServiceImpl implements RespuestaService {
     }
 
     @Override
-    public Respuesta guardar(Respuesta respuesta) {
-        return respuestaRepository.save(respuesta);
-    }
+    public Respuesta guardar(Long preguntaId, String contenido) {
+
+        Pregunta pregunta = preguntaRepository.findById(preguntaId)
+                .orElseThrow(() -> new RuntimeException(""));
+
+        Usuario usuario = UsuarioRepository.findById(1L).orElseThrow();
+
+        Respuesta r = new Respuesta();
+        r.setContenido(contenido);
+        r.setFechaRespuesta(LocalDateTime.now());
+        r.setUsuario(usuario);
+        r.setPregunta(pregunta);
+
+        return respuestaRepository.save(r);
+        }
 
     @Override
     public Respuesta buscarPorId(Long id) {

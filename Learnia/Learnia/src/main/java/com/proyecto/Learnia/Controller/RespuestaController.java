@@ -1,13 +1,14 @@
 package com.proyecto.Learnia.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import com.proyecto.Learnia.Entity.Respuesta;
 import com.proyecto.Learnia.Service.RespuestaService;
 
-@RestController
+@Controller
 @RequestMapping("/respuestas")
 public class RespuestaController {
 
@@ -20,8 +21,11 @@ public class RespuestaController {
     }
 
     @PostMapping
-    public Respuesta guardar(@RequestBody Respuesta respuesta) {
-        return respuestaService.guardar(respuesta);
+    public String guardar(@RequestParam String contenido,
+                          @RequestParam Long preguntaId) {
+
+        respuestaService.guardar(preguntaId, contenido);
+        return "return:/feed";
     }
 
     @GetMapping("/{id}")

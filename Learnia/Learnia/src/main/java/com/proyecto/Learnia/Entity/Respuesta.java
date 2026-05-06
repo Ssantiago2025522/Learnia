@@ -1,10 +1,19 @@
 package com.proyecto.Learnia.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "respuesta")
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Respuesta {
 
     @Id
@@ -12,60 +21,22 @@ public class Respuesta {
     @Column(name = "id_respuesta")
     private Long idRespuesta;
 
+    @NotBlank
     @Column(nullable = false)
     private String contenido;
 
+    @NotNull
     @Column(name = "fecha_respuesta")
     private LocalDateTime fechaRespuesta;
 
+    @NotBlank
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_pregunta", nullable = false)
     private Pregunta pregunta;
 
-    // Getters y Setters
-
-
-    public Long getIdRespuesta() {
-        return idRespuesta;
-    }
-
-    public void setIdRespuesta(Long idRespuesta) {
-        this.idRespuesta = idRespuesta;
-    }
-
-    public Pregunta getPregunta() {
-        return pregunta;
-    }
-
-    public void setPregunta(Pregunta pregunta) {
-        this.pregunta = pregunta;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public LocalDateTime getFechaRespuesta() {
-        return fechaRespuesta;
-    }
-
-    public void setFechaRespuesta(LocalDateTime fechaRespuesta) {
-        this.fechaRespuesta = fechaRespuesta;
-    }
-
-    public String getContenido() {
-        return contenido;
-    }
-
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
-    }
 }
