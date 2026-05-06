@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Usuario - Gris Plata y Azul</title>
+    <title>Panel de Usuario - Learnia</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -84,13 +84,11 @@
         .acerca-de h3 { font-size: 0.85rem; margin-bottom: 1rem; font-weight: 700; color: white; }
         .acerca-item { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
 
-        /* ─── MAIN ─── */
         main { flex: 1; padding: 2.5rem 3rem; overflow-y: auto; }
         .vista { display: none; animation: fadeIn 0.3s ease; }
         .vista.activa { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* DASHBOARD */
         .dashboard-titulo { font-size: 2.2rem; font-weight: 900; margin-bottom: 0.3rem; }
         .dashboard-separador { height: 3px; background: var(--cian-educativo); margin-bottom: 2.5rem; border: none; width: 100%; max-width: 400px; }
 
@@ -117,66 +115,25 @@
             box-shadow: 0 2px 12px rgba(0,0,0,0.06);
             border-top: 4px solid var(--verde-naturaleza);
             grid-column: 1 / -1;
+            margin-top: 1.5rem;
         }
-        .actividad-card h3 {
-            font-size: 1.05rem;
-            color: var(--cian-educativo);
-            margin-bottom: 1.2rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+        .actividad-card h3 { font-size: 1.05rem; color: var(--cian-educativo); margin-bottom: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
         .actividad-lista { display: flex; flex-direction: column; gap: 0.75rem; }
         .actividad-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.9rem 1rem;
-            border-radius: 10px;
-            background: var(--gris-claro);
-            border-left: 4px solid transparent;
-            transition: background 0.2s;
+            display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1rem;
+            border-radius: 10px; background: var(--gris-claro); border-left: 4px solid transparent; transition: background 0.2s;
         }
         .actividad-item:hover { background: #e8ecef; }
         .actividad-item.tipo-mat { border-left-color: var(--cian-educativo); }
-        .actividad-item.tipo-fis { border-left-color: var(--naranja-terracota); }
-        .actividad-item.tipo-prog { border-left-color: var(--verde-naturaleza); }
-
         .actividad-icono {
-            width: 38px; height: 38px;
-            border-radius: 50%;
+            width: 38px; height: 38px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1rem;
-            flex-shrink: 0;
+            font-size: 1rem; flex-shrink: 0;
+            background: rgba(41,128,185,0.15); color: var(--cian-educativo);
         }
-        .actividad-icono.mat { background: rgba(41,128,185,0.15); color: var(--cian-educativo); }
-        .actividad-icono.fis { background: rgba(211,84,0,0.15); color: var(--naranja-terracota); }
-        .actividad-icono.prog { background: rgba(39,174,96,0.15); color: var(--verde-naturaleza); }
-
         .actividad-info { flex: 1; }
         .actividad-info strong { font-size: 0.88rem; color: var(--azul-profundo); display: block; }
         .actividad-info span { font-size: 0.78rem; color: var(--gris-texto); }
-
-        .actividad-badge {
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 0.25rem 0.65rem;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-        }
-        .badge-mat { background: rgba(41,128,185,0.12); color: var(--cian-educativo); }
-        .badge-fis { background: rgba(211,84,0,0.12); color: var(--naranja-terracota); }
-        .badge-prog { background: rgba(39,174,96,0.12); color: var(--verde-naturaleza); }
-
-        .actividad-footer {
-            margin-top: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .actividad-footer p { font-size: 0.8rem; color: var(--gris-texto); }
 
         .btn-naranja { background-color: var(--naranja-terracota); color: white; border: none; padding: 0.6rem 1.3rem; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.85rem; transition: background 0.2s; }
         .btn-naranja:hover { background-color: #b94600; }
@@ -194,15 +151,9 @@
         }
 
         .btn-haz-pregunta {
-            background-color: #EBEDF0;
-            color: var(--azul-profundo);
-            border: 2px solid #D0D7DE;
-            padding: 0.8rem 2.5rem;
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: 0.2s;
+            background-color: #EBEDF0; color: var(--azul-profundo); border: 2px solid #D0D7DE;
+            padding: 0.8rem 2.5rem; border-radius: 50px; font-weight: 700;
+            cursor: pointer; text-transform: uppercase; transition: 0.2s;
         }
         .btn-haz-pregunta:hover { background-color: white; border-color: var(--cian-educativo); }
     </style>
@@ -237,20 +188,29 @@
         <h1 class="dashboard-titulo">Dashboard</h1>
         <hr class="dashboard-separador">
         <div class="cards-grid">
-
-            <!-- ACTIVIDAD RECIENTE -->
             <div class="dash-card verde">
-                <h3>Actividad Reciente</h3>
-                <p>Aquí puedes visualizar el resumen de tus interacciones en la plataforma.</p>
-                <button class="btn-naranja" onclick="mostrarVista('preguntas', document.querySelector('nav a:nth-child(2)'))">Ver detalles</button>
+                <h3>Estado de Cuenta</h3>
+                <p>Tu cuenta se encuentra activa y al día. Tienes acceso total a las lecciones.</p>
+                <button class="btn-naranja">Ver Perfil</button>
             </div>
-
-            <!-- ESTADÍSTICAS -->
             <div class="dash-card plata">
                 <h3>Estadísticas</h3>
                 <p>Has respondido a 15 preguntas esta semana. ¡Sigue así!</p>
             </div>
 
+            <!-- Actividad Reciente Integrada -->
+            <div class="actividad-card">
+                <h3><i class="fa-solid fa-clock-rotate-left"></i> Actividad Reciente</h3>
+                <div class="actividad-lista">
+                    <div class="actividad-item tipo-mat">
+                        <div class="actividad-icono"><i class="fa-solid fa-calculator"></i></div>
+                        <div class="actividad-info">
+                            <strong>Resolviste una duda de Álgebra</strong>
+                            <span>Hace 2 horas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
