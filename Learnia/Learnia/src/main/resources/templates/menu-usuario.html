@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learnia | Comunidad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deepBlue: '#2C3E50',
+                        terracota: '#D35400',
+                        natureGreen: '#27AE60',
+                        eduCian: '#2980B9',
+                        solarYellow: '#F1C40F'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+            background-image: radial-gradient(#2980B908 2px, transparent 2px);
+            background-size: 40px 40px;
+        }
+        .custom-shadow { box-shadow: 0 10px 40px -10px rgba(44, 62, 80, 0.05); }
+    </style>
+</head>
+<body class="antialiased text-deepBlue">
+
+<nav class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
+    <div class="max-w-[1600px] mx-auto px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-12">
+            <div class="text-3xl font-extrabold tracking-tighter text-deepBlue">
+                LEAR<span class="text-eduCian">NIA</span>
+            </div>
+            <div class="hidden lg:flex items-center space-x-8 text-xs font-bold uppercase tracking-widest text-slate-400">
+                <a href="#" class="text-terracota border-b-2 border-terracota pb-1">Comunidad</a>
+                <a href="#" class="hover:text-deepBlue transition-colors">Tutores</a>
+            </div>
+        </div>
+        <div class="hidden md:flex flex-1 max-w-xl mx-12">
+            <div class="relative w-full group">
+                <input type="text" placeholder="¿Qué quieres aprender hoy?"
+                       class="w-full bg-slate-50 border border-slate-200 py-3 px-6 rounded-2xl text-sm outline-none focus:ring-4 focus:ring-eduCian/5 focus:bg-white focus:border-eduCian transition-all">
+            </div>
+        </div>
+        <div class="flex items-center space-x-6">
+            <button class="text-slate-400 hover:text-terracota transition-colors">
+                <i class="fa-regular fa-bell text-xl"></i>
+            </button>
+            <a href="/preguntar" class="bg-terracota text-white px-8 py-3.5 rounded-2xl font-bold text-sm hover:shadow-xl hover:shadow-terracota/20 transition-all">
+                Nueva Pregunta
+            </a>
+        </div>
+    </div>
+</nav>
+
+<main class="max-w-[1600px] mx-auto grid grid-cols-12 gap-8 p-8">
+    <aside class="col-span-12 lg:col-span-2 space-y-8">
+        <div class="space-y-2">
+            <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.3em] pl-4">Materias</p>
+            <nav class="space-y-1">
+                <a href="#" class="flex items-center space-x-3 p-3.5 px-5 rounded-2xl bg-white border border-slate-100 font-bold text-sm text-terracota shadow-sm">
+                    <i class="fa-solid fa-calculator text-xs"></i>
+                    <span>Matemáticas</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 p-3.5 px-5 rounded-2xl text-slate-500 hover:bg-white hover:border-slate-100 transition-all font-semibold text-sm">
+                    <i class="fa-solid fa-atom text-xs"></i>
+                    <span>Física</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 p-3.5 px-5 rounded-2xl text-slate-500 hover:bg-white hover:border-slate-100 transition-all font-semibold text-sm">
+                    <i class="fa-solid fa-code text-xs"></i>
+                    <span>Informática</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 p-3.5 px-5 rounded-2xl text-slate-500 hover:bg-white hover:border-slate-100 transition-all font-semibold text-sm">
+                    <i class="fa-solid fa-language text-xs"></i>
+                    <span>Inglés</span>
+                </a>
+            </nav>
+        </div>
+    </aside>
+
+    <section class="col-span-12 lg:col-span-7 space-y-6">
+        <div class="bg-white border border-slate-100 p-8 rounded-[2rem] custom-shadow flex items-center justify-between relative overflow-hidden">
+            <div class="relative z-10">
+                <h1 class="text-3xl font-extrabold text-deepBlue tracking-tight mb-2">¡Hola, <span th:text="${usuario.username}">Aprendiz</span>!</h1>
+                <p class="text-slate-500 font-medium text-sm">Explora las dudas de la comunidad.</p>
+            </div>
+            <i class="fa-solid fa-graduation-cap absolute -right-4 -bottom-4 text-[10rem] text-slate-50 opacity-10"></i>
+        </div>
+
+        <div class="space-y-4">
+            <article class="bg-white border border-slate-100 p-7 rounded-[2rem] hover:border-eduCian/30 transition-all custom-shadow group">
+                <div class="flex items-center justify-between mb-5">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center font-bold text-slate-400">?</div>
+                        <div>
+                            <span class="text-[10px] font-black text-natureGreen uppercase tracking-widest bg-natureGreen/10 px-2 py-1 rounded">Matemáticas</span>
+                            <p class="text-xs text-slate-400 font-bold mt-1">Reciente</p>
+                        </div>
+                    </div>
+                </div>
+                <h2 class="text-xl font-bold text-deepBlue mb-4 leading-snug group-hover:text-eduCian transition-colors">
+                    ¿Cómo despejar X en una ecuación cuadrática?
+                </h2>
+                <div class="flex items-center justify-between pt-4 border-t border-slate-50">
+                    <span class="text-xs font-bold text-slate-400"><i class="fa-regular fa-comment-dots mr-2"></i>Ver respuestas</span>
+                    <button class="bg-slate-50 text-deepBlue font-bold text-xs px-6 py-3 rounded-xl hover:bg-natureGreen hover:text-white transition-all">
+                        Responder
+                    </button>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <aside class="col-span-12 lg:col-span-3 space-y-6">
+        <div class="bg-white border border-slate-100 rounded-[2.5rem] custom-shadow overflow-hidden">
+            <div class="h-24 bg-gradient-to-r from-deepBlue to-eduCian"></div>
+            <div class="px-8 pb-8 text-center">
+                <div class="relative -mt-12 mb-4">
+                    <img th:src="${usuario.foto}" class="w-24 h-24 rounded-[2rem] border-4 border-white shadow-lg mx-auto object-cover">
+                </div>
+                <h3 class="text-xl font-black text-deepBlue tracking-tight" th:text="${usuario.username}">Username</h3>
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mt-1" th:text="${usuario.rol}">Rol</p>
+
+                <div class="text-left mt-6 space-y-4">
+                    <div class="bg-slate-50 p-4 rounded-2xl group relative">
+                        <label class="text-[9px] font-black text-slate-300 uppercase block mb-1">Mi Bio</label>
+                        <p class="text-xs text-slate-500 font-medium">"Ayudo con dudas de informática y programación."</p>
+                        <button class="absolute top-2 right-2 text-eduCian text-[10px] font-bold">EDITAR</button>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-eduCian/5 text-eduCian text-[10px] font-bold px-3 py-1 rounded-lg">#Java</span>
+                        <span class="bg-terracota/5 text-terracota text-[10px] font-bold px-3 py-1 rounded-lg">#HTML</span>
+                    </div>
+                </div>
+                <button class="w-full mt-8 py-4 bg-deepBlue text-white rounded-2xl font-bold text-xs hover:bg-eduCian transition-all">Configuración</button>
+            </div>
+        </div>
+    </aside>
+</main>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lernia | Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deepBlue: '#2C3E50',
+                        terracota: '#D35400',
+                        natureGreen: '#27AE60',
+                        eduCian: '#2980B9',
+                        solarYellow: '#F1C40F'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-deepBlue antialiased">
+<div class="flex">
+    <aside class="w-72 h-screen bg-deepBlue text-white p-8 sticky top-0 flex flex-col">
+        <div class="text-2xl font-black mb-12 tracking-tighter">
+            LEAR<span class="text-eduCian">NIA</span> <span class="text-[10px] bg-terracota px-2 py-1 rounded ml-2 uppercase">Admin</span>
+        </div>
+        <nav class="space-y-4 flex-1">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Gestión Principal</p>
+            <a href="#" class="flex items-center space-x-4 p-3 bg-white/10 rounded-xl font-bold text-sm">
+                <i class="fa-solid fa-chart-line text-eduCian"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="flex items-center space-x-4 p-3 hover:bg-white/5 rounded-xl font-bold text-sm text-slate-300 transition-all">
+                <i class="fa-solid fa-users"></i>
+                <span>Usuarios</span>
+            </a>
+            <a href="#" class="flex items-center space-x-4 p-3 hover:bg-white/5 rounded-xl font-bold text-sm text-slate-300 transition-all">
+                <i class="fa-solid fa-tags"></i>
+                <span>Categorías</span>
+            </a>
+            <a href="#" class="flex items-center space-x-4 p-3 hover:bg-white/5 rounded-xl font-bold text-sm text-slate-300 transition-all">
+                <i class="fa-solid fa-flag"></i>
+                <span>Reportes</span>
+            </a>
+        </nav>
+        <div class="pt-6 border-t border-white/10">
+            <a href="/logout" class="flex items-center space-x-4 p-3 text-terracota font-bold text-sm">
+                <i class="fa-solid fa-power-off"></i>
+                <span>Cerrar Sesión</span>
+            </a>
+        </div>
+    </aside>
+
+    <main class="flex-1 p-10">
+        <header class="flex justify-between items-center mb-10">
+            <h1 class="text-2xl font-black italic">Panel de Control</h1>
+            <div class="flex items-center space-x-4">
+                <div class="text-right">
+                    <p class="text-sm font-bold" th:text="${usuario.username}">Admin</p>
+                    <p class="text-[10px] text-natureGreen font-black uppercase">Sistema Activo</p>
+                </div>
+                <div class="w-12 h-12 bg-eduCian rounded-2xl flex items-center justify-center text-white font-bold shadow-lg shadow-eduCian/30">A</div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100">
+                <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Total Usuarios</p>
+                <p class="text-4xl font-black">124</p>
+            </div>
+            <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100">
+                <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Preguntas Hoy</p>
+                <p class="text-4xl font-black text-terracota">18</p>
+            </div>
+            <div class="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100">
+                <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Alertas</p>
+                <p class="text-4xl font-black text-natureGreen">0</p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden">
+            <div class="p-8 border-b border-slate-50 flex justify-between items-center">
+                <h3 class="font-black text-lg">Últimos Usuarios Registrados</h3>
+                <button class="text-eduCian font-bold text-xs">Gestionar Todos</button>
+            </div>
+            <table class="w-full text-left">
+                <thead class="bg-slate-50 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
+                <tr>
+                    <th class="px-8 py-5">Username</th>
+                    <th class="px-8 py-5">Email</th>
+                    <th class="px-8 py-5">Rol</th>
+                    <th class="px-8 py-5 text-right">Acción</th>
+                </tr>
+                </thead>
+                <tbody class="text-sm">
+                <tr class="border-b border-slate-50 hover:bg-slate-50 transition-colors">
+                    <td class="px-8 py-5 font-bold">mario_dev</td>
+                    <td class="px-8 py-5 text-slate-500">mario@test.com</td>
+                    <td class="px-8 py-5"><span class="bg-natureGreen/10 text-natureGreen px-3 py-1 rounded-full text-[10px] font-black uppercase">Estudiante</span></td>
+                    <td class="px-8 py-5 text-right">
+                        <button class="text-slate-300 hover:text-terracota mx-2"><i class="fa-solid fa-user-slash"></i></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
+</body>
+</html>
