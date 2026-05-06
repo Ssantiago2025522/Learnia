@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,7 +30,6 @@
             position: relative;
         }
 
-        /* ─── MARCA DE AGUA GLOBAL ─── */
         body::before {
             content: '';
             position: fixed;
@@ -44,7 +43,6 @@
 
         aside, main { position: relative; z-index: 1; }
 
-        /* ─── SIDEBAR ─── */
         aside {
             width: 240px;
             min-width: 240px;
@@ -66,8 +64,12 @@
             display: flex; align-items: center; justify-content: center;
             border: 3px solid var(--plata-suave);
         }
-        .avatar i { font-size: 2.2rem; color: var(--azul-profundo); }
-        .perfil-seccion h2 { font-size: 0.95rem; font-weight: 700; }
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
 
         nav { flex: 1; }
         nav a {
@@ -78,93 +80,23 @@
             margin-bottom: 4px;
         }
         nav a:hover, nav a.activo { background-color: rgba(255,255,255,0.12); color: white; }
-        nav a.activo { border-left: 3px solid var(--plata-suave); padding-left: calc(1rem - 3px); }
 
         .acerca-de { margin-top: auto; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
-        .acerca-de h3 { font-size: 0.85rem; margin-bottom: 1rem; font-weight: 700; color: white; }
-        .acerca-item { display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
 
-        main { flex: 1; padding: 2.5rem 3rem; overflow-y: auto; }
-        .vista { display: none; animation: fadeIn 0.3s ease; }
-        .vista.activa { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        main { flex: 1; padding: 2.5rem 3rem; }
 
-        .dashboard-titulo { font-size: 2.2rem; font-weight: 900; margin-bottom: 0.3rem; }
-        .dashboard-separador { height: 3px; background: var(--cian-educativo); margin-bottom: 2.5rem; border: none; width: 100%; max-width: 400px; }
-
-        .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-        .dash-card {
-            background: rgba(255,255,255,0.88);
-            backdrop-filter: blur(4px);
-            border-radius: 12px;
-            padding: 1.8rem;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            border-top: 4px solid transparent;
-        }
-        .dash-card.verde { border-top-color: var(--verde-naturaleza); }
-        .dash-card.plata { border-top-color: var(--plata-suave); }
-        .dash-card h3 { font-size: 1rem; color: var(--cian-educativo); margin-bottom: 0.7rem; }
-        .dash-card p { font-size: 0.9rem; color: var(--gris-texto); line-height: 1.5; margin-bottom: 1rem; }
-
-        /* ─── ACTIVIDAD RECIENTE MEJORADA ─── */
-        .actividad-card {
-            background: rgba(255,255,255,0.88);
-            backdrop-filter: blur(4px);
-            border-radius: 12px;
-            padding: 1.8rem;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-            border-top: 4px solid var(--verde-naturaleza);
-            grid-column: 1 / -1;
-            margin-top: 1.5rem;
-        }
-        .actividad-card h3 { font-size: 1.05rem; color: var(--cian-educativo); margin-bottom: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
-        .actividad-lista { display: flex; flex-direction: column; gap: 0.75rem; }
-        .actividad-item {
-            display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1rem;
-            border-radius: 10px; background: var(--gris-claro); border-left: 4px solid transparent; transition: background 0.2s;
-        }
-        .actividad-item:hover { background: #e8ecef; }
-        .actividad-item.tipo-mat { border-left-color: var(--cian-educativo); }
-        .actividad-icono {
-            width: 38px; height: 38px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1rem; flex-shrink: 0;
-            background: rgba(41,128,185,0.15); color: var(--cian-educativo);
-        }
-        .actividad-info { flex: 1; }
-        .actividad-info strong { font-size: 0.88rem; color: var(--azul-profundo); display: block; }
-        .actividad-info span { font-size: 0.78rem; color: var(--gris-texto); }
-
-        .btn-naranja { background-color: var(--naranja-terracota); color: white; border: none; padding: 0.6rem 1.3rem; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.85rem; transition: background 0.2s; }
-        .btn-naranja:hover { background-color: #b94600; }
-
-        /* VISTA PREGUNTAS / RESPUESTAS */
-        h1.titulo-seccion { font-weight: 900; font-size: 2.2rem; text-align: center; margin-bottom: 3rem; position: relative; text-transform: uppercase; }
-        h1.titulo-seccion::after { content: ''; position: absolute; bottom: -10px; left: 25%; width: 50%; height: 4px; background: var(--cian-educativo); }
-
-        .contenedor-central { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
-        .sin-items {
-            text-align: center; padding: 3rem;
-            background: rgba(255,255,255,0.88);
-            backdrop-filter: blur(4px);
-            border: 2px dashed #D0D7DE; border-radius: 16px; width: 100%; max-width: 600px;
-        }
-
-        .btn-haz-pregunta {
-            background-color: #EBEDF0; color: var(--azul-profundo); border: 2px solid #D0D7DE;
-            padding: 0.8rem 2.5rem; border-radius: 50px; font-weight: 700;
-            cursor: pointer; text-transform: uppercase; transition: 0.2s;
-        }
-        .btn-haz-pregunta:hover { background-color: white; border-color: var(--cian-educativo); }
     </style>
 </head>
 <body>
 
 <aside>
     <div class="perfil-seccion">
-        <div class="avatar"><i class="fa-solid fa-user"></i></div>
-        <h2>Nombre de Usuario</h2>
+        <div class="avatar">
+            <img th:src="${usuario.fotoUsuario != null and !#strings.isEmpty(usuario.fotoUsuario) ? usuario.fotoUsuario : '/img/default-avatar.png'}">
+        </div>
+        <h2 th:text="${usuario.nombreUsuario}">Nombre</h2>
     </div>
+
     <nav>
         <a class="activo" onclick="mostrarVista('dashboard', this)">
             <i class="fa-solid fa-gauge-high"></i> Dashboard
@@ -176,74 +108,42 @@
             <i class="fa-solid fa-comments"></i> Respuestas dadas
         </a>
     </nav>
+
     <div class="acerca-de">
         <h3>Acerca de</h3>
-        <div class="acerca-item"><i class="fa-solid fa-calendar-day"></i><span>Registrado: <strong>16 Marzo 2025</strong></span></div>
-        <div class="acerca-item"><i class="fa-solid fa-triangle-exclamation"></i><span>Avisos: <strong>0</strong> (solo tú)</span></div>
+
+        <div class="acerca-item">
+            <i class="fa-solid fa-envelope"></i>
+            <span th:text="${usuario.correoUsuario}">correo</span>
+        </div>
+
+        <div class="acerca-item">
+            <i class="fa-solid fa-calendar-day"></i>
+            <span>
+                Registrado:
+                <strong th:text="${#temporals.format(usuario.fechaRegistro, 'dd/MM/yyyy')}"></strong>
+            </span>
+        </div>
+
+        <div class="acerca-item">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>Avisos: <strong>0</strong></span>
+        </div>
     </div>
 </aside>
 
 <main>
-    <div id="vista-dashboard" class="vista activa">
-        <h1 class="dashboard-titulo">Dashboard</h1>
-        <hr class="dashboard-separador">
-        <div class="cards-grid">
-            <div class="dash-card verde">
-                <h3>Estado de Cuenta</h3>
-                <p>Tu cuenta se encuentra activa y al día. Tienes acceso total a las lecciones.</p>
-                <button class="btn-naranja">Ver Perfil</button>
-            </div>
-            <div class="dash-card plata">
-                <h3>Estadísticas</h3>
-                <p>Has respondido a 15 preguntas esta semana. ¡Sigue así!</p>
-            </div>
-
-            <!-- Actividad Reciente Integrada -->
-            <div class="actividad-card">
-                <h3><i class="fa-solid fa-clock-rotate-left"></i> Actividad Reciente</h3>
-                <div class="actividad-lista">
-                    <div class="actividad-item tipo-mat">
-                        <div class="actividad-icono"><i class="fa-solid fa-calculator"></i></div>
-                        <div class="actividad-info">
-                            <strong>Resolviste una duda de Álgebra</strong>
-                            <span>Hace 2 horas</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="vista-preguntas" class="vista">
-        <h1 class="titulo-seccion">Preguntas Hechas</h1>
-        <div class="contenedor-central">
-            <div class="sin-items">
-                <i class="fa-solid fa-box-open" style="font-size: 3rem; color: var(--plata-suave); margin-bottom: 1rem; display: block;"></i>
-                <p><strong>¡Vaya! Parece que el baúl está vacío.</strong></p>
-                <p style="color: var(--gris-texto); font-size: 0.85rem;">Tus preguntas aparecerán aquí abajo.</p>
-            </div>
-            <button class="btn-haz-pregunta">Haz una pregunta</button>
-        </div>
-    </div>
-
-    <div id="vista-respuestas" class="vista">
-        <h1 class="titulo-seccion">Respuestas Dadas</h1>
-        <div class="contenedor-central">
-            <div class="sin-items">
-                <i class="fa-regular fa-message" style="font-size: 3rem; color: var(--plata-suave); margin-bottom: 1rem; display: block;"></i>
-                <p>Todavía no has respondido ninguna pregunta.</p>
-            </div>
-        </div>
-    </div>
+    <h1 class="dashboard-titulo">Dashboard</h1>
 </main>
 
 <script>
     function mostrarVista(nombre, enlace) {
         document.querySelectorAll('.vista').forEach(v => v.classList.remove('activa'));
         document.querySelectorAll('nav a').forEach(a => a.classList.remove('activo'));
-        document.getElementById('vista-' + nombre).classList.add('activa');
+        document.getElementById('vista-' + nombre)?.classList.add('activa');
         if (enlace) enlace.classList.add('activo');
     }
 </script>
+
 </body>
 </html>

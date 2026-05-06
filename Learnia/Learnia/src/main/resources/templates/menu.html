@@ -59,9 +59,11 @@
 
     <div class="flex items-center space-x-6">
         <div class="flex items-center space-x-3">
-            <img th:src="${usuario.fotoUsuario != null and !#strings.isEmpty(usuario.fotoUsuario) ? usuario.fotoUsuario : '/img/default-avatar.png'}"
-                 class="w-9 h-9 rounded-xl object-cover border-2 border-slate-100"
-                 alt="Foto de perfil">
+            <a th:href="@{/usuario}">
+                <img th:src="${usuario.fotoUsuario != null and !#strings.isEmpty(usuario.fotoUsuario) ? usuario.fotoUsuario : '/img/default-avatar.png'}"
+                     class="w-9 h-9 rounded-xl object-cover border-2 border-slate-100 cursor-pointer"
+                     alt="Foto de perfil">
+            </a>
             <span class="text-sm font-bold text-deepBlue hidden md:block"
                   th:text="${usuario.nombreUsuario}">Usuario</span>
         </div>

@@ -33,6 +33,17 @@ public class HomeController {
         return "menu";
     }
 
+    @GetMapping("/usuario")
+    public String vistaUsuario(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+
+        Usuario usuario = usuarioRepository
+                .findByCorreoUsuario(userDetails.getUsername())
+                .orElseThrow();
+
+        model.addAttribute("usuario", usuario);
+
+        return "usuarios-view";
+    }
 
     @GetMapping("/preguntar")
     public String preguntar() {
