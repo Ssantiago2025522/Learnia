@@ -30,7 +30,7 @@ public class HomeController {
     public String menu(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         Usuario usuario = usuarioRepository.findByCorreoUsuario(userDetails.getUsername()).orElseThrow();
         model.addAttribute("usuario", usuario);
-        return "menu";
+        return "menu-usuario";
     }
 
     @GetMapping("/usuario")
