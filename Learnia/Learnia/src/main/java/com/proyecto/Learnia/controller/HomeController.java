@@ -9,16 +9,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import com.proyecto.Learnia.service.PreguntaService;
+import com.proyecto.Learnia.entity.Pregunta;
+import java.util.List;
 
 @Controller
 public class HomeController {
     private final UsuarioRepository usuarioRepository;
+    private final PreguntaService preguntaService;
 
-    public HomeController(UsuarioRepository usuarioRepository) {
+    public HomeController(UsuarioRepository usuarioRepository, PreguntaService preguntaService) {
         this.usuarioRepository = usuarioRepository;
+        this.preguntaService = preguntaService;
     }
-
-
 
     @GetMapping("/")
     public String index() {
@@ -28,8 +31,16 @@ public class HomeController {
 
     @GetMapping("/menu")
     public String menu(Model model, @AuthenticationPrincipal UserDetails userDetails) {
-        Usuario usuario = usuarioRepository.findByCorreoUsuario(userDetails.getUsername()).orElseThrow();
+
+        Usuario usuario = usuarioRepository
+                .findByCorreoUsuario(userDetails.getUsername())
+                .orElseThrow();
+
+        List<Pregunta> preguntas = preguntaService.listar();
+
         model.addAttribute("usuario", usuario);
+        model.addAttribute("preguntas", preguntas);
+
         return "menu";
     }
 
