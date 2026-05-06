@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learnia | Pasa de preguntar a comprender</title>
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
     <script>
         tailwind.config = {
             theme: {
@@ -17,360 +15,239 @@
                         terracota: '#D35400',
                         natureGreen: '#27AE60',
                         eduCian: '#2980B9',
-                        solarYellow: '#F1C40F'
+                        solarYellow: '#F1C40F',
+                        softGray: '#F8FAFC'
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
                         'gradient': 'gradient 8s linear infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite'
                     },
                     keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        gradient: {
-                            '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' },
-                            '50%': { 'background-size': '200% 200%', 'background-position': 'right center' }
-                        }
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } },
+                        gradient: { '0%, 100%': { 'background-size': '200% 200%', 'background-position': 'left center' }, '50%': { 'background-size': '200% 200%', 'background-position': 'right center' } }
                     }
                 }
             }
         }
     </script>
-
     <style>
-        /* Utilidades generales */
         .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .hero-gradient { background: radial-gradient(circle at top right, #e0f2fe, #ffffff); }
-
-        /* Estados y Animaciones de Interfaz */
-        .active-cat { border-bottom: 3px solid #D35400; color: #D35400; transform: translateY(-2px); }
+        .hero-gradient { background: radial-gradient(circle at top right, #f0f9ff, #ffffff); }
+        .active-cat { border-bottom: 4px solid #D35400; color: #D35400; background-color: #fffaf0; transform: translateY(-2px); }
         .fade-in { animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .animated-gradient-text {
-            background: linear-gradient(to right, #2C3E50, #2980B9, #27AE60, #2C3E50);
-            background-size: 200% auto;
+            background: linear-gradient(to right, #2C3E50, #2980B9, #27AE60, #D35400);
+            background-size: 300% auto;
             color: transparent;
             -webkit-background-clip: text;
             background-clip: text;
             animation: gradient 5s linear infinite;
         }
-
-        /* Sistema de Partículas */
-        .particle {
-            position: absolute;
-            pointer-events: none;
-            opacity: 0;
-            z-index: 50;
-            animation: particle-fly 0.8s ease-out forwards;
-        }
-
-        @keyframes particle-fly {
-            0% { transform: translate(0, 0) scale(0.5); opacity: 1; }
-            100% { transform: translate(var(--x), var(--y)) scale(1.5) rotate(20deg); opacity: 0; }
-        }
-
-        #catBox button { position: relative; overflow: visible; }
+        .particle { position: absolute; pointer-events: none; opacity: 0; z-index: 50; animation: particle-fly 0.8s ease-out forwards; }
+        @keyframes particle-fly { 0% { transform: translate(0, 0) scale(0.5); opacity: 1; } 100% { transform: translate(var(--x), var(--y)) scale(1.5) rotate(45deg); opacity: 0; } }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
     </style>
 </head>
-
 <body class="bg-white font-sans text-deepBlue antialiased">
 
-<nav class="bg-white/80 backdrop-blur-xl px-8 py-4 flex justify-between items-center sticky top-0 z-50 border-b border-gray-100 shadow-sm">
-    <div class="text-3xl font-black tracking-tighter text-deepBlue hover:scale-105 transition-transform cursor-pointer">
+<nav class="bg-white/90 backdrop-blur-md px-8 py-5 flex justify-between items-center sticky top-0 z-50 border-b border-gray-100 shadow-sm">
+    <div class="text-3xl font-black tracking-tighter text-deepBlue hover:scale-105 transition-transform duration-300">
         LEAR<span class="text-eduCian">NIA</span>
     </div>
-    <div class="flex items-center space-x-8 text-[11px] font-bold tracking-widest uppercase">
+    <div class="flex items-center space-x-10 text-[12px] font-bold tracking-widest uppercase">
         <a th:href="@{/login}" class="text-deepBlue/70 hover:text-eduCian transition-colors">Iniciar Sesión</a>
         <a th:href="@{/registro}" class="text-deepBlue/70 hover:text-eduCian transition-colors">Registrarse</a>
-        <a th:href="@{/preguntar}" class="bg-deepBlue text-white px-8 py-4 rounded-2xl hover:bg-eduCian transition-all shadow-xl shadow-eduCian/20 active:scale-95">
+        <a th:href="@{/preguntar}" class="bg-deepBlue text-white px-8 py-4 rounded-full hover:bg-eduCian transition-all shadow-lg hover:shadow-eduCian/30 active:scale-95">
             Haz una pregunta
         </a>
     </div>
 </nav>
 
 <header class="hero-gradient py-32 px-6 relative overflow-hidden">
-    <div class="absolute top-20 left-10 w-64 h-64 bg-eduCian/5 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 right-0 w-96 h-96 bg-terracota/5 rounded-full blur-3xl"></div>
-
     <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center relative z-10">
         <div class="space-y-10">
-            <div class="inline-flex items-center space-x-2 px-4 py-2 bg-white rounded-2xl shadow-sm border border-gray-100 text-eduCian text-xs font-black tracking-widest uppercase">
-                <span class="relative flex h-2 w-2">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-natureGreen opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-natureGreen"></span>
-                </span>
+            <div class="inline-flex items-center space-x-2 px-5 py-2 bg-white rounded-full shadow-md text-eduCian text-[10px] font-black uppercase tracking-widest border border-gray-50">
+                <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-natureGreen opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-natureGreen"></span></span>
                 <span>Comunidad Activa 2026</span>
             </div>
-
-            <h1 class="text-7xl lg:text-8xl font-black leading-[1] text-deepBlue tracking-tight">
-                De la curiosidad al <span class="animated-gradient-text italic">conocimiento</span>
-            </h1>
-
-            <p class="text-2xl text-gray-500 leading-relaxed max-w-lg font-medium">
-                La red de aprendizaje colaborativo donde estudiantes y expertos resuelven retos juntos.
-            </p>
-
-            <!-- PANEL DE ESTADÍSTICAS (Sustituye al buscador) -->
-            <div class="flex items-center space-x-12 pt-4">
-                <div class="text-center md:text-left">
-                    <div class="text-4xl font-black text-deepBlue">10k+</div>
-                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Estudiantes</div>
-                </div>
+            <h1 class="text-7xl lg:text-8xl font-black leading-[1.1] tracking-tight">De la curiosidad al <span class="animated-gradient-text italic">conocimiento</span></h1>
+            <p class="text-2xl text-gray-500 font-medium max-w-lg leading-relaxed">La red de aprendizaje colaborativo donde estudiantes y expertos resuelven retos juntos.</p>
+            <div class="flex items-center space-x-12">
+                <div><div class="text-4xl font-black text-deepBlue">10k+</div><div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Estudiantes</div></div>
                 <div class="w-px h-10 bg-gray-200"></div>
-                <div class="text-center md:text-left">
-                    <div class="text-4xl font-black text-eduCian">500+</div>
-                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Tutores</div>
-                </div>
-                <div class="w-px h-10 bg-gray-200"></div>
-                <div class="text-center md:text-left">
-                    <div class="text-4xl font-black text-natureGreen">95%</div>
-                    <div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Éxito</div>
-                </div>
+                <div><div class="text-4xl font-black text-eduCian">500+</div><div class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Tutores</div></div>
             </div>
         </div>
-
-        <div class="hidden md:block relative">
-            <div class="relative z-10 border-[16px] border-white rounded-[4rem] shadow-2xl overflow-hidden bg-white animate-float">
-                <img th:src="@{/img/learnia.jpg}" class="w-full h-full object-cover min-h-[500px]" alt="Learnia">
+        <div class="hidden md:block relative animate-float">
+            <div class="border-[20px] border-white rounded-[5rem] shadow-2xl overflow-hidden bg-white">
+                <img th:src="@{/img/learnia.jpg}" class="w-full h-full object-cover min-h-[550px]" alt="Learnia">
             </div>
         </div>
     </div>
 </header>
 
-<!-- SECCIÓN: QUIÉNES SOMOS -->
-<section class="py-32 bg-white overflow-hidden">
+<section class="py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+        <div class="relative group">
+            <div class="absolute -inset-4 bg-gradient-to-tr from-eduCian/20 to-natureGreen/20 rounded-[4rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <div class="relative rounded-[4rem] overflow-hidden shadow-2xl border-8 border-slate-50 transition-transform duration-500 group-hover:scale-[1.02]">
+                <img th:src="@{/img/equipo.png}" alt="Nuestro Equipo" class="w-full h-[550px] object-cover">
+            </div>
+        </div>
+        <div class="space-y-8">
+            <div>
+                <h2 class="text-natureGreen text-xs font-black uppercase tracking-[0.5em] mb-4">Propósito</h2>
+                <h3 class="text-6xl font-black tracking-tighter italic text-deepBlue">¿Quiénes somos?</h3>
+            </div>
+            <p class="text-xl text-gray-500 font-medium leading-relaxed">
+                Somos una comunidad apasionada por la educación colaborativa. En 2026, nacimos con la idea de que nadie debe aprender solo.
+            </p>
+            <div class="grid grid-cols-2 gap-6 pt-4">
+                <div class="p-8 rounded-[2.5rem] bg-softGray border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <i class="fa-solid fa-users-rays text-eduCian text-3xl mb-5"></i>
+                    <h4 class="font-black text-xs uppercase tracking-widest text-deepBlue">Comunidad</h4>
+                    <p class="text-sm text-gray-400 mt-2">Unidos por el deseo de compartir.</p>
+                </div>
+                <div class="p-8 rounded-[2.5rem] bg-softGray border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                    <i class="fa-solid fa-graduation-cap text-natureGreen text-3xl mb-5"></i>
+                    <h4 class="font-black text-xs uppercase tracking-widest text-deepBlue">Excelencia</h4>
+                    <p class="text-sm text-gray-400 mt-2">Soluciones validadas paso a paso.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-32 bg-slate-50/50 text-center">
+    <div class="mb-16 space-y-4">
+        <h2 class="text-eduCian text-xs font-black uppercase tracking-[0.5em]">Metodología</h2>
+        <h3 class="text-5xl font-black text-deepBlue tracking-tighter">Explora por materias</h3>
+    </div>
+
+    <div id="catBox" class="flex justify-center flex-wrap gap-4 mb-20 px-6">
+        <button onmousemove="createParticles(event, 'default')" onclick="selectCategory(this)" data-category="default" class="px-10 py-5 rounded-2xl font-bold bg-white active-cat shadow-sm transition-all duration-300 hover:shadow-md">Todas</button>
+        <button onmousemove="createParticles(event, 'matematicas')" onclick="selectCategory(this)" data-category="matematicas" class="px-10 py-5 rounded-2xl font-bold bg-white shadow-sm transition-all duration-300 hover:shadow-md">Matemáticas</button>
+        <button onmousemove="createParticles(event, 'programacion')" onclick="selectCategory(this)" data-category="programacion" class="px-10 py-5 rounded-2xl font-bold bg-white shadow-sm transition-all duration-300 hover:shadow-md">Informática</button>
+        <button onmousemove="createParticles(event, 'fisica')" onclick="selectCategory(this)" data-category="fisica" class="px-10 py-5 rounded-2xl font-bold bg-white shadow-sm transition-all duration-300 hover:shadow-md">Física</button>
+        <button onmousemove="createParticles(event, 'ingles')" onclick="selectCategory(this)" data-category="ingles" class="px-10 py-5 rounded-2xl font-bold bg-white shadow-sm transition-all duration-300 hover:shadow-md">Inglés</button>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-12 items-center text-left">
+        <div class="lg:col-span-4 space-y-8">
+            <div class="p-10 rounded-[3rem] bg-white shadow-sm border border-gray-100 transform hover:-translate-y-2 transition-transform duration-300">
+                <div class="text-eduCian font-black text-5xl mb-4">01</div>
+                <h4 class="text-xl font-black mb-2">Haz preguntas</h4>
+                <p class="text-gray-500 font-medium">Comunidad activa 24/7 para ayudarte en cualquier momento.</p>
+            </div>
+            <div class="p-10 rounded-[3rem] bg-white shadow-sm border border-gray-100 transform hover:-translate-y-2 transition-transform duration-300">
+                <div class="text-terracota font-black text-5xl mb-4">02</div>
+                <h4 class="text-xl font-black mb-2">Recibe ayuda</h4>
+                <p class="text-gray-500 font-medium">Obtén soluciones detalladas y verificadas por expertos.</p>
+            </div>
+        </div>
+        <div class="lg:col-span-8">
+            <div id="exampleCard" class="bg-white p-16 rounded-[5rem] shadow-2xl fade-in border border-gray-50 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-slate-50 rounded-bl-full -z-10"></div>
+                <div class="flex items-center space-x-6 mb-12">
+                    <div id="exampleIconContainer" class="w-20 h-20 bg-eduCian rounded-[2rem] flex items-center justify-center text-white text-3xl shadow-2xl shadow-eduCian/20 transition-all duration-500"><i id="exampleIcon" class="fa-solid fa-graduation-cap"></i></div>
+                    <div>
+                        <div id="exampleCategory" class="text-xs font-black text-eduCian uppercase tracking-widest">Matemáticas</div>
+                        <div id="examplePoints" class="text-sm text-natureGreen font-black mt-1">Recompensa: +10 XP</div>
+                    </div>
+                </div>
+                <h4 id="exampleQuestionText" class="text-4xl font-black mb-8 leading-tight tracking-tight text-deepBlue">5 + 4x = 2x + 2.</h4>
+                <div class="bg-softGray p-12 rounded-[3.5rem] border border-gray-100">
+                    <p id="exampleAnswerText" class="text-2xl font-medium text-deepBlue leading-relaxed italic">El valor es <span class="text-natureGreen font-black underline decoration-natureGreen/20 underline-offset-8">x = -1.5</span>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-32 bg-white">
+    <div class="max-w-5xl mx-auto px-6 bg-slate-900 rounded-[5rem] p-24 text-center relative overflow-hidden shadow-2xl">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/5 to-transparent pointer-events-none"></div>
+        <p class="text-4xl md:text-6xl text-white font-medium relative z-10 italic leading-tight">"Si no sabes, <span class="text-solarYellow underline decoration-8 underline-offset-[12px]">no copies</span>, mejor pregunta y aprende."</p>
+        <div class="mt-16 flex items-center justify-center space-x-5 relative z-10 text-left">
+            <div class="w-16 h-16 rounded-full bg-eduCian flex items-center justify-center font-black text-white italic text-2xl shadow-lg shadow-eduCian/40">M</div>
+            <div><div class="text-white text-xl font-bold">Mario Roberto Hernandez</div><div class="text-eduCian text-[10px] font-black uppercase tracking-[0.3em]">Estudiante Destacado</div></div>
+        </div>
+    </div>
+</section>
+
+<section class="pb-32 bg-white">
     <div class="max-w-7xl mx-auto px-6">
-        <div class="grid lg:grid-cols-2 gap-20 items-center">
-
-            <!-- CUADRO DE IMAGEN -->
-            <div class="relative group">
-                <div class="absolute -inset-4 bg-gradient-to-tr from-eduCian/20 to-natureGreen/20 rounded-[4rem] blur-2xl opacity-50 group-hover:opacity-100 transition duration-700"></div>
-                <div class="relative rounded-[3.5rem] overflow-hidden shadow-2xl border-8 border-slate-50 bg-slate-100">
-                    <img th:src="@{/img/equipo.jpg}" alt="Nuestro Equipo" class="w-full h-[500px] object-cover transition duration-700 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-deepBlue/40 to-transparent"></div>
-                </div>
+        <div class="grid lg:grid-cols-2 bg-white rounded-[5rem] shadow-2xl overflow-hidden border border-gray-50 items-stretch">
+            <div class="p-20 lg:p-28 flex flex-col justify-center space-y-8">
+                <h3 class="text-7xl font-black tracking-tighter text-deepBlue">Resolvemos dudas en segundos.</h3>
+                <p class="text-2xl text-gray-500 font-medium leading-relaxed">Llevamos a las personas de la pregunta al entendimiento de forma gratuita y accesible.</p>
             </div>
-
-            <div class="space-y-8">
-                <div class="space-y-4">
-                    <h2 class="text-natureGreen text-xs font-black uppercase tracking-[0.4em]">Propósito</h2>
-                    <h3 class="text-5xl font-black text-deepBlue tracking-tighter">¿Quiénes somos en <span class="text-eduCian">Learnia</span>?</h3>
-                </div>
-
-                <p class="text-xl text-gray-500 leading-relaxed font-medium">
-                    Somos una comunidad apasionada por la educación colaborativa. En 2026, nacimos con la idea de que nadie debe aprender solo; conectamos el talento de expertos con la curiosidad de estudiantes para transformar dudas en certezas.
-                </p>
-
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="p-6 rounded-3xl bg-slate-50 border border-gray-100">
-                        <i class="fa-solid fa-users-rays text-eduCian text-2xl mb-4"></i>
-                        <h4 class="font-black text-deepBlue text-xs uppercase tracking-widest mb-2">Comunidad</h4>
-                        <p class="text-sm text-gray-500">Unidos por el deseo de compartir y crecer.</p>
-                    </div>
-                    <div class="p-6 rounded-3xl bg-slate-50 border border-gray-100">
-                        <i class="fa-solid fa-graduation-cap text-natureGreen text-2xl mb-4"></i>
-                        <h4 class="font-black text-deepBlue text-xs uppercase tracking-widest mb-2">Excelencia</h4>
-                        <p class="text-sm text-gray-500">Soluciones validadas paso a paso.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="py-16 bg-white overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6">
-        <h3 class="text-center text-gray-400 font-black text-xs uppercase tracking-[0.3em] mb-10 text-deepBlue/40">Explora por materias</h3>
-        <div id="catBox" class="flex justify-center flex-wrap gap-4">
-            <button onmousemove="createParticles(event, 'default')" onclick="selectCategory(this)" data-category="default" class="px-8 py-4 rounded-2xl font-bold text-sm bg-gray-50 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-eduCian/20 active-cat">Todas</button>
-            <button onmousemove="createParticles(event, 'matematicas')" onclick="selectCategory(this)" data-category="matematicas" class="px-8 py-4 rounded-2xl font-bold text-sm bg-gray-50 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-eduCian/20">Matemáticas</button>
-            <button onmousemove="createParticles(event, 'programacion')" onclick="selectCategory(this)" data-category="programacion" class="px-8 py-4 rounded-2xl font-bold text-sm bg-gray-50 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-eduCian/20">Informática</button>
-            <button onmousemove="createParticles(event, 'fisica')" onclick="selectCategory(this)" data-category="fisica" class="px-8 py-4 rounded-2xl font-bold text-sm bg-gray-50 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-eduCian/20">Física</button>
-            <button onmousemove="createParticles(event, 'quimica')" onclick="selectCategory(this)" data-category="quimica" class="px-8 py-4 rounded-2xl font-bold text-sm bg-gray-50 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-eduCian/20">Química</button>
-        </div>
-    </div>
-</section>
-
-<section class="py-32">
-    <div class="max-w-5xl mx-auto px-6 bg-slate-900 rounded-[4rem] p-20 text-center relative overflow-hidden">
-        <div class="absolute top-0 right-0 p-10 opacity-10">
-            <i class="fa-solid fa-brain text-[15rem] text-white"></i>
-        </div>
-        <h2 class="text-white/40 font-black text-sm uppercase tracking-[0.5em] mb-10 relative z-10">Learnia</h2>
-        <p class="text-4xl md:text-5xl text-white font-medium leading-tight relative z-10">
-            "Si no sabes, <span class="text-solarYellow underline decoration-4 underline-offset-8">no copies</span>, mejor pregunta y aprende."
-        </p>
-        <div class="mt-12 flex items-center justify-center space-x-4 relative z-10">
-            <div class="w-12 h-12 rounded-full bg-eduCian flex items-center justify-center font-black text-white italic">M</div>
-            <div class="text-left">
-                <div class="text-white font-bold">Mario Roberto Hernandez</div>
-                <div class="text-eduCian text-xs font-black uppercase tracking-widest">Estudiante Destacado</div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="py-32 max-w-7xl mx-auto px-6">
-    <div class="grid lg:grid-cols-12 gap-8 items-stretch">
-        <div class="lg:col-span-5 flex flex-col justify-center space-y-12">
-            <div class="group p-8 rounded-3xl hover:bg-slate-50 transition-all border border-transparent hover:border-gray-100">
-                <div class="text-eduCian font-black text-6xl mb-4 opacity-20 group-hover:opacity-100 transition-opacity">01</div>
-                <h3 class="text-3xl font-black mb-4 tracking-tighter uppercase text-deepBlue">Haz preguntas</h3>
-                <p class="text-gray-500 font-medium leading-relaxed">¿Bloqueado en un ejercicio? Nuestra comunidad está activa 24/7 para ayudarte.</p>
-            </div>
-            <div class="group p-8 rounded-3xl hover:bg-slate-50 transition-all border border-transparent hover:border-gray-100">
-                <div class="text-terracota font-black text-6xl mb-4 opacity-20 group-hover:opacity-100 transition-opacity">02</div>
-                <h3 class="text-3xl font-black mb-4 tracking-tighter uppercase text-deepBlue">Recibe ayuda</h3>
-                <p class="text-gray-500 font-medium leading-relaxed">Accede a soluciones detalladas y explicadas paso a paso.</p>
-            </div>
-        </div>
-
-        <div class="lg:col-span-7 relative flex items-center justify-center">
-            <div id="exampleCard" class="w-full max-w-xl bg-white p-12 rounded-[4rem] shadow-2xl border border-gray-50 fade-in">
-                <div class="flex items-center justify-between mb-12">
-                    <div class="flex items-center space-x-4">
-                        <div id="exampleIconContainer" class="w-16 h-16 bg-eduCian rounded-3xl flex items-center justify-center text-white text-2xl shadow-xl shadow-eduCian/20">
-                            <i id="exampleIcon" class="fa-solid fa-graduation-cap"></i>
-                        </div>
-                        <div>
-                            <div id="exampleCategory" class="text-xs font-black text-eduCian uppercase tracking-[0.2em]">Matemáticas</div>
-                            <div id="examplePoints" class="text-sm text-natureGreen font-bold tracking-tighter">Recompensa: +10 XP</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-6 mb-12">
-                    <div class="h-1 w-20 bg-gray-100 rounded-full"></div>
-                    <h4 id="exampleQuestionText" class="text-3xl font-black text-deepBlue leading-tight tracking-tighter">5 + 4x = 2x + 2.</h4>
-                    <p id="exampleQuestionSubtext" class="text-eduCian font-bold text-lg italic opacity-70">¿Cuál es el valor de x?</p>
-                </div>
-
-                <div class="bg-slate-50 p-10 rounded-[3rem] border border-gray-100">
-                    <div class="flex items-center space-x-3 text-natureGreen font-black text-[10px] uppercase tracking-widest mb-6">
-                        <span class="w-2 h-2 rounded-full bg-natureGreen"></span>
-                        <span>Respuesta Certificada</span>
-                    </div>
-                    <p id="exampleAnswerText" class="text-deepBlue text-xl font-medium leading-relaxed">
-                        El valor es <span id="exampleAnswerHighlight" class="text-natureGreen font-black font-mono underline decoration-natureGreen/20 underline-offset-4">x = -1.5</span>.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="py-24 bg-slate-50 relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6">
-        <div class="bg-white rounded-[5rem] shadow-2xl overflow-hidden grid lg:grid-cols-2 items-stretch">
-            <div class="p-16 lg:p-24 space-y-10 flex flex-col justify-center">
-                <div class="space-y-4">
-                    <h2 class="text-natureGreen text-xs font-black uppercase tracking-[0.4em]">Propósito</h2>
-                    <h3 class="text-6xl font-black text-deepBlue tracking-tighter">Resolvemos dudas en segundos.</h3>
-                </div>
-                <p class="text-xl text-gray-500 leading-relaxed font-medium">
-                    Poniendo la educación al alcance de todos, llevamos a las personas de la pregunta al entendimiento.
-                </p>
-            </div>
-            <div class="relative min-h-[500px]">
+            <div class="relative min-h-[600px]">
                 <img th:src="@{/img/ejemplo.jpg}" alt="Colaboración" class="absolute inset-0 w-full h-full object-cover">
-                <div class="absolute inset-0 bg-deepBlue/20 backdrop-blur-[2px]"></div>
             </div>
         </div>
     </div>
 </section>
 
-<footer class="bg-deepBlue text-white pt-32 pb-16 px-6">
-    <div class="max-w-7xl mx-auto text-center border-b border-white/5 pb-24">
-        <div class="text-5xl font-black tracking-tighter mb-8 italic">LEAR<span class="text-eduCian">NIA</span></div>
-        <p class="text-gray-400 text-xl font-medium">Cambiando la forma en que el mundo estudia.</p>
+<footer class="bg-deepBlue text-white pt-32 pb-16 px-6 text-center">
+    <div class="max-w-7xl mx-auto border-b border-white/10 pb-20">
+        <div class="text-6xl font-black tracking-tighter mb-10 italic">LEAR<span class="text-eduCian">NIA</span></div>
+        <p class="text-gray-400 text-xl font-medium max-w-2xl mx-auto">Cambiando la forma en que el mundo estudia, un paso a la vez.</p>
     </div>
-    <div class="max-w-7xl mx-auto mt-16 flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
-        <p class="text-gray-600 text-sm font-black tracking-widest uppercase">© 2026 LEARNIA. HECHO PARA MENTES BRILLANTES.</p>
-        <div class="flex space-x-4">
-            <a href="#" class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-eduCian transition-all"><i class="fa-brands fa-instagram text-xl"></i></a>
-            <a href="#" class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-natureGreen transition-all"><i class="fa-brands fa-whatsapp text-xl"></i></a>
+    <div class="mt-16 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto px-10">
+        <p class="text-gray-500 text-[10px] font-black tracking-[0.4em] uppercase">© 2026 LEARNIA. HECHO PARA MENTES BRILLANTES.</p>
+        <div class="flex space-x-6 mt-8 md:mt-0">
+            <a href="#" class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-eduCian transition-all duration-300"><i class="fa-brands fa-instagram text-xl"></i></a>
+            <a href="#" class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-natureGreen transition-all duration-300"><i class="fa-brands fa-whatsapp text-xl"></i></a>
         </div>
     </div>
 </footer>
 
 <script>
     const examplesData = {
-        default: {
-            icon: 'fa-graduation-cap', bgColor: 'bg-eduCian', category: 'General', points: 'Recompensa: +5 XP',
-            question: '¿Cuál es la capital de Guatemala?', subtext: 'Geografía',
-            answer: 'La capital es <span class="text-natureGreen font-black">Ciudad de Guatemala</span>.'
-        },
-        matematicas: {
-            icon: 'fa-calculator', bgColor: 'bg-eduCian', category: 'Matemáticas', points: 'Recompensa: +10 XP',
-            question: '5 + 4x = 2x + 2.', subtext: 'Álgebra',
-            answer: 'El valor es <span class="text-natureGreen font-black font-mono">x = -1.5</span>.'
-        },
-        programacion: {
-            icon: 'fa-code', bgColor: 'bg-terracota', category: 'Informática', points: 'Recompensa: +15 XP',
-            question: 'print("Hola Mundo")', subtext: 'Sintaxis básica',
-            answer: 'Muestra el texto <span class="text-natureGreen font-black">"Hola Mundo"</span> en consola.'
-        },
-        fisica: {
-            icon: 'fa-atom', bgColor: 'bg-natureGreen', category: 'Física', points: 'Recompensa: +12 XP',
-            question: 'F = m * a', subtext: 'Física Clásica',
-            answer: 'Fuerza es igual a <span class="text-natureGreen font-black">masa por aceleración</span>.'
-        },
-        quimica: {
-            icon: 'fa-flask', bgColor: 'bg-terracota', category: 'Química', points: 'Recompensa: +10 XP',
-            question: 'H2O + NaCl', subtext: 'Mezclas',
-            answer: 'Se obtiene una <span class="text-natureGreen font-black">disolución salina</span>.'
-        }
+        default: { icon: 'fa-graduation-cap', bgColor: 'bg-eduCian', category: 'General', points: '+5 XP', question: '¿Cuál es la capital de Guatemala?', answer: 'La capital es <span class="text-natureGreen font-black">Ciudad de Guatemala</span>.' },
+        matematicas: { icon: 'fa-calculator', bgColor: 'bg-eduCian', category: 'Matemáticas', points: '+10 XP', question: '5 + 4x = 2x + 2.', answer: 'El valor es <span class="text-natureGreen font-black font-mono">x = -1.5</span>.' },
+        programacion: { icon: 'fa-code', bgColor: 'bg-terracota', category: 'Informática', points: '+15 XP', question: 'print("Hola Mundo")', answer: 'Muestra el texto <span class="text-natureGreen font-black">"Hola Mundo"</span>.' },
+        fisica: { icon: 'fa-atom', bgColor: 'bg-natureGreen', category: 'Física', points: '+12 XP', question: 'F = m * a', answer: 'Fuerza es igual a <span class="text-natureGreen font-black">masa por aceleración</span>.' },
+        ingles: { icon: 'fa-earth-americas', bgColor: 'bg-eduCian', category: 'Inglés', points: '+10 XP', question: 'How are you?', answer: 'Significa <span class="text-natureGreen font-black">¿Cómo estás?</span> en español.' }
     };
 
-    function selectCategory(element) {
-        document.querySelectorAll('#catBox button').forEach(btn => {
-            btn.classList.remove('active-cat', 'bg-white', 'shadow-xl');
-        });
-        element.classList.add('active-cat', 'bg-white', 'shadow-xl');
-
-        const categoryKey = element.getAttribute('data-category');
-        const data = examplesData[categoryKey] || examplesData.default;
-
+    function selectCategory(el) {
+        document.querySelectorAll('#catBox button').forEach(b => b.classList.remove('active-cat', 'shadow-xl'));
+        el.classList.add('active-cat', 'shadow-xl');
+        const data = examplesData[el.getAttribute('data-category')] || examplesData.default;
         const card = document.getElementById('exampleCard');
-        card.classList.remove('fade-in');
-        void card.offsetWidth;
-        card.classList.add('fade-in');
+        card.classList.remove('fade-in'); void card.offsetWidth; card.classList.add('fade-in');
 
         document.getElementById('exampleIcon').className = `fa-solid ${data.icon}`;
-        document.getElementById('exampleIconContainer').className = `w-16 h-16 ${data.bgColor} rounded-3xl flex items-center justify-center text-white text-2xl shadow-xl shadow-eduCian/20`;
+        document.getElementById('exampleIconContainer').className = `w-20 h-20 ${data.bgColor} rounded-[2rem] flex items-center justify-center text-white text-3xl shadow-2xl`;
         document.getElementById('exampleCategory').innerText = data.category;
-        document.getElementById('examplePoints').innerText = data.points;
+        document.getElementById('examplePoints').innerText = `Recompensa: ${data.points}`;
         document.getElementById('exampleQuestionText').innerText = data.question;
-        document.getElementById('exampleQuestionSubtext').innerText = data.subtext;
         document.getElementById('exampleAnswerText').innerHTML = data.answer;
     }
 
-    function createParticles(e, category) {
-        if (Math.random() > 0.15) return;
-        const button = e.currentTarget;
-        const rect = button.getBoundingClientRect();
-        const particle = document.createElement('i');
-        const data = examplesData[category] || examplesData.default;
-        particle.className = `fa-solid ${data.icon} particle`;
+    function createParticles(e, cat) {
+        if (Math.random() > 0.2) return;
+        const btn = e.currentTarget;
+        const rect = btn.getBoundingClientRect();
+        const p = document.createElement('i');
+        p.className = `fa-solid ${examplesData[cat]?.icon || 'fa-star'} particle`;
+
         let color = '#2980B9';
-        if(category === 'programacion' || category === 'quimica') color = '#D35400';
-        if(category === 'fisica') color = '#27AE60';
-        particle.style.color = color;
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        particle.style.left = x + 'px';
-        particle.style.top = y + 'px';
-        particle.style.setProperty('--x', `${(Math.random() - 0.5) * 120}px`);
-        particle.style.setProperty('--y', `${(Math.random() - 0.5) * 120}px`);
-        button.appendChild(particle);
-        setTimeout(() => particle.remove(), 800);
+        if(cat === 'fisica') color = '#27AE60';
+        if(cat === 'programacion') color = '#D35400';
+        if(cat === 'ingles') color = '#2C3E50';
+
+        p.style.color = color;
+        p.style.left = (e.clientX - rect.left) + 'px';
+        p.style.top = (e.clientY - rect.top) + 'px';
+        p.style.setProperty('--x', `${(Math.random() - 0.5) * 150}px`);
+        p.style.setProperty('--y', `${(Math.random() - 0.5) * 150}px`);
+        btn.appendChild(p);
+        setTimeout(() => p.remove(), 800);
     }
 </script>
 </body>
