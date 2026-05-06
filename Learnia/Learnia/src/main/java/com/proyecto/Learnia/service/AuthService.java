@@ -8,6 +8,9 @@ import com.proyecto.Learnia.repository.UsuarioRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Service
 public class AuthService {
     private final UsuarioRepository usuarioRepository;
@@ -25,6 +28,7 @@ public class AuthService {
         String hash = passwordEncoder.encode(usuario.getContrasenaUsuario());
         usuario.setContrasenaUsuario(hash);
         usuario.setRolUsuario(RolUsuario.ESTUDIANTE);
+        usuario.setFechaRegistro(LocalDateTime.now());
         usuarioRepository.save(usuario);
     }
 
