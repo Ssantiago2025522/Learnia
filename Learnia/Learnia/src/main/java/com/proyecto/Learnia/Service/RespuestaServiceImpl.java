@@ -1,5 +1,7 @@
 package com.proyecto.Learnia.Service;
 
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,22 +22,23 @@ public class RespuestaServiceImpl implements RespuestaService {
         return respuestaRepository.findAll();
     }
 
-    @Override
     public Respuesta guardar(Long preguntaId, String contenido) {
 
-        Pregunta pregunta = preguntaRepository.findById(preguntaId)
-                .orElseThrow(() -> new RuntimeException(""));
+        Pregunta pregunta = preguntaRepository.findById(preguntaId).orElseThrow();
 
-        Usuario usuario = UsuarioRepository.findById(1L).orElseThrow();
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String correo = auth.name();
 
-        Respuesta r = new Respuesta();
-        r.setContenido(contenido);
-        r.setFechaRespuesta(LocalDateTime.now());
-        r.setUsuario(usuario);
-        r.setPregunta(pregunta);
+        Usuario usuario = usuarioRepository.findByCorreoUsuario(correo);
 
-        return respuestaRepository.save(r);
-        }
+        Respuesta respuesta = new Respuesta();
+        respuesta.setContenido(contenido);
+        respuesta.setFechaRespuesta(LocalDateTime.now());
+        respuesta.setPregunta(pregunta);
+        respuesta.setUsuario(usuario);
+
+        return respuestaRepository.save(respuesta);
+    }
 
     @Override
     public Respuesta buscarPorId(Long id) {

@@ -29,7 +29,7 @@ public class Respuesta {
     @Column(name = "fecha_respuesta")
     private LocalDateTime fechaRespuesta;
 
-    @NotBlank
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;

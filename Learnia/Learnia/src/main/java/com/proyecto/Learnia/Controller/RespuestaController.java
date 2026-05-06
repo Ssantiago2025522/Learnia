@@ -25,7 +25,7 @@ public class RespuestaController {
                           @RequestParam Long preguntaId) {
 
         respuestaService.guardar(preguntaId, contenido);
-        return "return:/feed";
+        return "redirect:/feed";
     }
 
     @GetMapping("/{id}")
