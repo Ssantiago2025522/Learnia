@@ -1,25 +1,24 @@
 package com.proyecto.Learnia.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
 
     @GetMapping("/")
-    public String home() {
+    public String index() {
         return "home";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
+    @GetMapping("/menu")
+    public String menu() {
+        return "menu-usuario";
     }
 
-    @GetMapping("/registro")
-    public String registro() {
-        return "registro";
+    @GetMapping("/usuario")
+    public String vistaUsuario() {
+        return "usuarios-view";
     }
 
     @GetMapping("/preguntar")
