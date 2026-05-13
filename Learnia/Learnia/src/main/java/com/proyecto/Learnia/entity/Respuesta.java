@@ -1,8 +1,9 @@
 package com.proyecto.Learnia.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.proyecto.Learnia.entity.Usuario;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -12,8 +13,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Respuesta {
 
     @Id
@@ -21,23 +22,22 @@ public class Respuesta {
     @Column(name = "id_respuesta")
     private Long idRespuesta;
 
-    @Column(nullable = false, length = 1000)
-    @Size(min = 5, max = 1000, message = "El contenido debe tener entre 5 y 1000 caracteres")
+    @NotBlank
+    @Column(nullable = false)
     private String contenido;
 
+    @NotNull
     @Column(name = "fecha_respuesta")
     private LocalDateTime fechaRespuesta;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
+    @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
-    @NotNull(message = "La respuesta debe tener un autor")
-    @JsonIgnoreProperties({"respuestas", "preguntas", "contrasena"})
     private Usuario usuario;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
+    @ManyToOne
     @JoinColumn(name = "id_pregunta", nullable = false)
-    @NotNull(message = "La respuesta debe estar ligada a una pregunta")
-    @JsonIgnoreProperties("respuestas")
     private Pregunta pregunta;
 
 }
