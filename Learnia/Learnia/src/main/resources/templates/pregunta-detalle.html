@@ -27,6 +27,12 @@
             background-image: radial-gradient(#2980B910 1px, transparent 1px);
             background-size: 30px 30px;
         }
+        .voto-btn {
+            transition: all 0.15s ease;
+        }
+        .voto-btn:active {
+            transform: scale(0.93);
+        }
     </style>
 </head>
 <body class="font-sans text-deepBlue antialiased">
@@ -132,6 +138,8 @@
         <!-- Lista de respuestas -->
         <div th:each="r : ${respuestas}"
              class="bg-white p-6 rounded-3xl border border-slate-100 hover:shadow-md transition-all">
+
+            <!-- Cabecera de la respuesta -->
             <div class="flex items-center gap-3 mb-4">
                 <img th:src="${r.usuario.fotoUsuario != null and !#strings.isEmpty(r.usuario.fotoUsuario) ? r.usuario.fotoUsuario : '/img/default-avatar.png'}"
                      class="w-9 h-9 rounded-xl object-cover border border-slate-100"
@@ -147,13 +155,97 @@
                     </span>
                 </div>
             </div>
-            <p class="text-slate-600 font-medium leading-relaxed text-sm" th:text="${r.contenido}">
+
+            <!-- Contenido -->
+            <p class="text-slate-600 font-medium leading-relaxed text-sm mb-4" th:text="${r.contenido}">
                 Contenido de la respuesta...
             </p>
+
+            <!-- BOTONES LIKE / DISLIKE -->
+            <div class="flex items-center gap-2 pt-4 border-t border-slate-100">
+
+                <!-- LIKE -->
+                <button
+                        th:id="'btn-like-' + ${r.idRespuesta}"
+                        th:classappend="${votoUsuarioMap[r.idRespuesta] == 'LIKE'} ? 'bg-natureGreen text-white shadow-md shadow-natureGreen/30' : 'bg-slate-50 text-slate-400 hover:bg-natureGreen/10 hover:text-natureGreen'"
+                        class="voto-btn flex items-center gap-2 px-4 py-2 rounded-xl font-black text-xs border border-transparent"
+                        th:onclick="|votar(${r.idRespuesta}, 'LIKE', ${usuario.idUsuario})|"
+                        th:title="${votoUsuarioMap[r.idRespuesta] == 'LIKE'} ? 'Ya votaste like' : 'Me gusta'">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                    <span th:id="'likes-' + ${r.idRespuesta}"
+                          th:text="${votosMap[r.idRespuesta][0]}">0</span>
+                </button>
+
+                <!-- DISLIKE -->
+                <button
+                        th:id="'btn-dislike-' + ${r.idRespuesta}"
+                        th:classappend="${votoUsuarioMap[r.idRespuesta] == 'DISLIKE'} ? 'bg-terracota text-white shadow-md shadow-terracota/30' : 'bg-slate-50 text-slate-400 hover:bg-terracota/10 hover:text-terracota'"
+                        class="voto-btn flex items-center gap-2 px-4 py-2 rounded-xl font-black text-xs border border-transparent"
+                        th:onclick="|votar(${r.idRespuesta}, 'DISLIKE', ${usuario.idUsuario})|"
+                        th:title="${votoUsuarioMap[r.idRespuesta] == 'DISLIKE'} ? 'Ya votaste dislike' : 'No me gusta'">
+                    <i class="fa-solid fa-thumbs-down"></i>
+                    <span th:id="'dislikes-' + ${r.idRespuesta}"
+                          th:text="${votosMap[r.idRespuesta][1]}">0</span>
+                </button>
+
+                <!-- Mensaje de voto ya registrado -->
+                <span th:if="${votoUsuarioMap[r.idRespuesta] != null}"
+                      class="ml-2 text-[10px] text-slate-400 font-bold italic">
+                    Ya votaste en esta respuesta
+                </span>
+
+            </div>
         </div>
     </div>
 
 </main>
+
+<script>
+    async function votar(idRespuesta, tipoVoto, idUsuario) {
+        // Evitar doble clic: deshabilitar ambos botones temporalmente
+        const btnLike    = document.getElementById('btn-like-'    + idRespuesta);
+        const btnDislike = document.getElementById('btn-dislike-' + idRespuesta);
+        if (btnLike)    btnLike.disabled    = true;
+        if (btnDislike) btnDislike.disabled = true;
+
+        try {
+            const res = await fetch('/api/votos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    idRespuesta: idRespuesta,
+                    tipoVoto:    tipoVoto,
+                    idUsuario:   idUsuario
+                })
+            });
+
+            if (res.status === 201 || res.ok) {
+                // Recarga para reflejar los nuevos conteos y estado del voto
+                location.reload();
+            } else {
+                const data = await res.json().catch(() => ({}));
+                const msg  = data.message || ('Error ' + res.status);
+                mostrarToast(msg, 'error');
+                // Re-habilitar botones si hubo error
+                if (btnLike)    btnLike.disabled    = false;
+                if (btnDislike) btnDislike.disabled = false;
+            }
+        } catch (e) {
+            mostrarToast('No se pudo conectar con el servidor.', 'error');
+            if (btnLike)    btnLike.disabled    = false;
+            if (btnDislike) btnDislike.disabled = false;
+        }
+    }
+
+    function mostrarToast(mensaje, tipo) {
+        const toast = document.createElement('div');
+        const color = tipo === 'error' ? 'bg-terracota' : 'bg-natureGreen';
+        toast.className = `fixed bottom-6 right-6 z-50 ${color} text-white text-sm font-bold px-5 py-3 rounded-2xl shadow-lg transition-all`;
+        toast.textContent = mensaje;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3500);
+    }
+</script>
 
 </body>
 </html>
