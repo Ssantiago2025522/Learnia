@@ -1,41 +1,81 @@
 package com.proyecto.Learnia.controller;
 
 import com.proyecto.Learnia.entity.Categoria;
+import com.proyecto.Learnia.entity.Pregunta;
 import com.proyecto.Learnia.service.CategoriaService;
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.proyecto.Learnia.service.PreguntaService;
+import com.proyecto.Learnia.service.UsuarioService;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
-@RestController
-@RequestMapping("/api/categorias")
+@Controller
+@RequestMapping("/cursos")
 public class CategoriaController {
 
-    @Autowired
-    private CategoriaService categoriaService;
+    private final CategoriaService categoriaService;
+    private final PreguntaService preguntaService;
+    private final UsuarioService usuarioService;
+
+    public CategoriaController(
+            CategoriaService categoriaService,
+            PreguntaService preguntaService,
+            UsuarioService usuarioService
+    ) {
+        this.categoriaService = categoriaService;
+        this.preguntaService = preguntaService;
+        this.usuarioService = usuarioService;
+    }
 
     @GetMapping
-    public List<Categoria> listar() {
-        return categoriaService.listar();
+    public String verCursos(Model model) {
+
+        List<Categoria> categorias = categoriaService.listar();
+
+        model.addAttribute("categorias", categorias);
+        model.addAttribute("titulo", "Todos los Cursos");
+
+        return "cursos";
     }
 
-    @PostMapping
-    public Categoria guardar(@Valid @RequestBody Categoria categoria) {
-        return categoriaService.crear(categoria);
+    @GetMapping("/categoria/{id}")
+    public String verCategoria(
+            @PathVariable Long id,
+            Model model
+    ) {
+
+        Categoria categoria = categoriaService.buscarPorId(id);
+
+        List<Pregunta> preguntas =
+                preguntaService.buscarPorCategoria(id);
+
+        model.addAttribute("categoria", categoria);
+        model.addAttribute("preguntas", preguntas);
+        model.addAttribute("titulo", categoria.getNombreCategoria());
+
+        return "curso-detalle";
     }
 
-    @GetMapping("/{id}")
-    public Categoria obtener(@PathVariable Long id) {
-        return categoriaService.buscarPorId(id);
+    @GetMapping("/matematica")
+    public String matematica() {
+        return "cursos/matematica";
     }
 
-    @PutMapping("/{id}")
-    public Categoria editar(@PathVariable Long id, @Valid @RequestBody Categoria categoria) {
-        return categoriaService.actualizar(id, categoria);
+    @GetMapping("/fisica")
+    public String fisica() {
+        return "cursos/fisica";
     }
 
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Integer id) {
-        categoriaService.eliminar(Long.valueOf(id));
+    @GetMapping("/ingles")
+    public String ingles() {
+        return "cursos/ingles";
+    }
+
+    @GetMapping("/informatica")
+    public String informatica() {
+        return "cursos/informatica";
     }
 }

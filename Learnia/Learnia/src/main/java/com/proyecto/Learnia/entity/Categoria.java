@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "categoria")
 @Getter
@@ -27,5 +29,8 @@ public class Categoria {
     @Size(min = 5,max = 100,message = "La descripcion tiene que tener entre 5 a 100 caracteres")
     @Column(name = "descripcion")
     private String descripcionCategoria;
+
+    @OneToMany(mappedBy = "categoria")
+    private List<Pregunta> preguntas;
 }
 

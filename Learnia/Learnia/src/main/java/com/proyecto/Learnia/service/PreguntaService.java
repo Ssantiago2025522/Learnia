@@ -10,4 +10,5 @@ public interface PreguntaService {
     Pregunta guardar(PreguntaDTO dto);
     Pregunta actualizar(Long id, PreguntaDTO dto);
     void eliminar(Long id);
+    List<Pregunta> buscarPorCategoria(Long idCategoria);
 }

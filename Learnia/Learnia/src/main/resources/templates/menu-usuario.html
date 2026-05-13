@@ -80,26 +80,37 @@
     <aside class="col-span-12 lg:col-span-2 space-y-6">
         <h2 class="text-xs font-black text-slate-400 uppercase tracking-widest pl-2">Materia</h2>
         <div class="flex lg:flex-col gap-2 overflow-x-auto pb-4 no-scrollbar">
-            <a href="#" class="subject-active flex items-center space-x-3 p-3 px-5 rounded-2xl transition-all">
+
+            <a th:href="@{/cursos}"
+               class="subject-active flex items-center space-x-3 p-3 px-5 rounded-2xl transition-all">
                 <i class="fa-solid fa-layer-group text-sm"></i>
                 <span class="text-sm font-bold text-white">Todo</span>
             </a>
-            <a href="#" class="flex items-center space-x-3 p-3 px-5 rounded-2xl text-slate-500 hover:bg-slate-100 transition-all">
+
+            <a th:href="@{/cursos/matematica}"
+               class="flex items-center space-x-3 p-3 px-5 rounded-2xl text-slate-500 hover:bg-slate-100 transition-all">
                 <i class="fa-solid fa-calculator text-sm"></i>
                 <span class="text-sm font-bold">Mates</span>
             </a>
-            <a href="#" class="flex items-center space-x-3 p-3 px-5 rounded-2xl text-slate-500 hover:bg-slate-100 transition-all">
+
+            <a th:href="@{/cursos/fisica}"
+               class="flex items-center space-x-3 p-3 px-5 rounded-2xl text-slate-500 hover:bg-slate-100 transition-all">
                 <i class="fa-solid fa-atom text-sm"></i>
                 <span class="text-sm font-bold">Fisica</span>
             </a>
-            <a href="#" class="flex items-center space-x-3 p-3 px-5 rounded-2xl text-slate-500 hover:bg-slate-100 transition-all">
+
+            <a th:href="@{/cursos/ingles}"
+               class="flex items-center space-x-3 p-3 px-5 rounded-2xl text-slate-500 hover:bg-slate-100 transition-all">
                 <i class="fa-solid fa-language text-sm"></i>
                 <span class="text-sm font-bold">Inglés</span>
             </a>
-            <a href="#" class="flex items-center space-x-3 p-3 px-5 rounded-2xl text-slate-500 hover:bg-slate-100 transition-all">
+
+            <a th:href="@{/cursos/informatica}"
+               class="flex items-center space-x-3 p-3 px-5 rounded-2xl text-slate-500 hover:bg-slate-100 transition-all">
                 <i class="fa-solid fa-terminal text-sm"></i>
                 <span class="text-sm font-bold">Informatica</span>
             </a>
+        </div>
         </div>
     </aside>
 
