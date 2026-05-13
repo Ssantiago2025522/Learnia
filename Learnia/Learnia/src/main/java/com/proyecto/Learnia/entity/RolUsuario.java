@@ -1,5 +1,4 @@
 package com.proyecto.Learnia.entity;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 
 public enum RolUsuario {

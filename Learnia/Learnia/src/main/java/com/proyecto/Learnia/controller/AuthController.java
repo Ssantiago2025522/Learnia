@@ -1,17 +1,16 @@
 package com.proyecto.Learnia.controller;
-
 import com.proyecto.Learnia.dto.LoginRequest;
 import com.proyecto.Learnia.dto.LoginResponse;
 import com.proyecto.Learnia.dto.RegisterRequest;
+import com.proyecto.Learnia.entity.Usuario;
 import com.proyecto.Learnia.service.AuthService;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping("/api/auth")
+@Controller
 public class AuthController {
     private final AuthService authService;
 
@@ -19,15 +18,30 @@ public class AuthController {
         this.authService = authService;
     }
 
-    @PostMapping("/register")
-    public  String register(@Valid  @RequestBody RegisterRequest req){
-            authService.register(req);
-            return "Usuario registado de manera correcta";
+    @GetMapping("/register")
+    public String mostrarRegister(Model model){
+        model.addAttribute("user", new Usuario());
+        return "register";
     }
 
+    @PostMapping("/register")
+    public String register(@Valid @ModelAttribute("user") Usuario usuario,
+                           BindingResult result,
+                           Model model){
+        if(result.hasErrors()){
+            return "register";
+        }
+        try{
+            authService.register(usuario);
+            return "redirect:/login?success";
+        }catch (RuntimeException e){
+            model.addAttribute("error", e.getMessage());
+            return "register";
+        }
+    }
 
-    @PostMapping("/login")
-    public LoginResponse login(@Valid @RequestBody LoginRequest req){
-        return authService.login(req);
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
 }

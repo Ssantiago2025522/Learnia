@@ -1,5 +1,4 @@
 package com.proyecto.Learnia.entity;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -26,7 +25,7 @@ public class Usuario {
 
     @NotBlank(message = "El nombre del usuario no puede estar vacio")
     @Size(min = 2, max = 100, message = "Numero de caracteres invalido en el nombre")
-    @Column(name = "username")
+    @Column(name = "nombre_usuario")
     private String nombreUsuario;
 
 

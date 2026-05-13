@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Usuario - Learnia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --azul-profundo: #2C3E50;
+            --naranja-terracota: #D35400;
+            --verde-naturaleza: #27AE60;
+            --cian-educativo: #2980B9;
+            --plata-suave: #B2BABB;
+            --blanco-fondo: #FDFEFE;
+            --gris-claro: #ECF0F1;
+            --gris-texto: #7F8C8D;
+            --font-sans: 'Inter', system-ui, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--blanco-fondo);
+            color: var(--azul-profundo);
+            font-family: var(--font-sans);
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Ctext x='10' y='40' font-family='Georgia,serif' font-size='18' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,100,100)'%3EΣ%3C/text%3E%3Ctext x='80' y='80' font-family='monospace' font-size='13' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,100,100)'%3Eif(x%3E0)%3C/text%3E%3Ctext x='160' y='55' font-family='Georgia,serif' font-size='16' fill='%2327AE60' fill-opacity='0.055' transform='rotate(-35,200,80)'%3EF%3D ma%3C/text%3E%3Ctext x='240' y='30' font-family='Georgia,serif' font-size='22' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,260,50)'%3Eπ%3C/text%3E%3Ctext x='310' y='70' font-family='monospace' font-size='12' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,340,80)'%3E%7B code%7D%3C/text%3E%3Ctext x='20' y='140' font-family='Georgia,serif' font-size='19' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,60,160)'%3E∫dx%3C/text%3E%3Ctext x='120' y='160' font-family='Georgia,serif' font-size='15' fill='%23D35400' fill-opacity='0.055' transform='rotate(-35,150,170)'%3EE%3Dmc²%3C/text%3E%3Ctext x='220' y='130' font-family='monospace' font-size='13' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,250,140)'%3Efor(i%3D0)%3C/text%3E%3Ctext x='320' y='155' font-family='Georgia,serif' font-size='20' fill='%2327AE60' fill-opacity='0.055' transform='rotate(-35,350,165)'%3E√x%3C/text%3E%3Ctext x='50' y='220' font-family='monospace' font-size='14' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,80,230)'%3Eclass()%3C/text%3E%3Ctext x='160' y='240' font-family='Georgia,serif' font-size='18' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,190,250)'%3Eλ%3C/text%3E%3Ctext x='250' y='210' font-family='Georgia,serif' font-size='16' fill='%23D35400' fill-opacity='0.055' transform='rotate(-35,270,220)'%3EΔv%2FΔt%3C/text%3E%3Ctext x='340' y='235' font-family='Georgia,serif' font-size='22' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,360,245)'%3Eθ%3C/text%3E%3Ctext x='10' y='300' font-family='Georgia,serif' font-size='17' fill='%2327AE60' fill-opacity='0.055' transform='rotate(-35,30,310)'%3Ex²%2By²%3C/text%3E%3Ctext x='110' y='320' font-family='monospace' font-size='12' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,140,330)'%3Ereturn n%3C/text%3E%3Ctext x='210' y='290' font-family='Georgia,serif' font-size='20' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,240,300)'%3E∞%3C/text%3E%3Ctext x='300' y='315' font-family='Georgia,serif' font-size='16' fill='%23D35400' fill-opacity='0.055' transform='rotate(-35,325,325)'%3Epv%3DnRT%3C/text%3E%3Ctext x='30' y='380' font-family='monospace' font-size='13' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,60,390)'%3Earray[]%3C/text%3E%3Ctext x='140' y='370' font-family='Georgia,serif' font-size='19' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,165,380)'%3Eα β γ%3C/text%3E%3Ctext x='250' y='390' font-family='Georgia,serif' font-size='17' fill='%2327AE60' fill-opacity='0.055' transform='rotate(-35,275,400)'%3Esin(θ)%3C/text%3E%3Ctext x='340' y='360' font-family='monospace' font-size='12' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,365,370)'%3Edef fn()%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 400px 400px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        aside, main { position: relative; z-index: 1; }
+
+        aside {
+            width: 240px;
+            min-width: 240px;
+            background-color: var(--azul-profundo);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 1.2rem;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .perfil-seccion { text-align: center; margin-bottom: 2rem; }
+        .avatar {
+            width: 80px; height: 80px;
+            background-color: var(--gris-claro);
+            border-radius: 50%; margin: 0 auto 0.8rem;
+            display: flex; align-items: center; justify-content: center;
+            border: 3px solid var(--plata-suave);
+        }
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        nav { flex: 1; }
+        nav a {
+            display: flex; align-items: center; gap: 10px;
+            padding: 0.75rem 1rem; color: rgba(255,255,255,0.75);
+            text-decoration: none; border-radius: 8px;
+            font-size: 0.9rem; cursor: pointer; transition: all 0.2s;
+            margin-bottom: 4px;
+        }
+        nav a:hover, nav a.activo { background-color: rgba(255,255,255,0.12); color: white; }
+
+        .acerca-de { margin-top: auto; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
+
+        main { flex: 1; padding: 2.5rem 3rem; }
+
+    </style>
+</head>
+<body>
+
+<aside>
+    <div class="perfil-seccion">
+        <div class="avatar">
+            <img th:src="${usuario.fotoUsuario != null and !#strings.isEmpty(usuario.fotoUsuario) ? usuario.fotoUsuario : '/img/default-avatar.png'}">
+        </div>
+        <h2 th:text="${usuario.nombreUsuario}">Nombre</h2>
+    </div>
+
+    <nav>
+        <a class="activo" onclick="mostrarVista('dashboard', this)">
+            <i class="fa-solid fa-gauge-high"></i> Dashboard
+        </a>
+        <a onclick="mostrarVista('preguntas', this)">
+            <i class="fa-solid fa-circle-question"></i> Preguntas hechas
+        </a>
+        <a onclick="mostrarVista('respuestas', this)">
+            <i class="fa-solid fa-comments"></i> Respuestas dadas
+        </a>
+    </nav>
+
+    <div class="acerca-de">
+        <h3>Acerca de</h3>
+
+        <div class="acerca-item">
+            <i class="fa-solid fa-envelope"></i>
+            <span th:text="${usuario.correoUsuario}">correo</span>
+        </div>
+
+        <div class="acerca-item">
+            <i class="fa-solid fa-calendar-day"></i>
+            <span>
+                Registrado:
+                <strong th:text="${#temporals.format(usuario.fechaRegistro, 'dd/MM/yyyy')}"></strong>
+            </span>
+        </div>
+
+        <div class="acerca-item">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>Avisos: <strong>0</strong></span>
+        </div>
+    </div>
+</aside>
+
+<main>
+    <h1 class="dashboard-titulo">Dashboard</h1>
+</main>
+
+<script>
+    function mostrarVista(nombre, enlace) {
+        document.querySelectorAll('.vista').forEach(v => v.classList.remove('activa'));
+        document.querySelectorAll('nav a').forEach(a => a.classList.remove('activo'));
+        document.getElementById('vista-' + nombre)?.classList.add('activa');
+        if (enlace) enlace.classList.add('activo');
+    }
+</script>
+
+</body>
+</html>

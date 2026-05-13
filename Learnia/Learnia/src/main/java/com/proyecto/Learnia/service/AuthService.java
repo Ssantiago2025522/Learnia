@@ -1,5 +1,4 @@
 package com.proyecto.Learnia.service;
-
 import com.proyecto.Learnia.dto.LoginRequest;
 import com.proyecto.Learnia.dto.LoginResponse;
 import com.proyecto.Learnia.dto.RegisterRequest;
@@ -8,6 +7,9 @@ import com.proyecto.Learnia.entity.Usuario;
 import com.proyecto.Learnia.repository.UsuarioRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Service
 public class AuthService {
@@ -19,13 +21,14 @@ public class AuthService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void register(RegisterRequest req){
-        if(usuarioRepository.existsByCorreoUsuario(req.correoUsuario)){
-            throw new RuntimeException("El correo " + req.correoUsuario + " ya esta registrado");
+    public void register(Usuario usuario){
+        if(usuarioRepository.existsByCorreoUsuario(usuario.getCorreoUsuario())){
+            throw new RuntimeException("El correo " + usuario.getCorreoUsuario() + " ya esta registrado");
         }
-        String hash = passwordEncoder.encode(req.contrasenaUsuario);
-        Usuario usuario = new Usuario(req.nombreUsuario, req.correoUsuario, hash);
+        String hash = passwordEncoder.encode(usuario.getContrasenaUsuario());
+        usuario.setContrasenaUsuario(hash);
         usuario.setRolUsuario(RolUsuario.ESTUDIANTE);
+        usuario.setFechaRegistro(LocalDateTime.now());
         usuarioRepository.save(usuario);
     }
 

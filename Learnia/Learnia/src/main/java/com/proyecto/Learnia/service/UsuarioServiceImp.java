@@ -1,5 +1,4 @@
 package com.proyecto.Learnia.service;
-
 import com.proyecto.Learnia.entity.Usuario;
 import com.proyecto.Learnia.exception.ResourceNotFoundException;
 import com.proyecto.Learnia.exception.SuccesException;
@@ -53,8 +52,8 @@ public class UsuarioServiceImp implements UsuarioService {
         if(!usuarioRepository.existsById(id)){
             throw new ResourceNotFoundException(("Usuario con id no existente o no encontrado: " + id));
         }
-         usuarioRepository.deleteById(id);
-         throw new SuccesException("Usuario eliminado correctamente");
+        usuarioRepository.deleteById(id);
+        throw new SuccesException("Usuario eliminado correctamente");
     }
 
 
