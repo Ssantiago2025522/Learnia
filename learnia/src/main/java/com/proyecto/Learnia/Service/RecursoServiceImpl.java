@@ -60,7 +60,7 @@ public class RecursoServiceImpl implements RecursoService {
     }
 
     @Override
-    public List<Recurso> buscraPorCategoria(Long idCategoria) {
+    public List<Recurso> buscarPorCategoria(Long idCategoria) {
         return recursoRepository.findByCategoria_idCategoria(idCategoria);
     }
 

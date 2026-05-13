@@ -34,11 +34,20 @@ public class Recurso {
     @Column(name = "tipo_recurso")
     private TipoRecurso tipoRecurso;
 
-    @NotBlank(message = "Debe de seleccionar el archivo")
     @Column(name = "url_archivo")
     private String urlArchivo;
 
     @Column(name = "fecha_subida")
     private LocalDateTime fechaSubida;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario", nullable = false)
+    @NotNull
+    private Usuario usuario;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_categoria", nullable = false)
+    @NotNull
+    private Categoria categoria;
 
 }
