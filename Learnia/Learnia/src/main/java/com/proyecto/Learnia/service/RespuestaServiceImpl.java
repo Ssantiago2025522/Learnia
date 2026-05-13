@@ -1,4 +1,4 @@
-package com.proyecto.Learnia.Service;
+package com.proyecto.Learnia.service;
 
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.proyecto.Learnia.Entity.Respuesta;
-import com.proyecto.Learnia.Repository.RespuestaRepository;
+import com.proyecto.Learnia.entity.Respuesta;
+import com.proyecto.Learnia.repository.RespuestaRepository;
 
 @Service
 public class RespuestaServiceImpl implements RespuestaService {

@@ -1,6 +1,5 @@
-package com.proyecto.Learnia.Entity;
+package com.proyecto.Learnia.entity;
 
-import com.proyecto.Learnia.entity.Usuario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

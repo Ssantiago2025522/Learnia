@@ -1,7 +1,7 @@
-package com.proyecto.Learnia.Service;
+package com.proyecto.Learnia.service;
 
 import java.util.List;
-import com.proyecto.Learnia.Entity.Respuesta;
+import com.proyecto.Learnia.entity.Respuesta;
 
 public interface RespuestaService {
 

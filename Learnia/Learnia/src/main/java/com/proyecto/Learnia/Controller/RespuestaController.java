@@ -5,8 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-import com.proyecto.Learnia.Entity.Respuesta;
-import com.proyecto.Learnia.Service.RespuestaService;
+import com.proyecto.Learnia.entity.Respuesta;
+import com.proyecto.Learnia.service.RespuestaService;
 
 @Controller
 @RequestMapping("/respuestas")
