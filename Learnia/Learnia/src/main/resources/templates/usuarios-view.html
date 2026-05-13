@@ -1,149 +1,223 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Usuario - Learnia</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Learnia | Mi Perfil</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deepBlue:    '#2C3E50',
+                        terracota:   '#D35400',
+                        natureGreen: '#27AE60',
+                        eduCian:     '#2980B9',
+                        solarYellow: '#F1C40F'
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --azul-profundo: #2C3E50;
-            --naranja-terracota: #D35400;
-            --verde-naturaleza: #27AE60;
-            --cian-educativo: #2980B9;
-            --plata-suave: #B2BABB;
-            --blanco-fondo: #FDFEFE;
-            --gris-claro: #ECF0F1;
-            --gris-texto: #7F8C8D;
-            --font-sans: 'Inter', system-ui, sans-serif;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-
-        body {
-            display: flex;
-            min-height: 100vh;
-            background-color: var(--blanco-fondo);
-            color: var(--azul-profundo);
-            font-family: var(--font-sans);
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Ctext x='10' y='40' font-family='Georgia,serif' font-size='18' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,100,100)'%3EΣ%3C/text%3E%3Ctext x='80' y='80' font-family='monospace' font-size='13' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,100,100)'%3Eif(x%3E0)%3C/text%3E%3Ctext x='160' y='55' font-family='Georgia,serif' font-size='16' fill='%2327AE60' fill-opacity='0.055' transform='rotate(-35,200,80)'%3EF%3D ma%3C/text%3E%3Ctext x='240' y='30' font-family='Georgia,serif' font-size='22' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,260,50)'%3Eπ%3C/text%3E%3Ctext x='310' y='70' font-family='monospace' font-size='12' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,340,80)'%3E%7B code%7D%3C/text%3E%3Ctext x='20' y='140' font-family='Georgia,serif' font-size='19' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,60,160)'%3E∫dx%3C/text%3E%3Ctext x='120' y='160' font-family='Georgia,serif' font-size='15' fill='%23D35400' fill-opacity='0.055' transform='rotate(-35,150,170)'%3EE%3Dmc²%3C/text%3E%3Ctext x='220' y='130' font-family='monospace' font-size='13' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,250,140)'%3Efor(i%3D0)%3C/text%3E%3Ctext x='320' y='155' font-family='Georgia,serif' font-size='20' fill='%2327AE60' fill-opacity='0.055' transform='rotate(-35,350,165)'%3E√x%3C/text%3E%3Ctext x='50' y='220' font-family='monospace' font-size='14' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,80,230)'%3Eclass()%3C/text%3E%3Ctext x='160' y='240' font-family='Georgia,serif' font-size='18' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,190,250)'%3Eλ%3C/text%3E%3Ctext x='250' y='210' font-family='Georgia,serif' font-size='16' fill='%23D35400' fill-opacity='0.055' transform='rotate(-35,270,220)'%3EΔv%2FΔt%3C/text%3E%3Ctext x='340' y='235' font-family='Georgia,serif' font-size='22' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,360,245)'%3Eθ%3C/text%3E%3Ctext x='10' y='300' font-family='Georgia,serif' font-size='17' fill='%2327AE60' fill-opacity='0.055' transform='rotate(-35,30,310)'%3Ex²%2By²%3C/text%3E%3Ctext x='110' y='320' font-family='monospace' font-size='12' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,140,330)'%3Ereturn n%3C/text%3E%3Ctext x='210' y='290' font-family='Georgia,serif' font-size='20' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,240,300)'%3E∞%3C/text%3E%3Ctext x='300' y='315' font-family='Georgia,serif' font-size='16' fill='%23D35400' fill-opacity='0.055' transform='rotate(-35,325,325)'%3Epv%3DnRT%3C/text%3E%3Ctext x='30' y='380' font-family='monospace' font-size='13' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,60,390)'%3Earray[]%3C/text%3E%3Ctext x='140' y='370' font-family='Georgia,serif' font-size='19' fill='%232C3E50' fill-opacity='0.055' transform='rotate(-35,165,380)'%3Eα β γ%3C/text%3E%3Ctext x='250' y='390' font-family='Georgia,serif' font-size='17' fill='%2327AE60' fill-opacity='0.055' transform='rotate(-35,275,400)'%3Esin(θ)%3C/text%3E%3Ctext x='340' y='360' font-family='monospace' font-size='12' fill='%232980B9' fill-opacity='0.055' transform='rotate(-35,365,370)'%3Edef fn()%3C/text%3E%3C/svg%3E");
-            background-repeat: repeat;
-            background-size: 400px 400px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        aside, main { position: relative; z-index: 1; }
-
-        aside {
-            width: 240px;
-            min-width: 240px;
-            background-color: var(--azul-profundo);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            padding: 2rem 1.2rem;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-        }
-
-        .perfil-seccion { text-align: center; margin-bottom: 2rem; }
-        .avatar {
-            width: 80px; height: 80px;
-            background-color: var(--gris-claro);
-            border-radius: 50%; margin: 0 auto 0.8rem;
-            display: flex; align-items: center; justify-content: center;
-            border: 3px solid var(--plata-suave);
-        }
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        nav { flex: 1; }
-        nav a {
-            display: flex; align-items: center; gap: 10px;
-            padding: 0.75rem 1rem; color: rgba(255,255,255,0.75);
-            text-decoration: none; border-radius: 8px;
-            font-size: 0.9rem; cursor: pointer; transition: all 0.2s;
-            margin-bottom: 4px;
-        }
-        nav a:hover, nav a.activo { background-color: rgba(255,255,255,0.12); color: white; }
-
-        .acerca-de { margin-top: auto; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1); }
-
-        main { flex: 1; padding: 2.5rem 3rem; }
-
+        .glass-card   { background: rgba(255,255,255,0.9); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); }
+        .sidebar-active { background: linear-gradient(to right,#2980B9,#2C3E50); box-shadow: 0 4px 15px rgba(41,128,185,.3); }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 font-sans text-deepBlue">
+<div class="flex min-h-screen">
 
-<aside>
-    <div class="perfil-seccion">
-        <div class="avatar">
-            <img th:src="${usuario.fotoUsuario != null and !#strings.isEmpty(usuario.fotoUsuario) ? usuario.fotoUsuario : '/img/default-avatar.png'}">
-        </div>
-        <h2 th:text="${usuario.nombreUsuario}">Nombre</h2>
-    </div>
-
-    <nav>
-        <a class="activo" onclick="mostrarVista('dashboard', this)">
-            <i class="fa-solid fa-gauge-high"></i> Dashboard
-        </a>
-        <a onclick="mostrarVista('preguntas', this)">
-            <i class="fa-solid fa-circle-question"></i> Preguntas hechas
-        </a>
-        <a onclick="mostrarVista('respuestas', this)">
-            <i class="fa-solid fa-comments"></i> Respuestas dadas
-        </a>
-    </nav>
-
-    <div class="acerca-de">
-        <h3>Acerca de</h3>
-
-        <div class="acerca-item">
-            <i class="fa-solid fa-envelope"></i>
-            <span th:text="${usuario.correoUsuario}">correo</span>
+    <aside class="w-72 bg-deepBlue text-white flex flex-col sticky top-0 h-screen shadow-2xl">
+        <div class="p-8 text-center border-b border-white/10">
+            <div class="relative inline-block group">
+                <img th:src="${usuario.fotoUsuario != null and !#strings.isEmpty(usuario.fotoUsuario)
+                               ? usuario.fotoUsuario : '/img/default-avatar.png'}"
+                     id="sidebarAvatar"
+                     class="w-24 h-24 rounded-[2rem] mx-auto object-cover border-4 border-white/20 transition-transform group-hover:scale-105"
+                     alt="Perfil">
+            </div>
+            <h2 class="mt-4 text-xl font-black tracking-tight" th:text="${usuario.nombreUsuario}">Usuario</h2>
+            <p class="text-xs text-eduCian font-bold uppercase tracking-widest" th:text="${usuario.rolUsuario}">ROL</p>
         </div>
 
-        <div class="acerca-item">
-            <i class="fa-solid fa-calendar-day"></i>
-            <span>
-                Registrado:
-                <strong th:text="${#temporals.format(usuario.fechaRegistro, 'dd/MM/yyyy')}"></strong>
-            </span>
-        </div>
+        <nav class="flex-1 p-6 space-y-2">
+            <a th:href="@{/menu}" class="flex items-center space-x-4 p-4 rounded-2xl hover:bg-white/5 transition-all group">
+                <i class="fa-solid fa-house text-slate-400 group-hover:text-eduCian"></i>
+                <span class="font-bold">Inicio</span>
+            </a>
+            <a href="#" class="sidebar-active flex items-center space-x-4 p-4 rounded-2xl transition-all">
+                <i class="fa-solid fa-user-gear"></i>
+                <span class="font-bold">Ajustes de Perfil</span>
+            </a>
+            <a th:href="@{/mis-preguntas}" class="flex items-center space-x-4 p-4 rounded-2xl hover:bg-white/5 transition-all group">
+                <i class="fa-solid fa-book-open text-slate-400 group-hover:text-natureGreen"></i>
+                <span class="font-bold">Mis Preguntas</span>
+            </a>
+        </nav>
 
-        <div class="acerca-item">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-            <span>Avisos: <strong>0</strong></span>
+        <div class="p-8 border-t border-white/10 bg-black/10">
+            <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Estado de Cuenta</h3>
+            <div class="space-y-3">
+                <div class="flex items-center space-x-3 text-xs">
+                    <i class="fa-solid fa-envelope text-eduCian"></i>
+                    <span class="truncate opacity-70" th:text="${usuario.correoUsuario}">correo</span>
+                </div>
+                <div class="flex items-center space-x-3 text-xs">
+                    <i class="fa-solid fa-calendar text-solarYellow"></i>
+                    <span class="opacity-70" th:text="${#temporals.format(usuario.fechaRegistro, 'dd/MM/yyyy')}">fecha</span>
+                </div>
+            </div>
         </div>
-    </div>
-</aside>
+    </aside>
 
-<main>
-    <h1 class="dashboard-titulo">Dashboard</h1>
-</main>
+    <main class="flex-1 p-12">
+
+        <header class="flex justify-between items-end mb-12">
+            <div>
+                <h1 class="text-4xl font-black text-deepBlue">Configuración Personal</h1>
+                <p class="text-slate-400 font-medium">Personaliza tu experiencia en Learnia</p>
+            </div>
+            <div class="flex space-x-3">
+                <span th:if="${param.guardado}"
+                      class="text-natureGreen font-bold text-sm flex items-center">
+                    <i class="fa-solid fa-circle-check mr-2"></i> ¡Cambios guardados!
+                </span>
+                <a th:href="@{/menu}"
+                   class="bg-white text-deepBlue px-6 py-3 rounded-xl font-bold text-sm shadow-sm border border-slate-200 hover:bg-slate-50 transition-all">
+                    Cancelar
+                </a>
+                <button form="profileForm" type="submit"
+                        class="bg-eduCian text-white px-6 py-3 rounded-xl font-bold text-sm shadow-lg shadow-eduCian/30 hover:scale-105 transition-all">
+                    Guardar Cambios
+                </button>
+            </div>
+        </header>
+
+        <form id="profileForm"
+              th:action="@{/usuario/actualizar}"
+              method="post"
+              enctype="multipart/form-data"
+              class="grid grid-cols-12 gap-8">
+
+            <div class="col-span-12 lg:col-span-8 space-y-8">
+
+                <div class="glass-card p-8 rounded-[2.5rem] shadow-xl">
+                    <h3 class="text-lg font-black mb-6 flex items-center">
+                        <i class="fa-solid fa-id-card mr-3 text-eduCian"></i> Información General
+                    </h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-xs font-black text-slate-400 uppercase ml-2">Nombre Completo</label>
+                            <input type="text"
+                                   name="nombreUsuario"
+                                   th:value="${usuario.nombreUsuario}"
+                                   class="w-full bg-slate-50 border border-slate-100 p-4 rounded-2xl focus:ring-2 focus:ring-eduCian outline-none transition-all font-bold"
+                                   required>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-black text-slate-400 uppercase ml-2">Correo Electrónico</label>
+                            <input type="email"
+                                   th:value="${usuario.correoUsuario}"
+                                   class="w-full bg-slate-100 border border-slate-200 p-4 rounded-2xl outline-none font-bold text-slate-400 cursor-not-allowed"
+                                   readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 rounded-[2.5rem] shadow-xl border-t-4 border-terracota">
+                    <h3 class="text-lg font-black mb-6 flex items-center text-terracota">
+                        <i class="fa-solid fa-shield-halved mr-3"></i> Seguridad
+                    </h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-xs font-black text-slate-400 uppercase ml-2">Nueva Contraseña</label>
+                            <input type="password"
+                                   name="nuevaContrasena"
+                                   id="pass1"
+                                   class="w-full bg-slate-50 border border-slate-100 p-4 rounded-2xl focus:ring-2 focus:ring-terracota outline-none transition-all"
+                                   placeholder="Dejar vacío para no cambiar">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-black text-slate-400 uppercase ml-2">Confirmar Contraseña</label>
+                            <input type="password"
+                                   id="pass2"
+                                   class="w-full bg-slate-50 border border-slate-100 p-4 rounded-2xl focus:ring-2 focus:ring-terracota outline-none transition-all"
+                                   placeholder="Repite la nueva contraseña">
+                            <p id="passError" class="text-red-500 text-xs font-bold hidden">Las contraseñas no coinciden.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-12 lg:col-span-4 space-y-8">
+
+                <div class="bg-deepBlue p-8 rounded-[2.5rem] text-white shadow-xl relative overflow-hidden">
+                    <div class="relative z-10 text-center">
+                        <h3 class="font-black mb-4">Foto de Perfil</h3>
+                        <img th:src="${usuario.fotoUsuario != null and !#strings.isEmpty(usuario.fotoUsuario)
+                                       ? usuario.fotoUsuario : '/img/default-avatar.png'}"
+                             id="previewFoto"
+                             class="w-32 h-32 rounded-[2.5rem] mx-auto object-cover mb-6 border-4 border-eduCian"
+                             alt="Avatar">
+
+                        <input type="file" name="imagenFile" id="fotoInput"
+                               accept="image/*" class="hidden"
+                               onchange="previsualizarYActualizarSidebar(this)">
+
+                        <button type="button"
+                                onclick="document.getElementById('fotoInput').click()"
+                                class="bg-eduCian w-full py-3 rounded-xl font-bold text-xs hover:bg-white hover:text-eduCian transition-all">
+                            SUBIR NUEVA FOTO
+                        </button>
+                        <p class="mt-4 text-[10px] text-slate-400">JPG, PNG o GIF. Máx 5MB.</p>
+                    </div>
+                    <div class="absolute -right-10 -top-10 w-32 h-32 bg-eduCian/20 rounded-full blur-3xl"></div>
+                </div>
+
+                <div class="glass-card p-8 rounded-[2.5rem] shadow-xl">
+                    <h3 class="text-sm font-black mb-4 uppercase tracking-wider text-slate-400">Tu Impacto</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-50 p-4 rounded-2xl text-center">
+                            <span class="block text-2xl font-black text-eduCian" th:text="${totalDudas}">0</span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase">Dudas</span>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-2xl text-center">
+                            <span class="block text-2xl font-black text-natureGreen" th:text="${totalAportes}">0</span>
+                            <span class="text-[10px] font-bold text-slate-400 uppercase">Aportes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </main>
+</div>
 
 <script>
-    function mostrarVista(nombre, enlace) {
-        document.querySelectorAll('.vista').forEach(v => v.classList.remove('activa'));
-        document.querySelectorAll('nav a').forEach(a => a.classList.remove('activo'));
-        document.getElementById('vista-' + nombre)?.classList.add('activa');
-        if (enlace) enlace.classList.add('activo');
+    function previsualizarYActualizarSidebar(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('previewFoto').src    = e.target.result;
+                document.getElementById('sidebarAvatar').src  = e.target.result;
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
     }
-</script>
 
+    document.getElementById('profileForm').addEventListener('submit', function(e) {
+        const p1  = document.getElementById('pass1').value;
+        const p2  = document.getElementById('pass2').value;
+        const err = document.getElementById('passError');
+        if (p1 && p1 !== p2) {
+            e.preventDefault();
+            err.classList.remove('hidden');
+        } else {
+            err.classList.add('hidden');
+        }
+    });
+</script>
 </body>
 </html>

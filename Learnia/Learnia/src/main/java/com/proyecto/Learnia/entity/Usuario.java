@@ -1,4 +1,5 @@
 package com.proyecto.Learnia.entity;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -6,12 +7,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "usuario", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "correoUsuario")
+        @UniqueConstraint(columnNames = "correo_usuario")
 })
 @Getter
 @Setter
@@ -28,7 +28,6 @@ public class Usuario {
     @Column(name = "nombre_usuario")
     private String nombreUsuario;
 
-
     @NotBlank(message = "El correo no puede estar vacio")
     @Email(message = "Formato de correo invalido")
     @Size(min = 5, max = 100, message = "Numero de caracteres invalido en el correo" )
@@ -44,7 +43,6 @@ public class Usuario {
     @Column(name = "fecha_registro")
     private LocalDateTime fechaRegistro;
 
-
     @Enumerated(EnumType.STRING)
     @Column(name = "rol")
     private RolUsuario  rolUsuario;
@@ -59,11 +57,6 @@ public class Usuario {
         this.fechaRegistro = LocalDateTime.now();
     }
 
-    public  Usuario(){
-
+    public Usuario() {
     }
-
-
-
-
 }

@@ -12,6 +12,7 @@ create table usuario(
     foto varchar(255) null
 );
 
+update Usuario set rol = "ADMIN" where id_usuario = 4;
 
 create table categoria(
     id_categoria bigint auto_increment primary key,
@@ -101,7 +102,6 @@ Create table voto(
     references respuesta(id_respuesta)
     on delete cascade
 );
-
 
 INSERT INTO usuario (nombre_usuario, correo_usuario, contrasena, fecha_registro, rol, foto)
 VALUES
