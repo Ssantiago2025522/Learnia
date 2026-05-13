@@ -161,9 +161,10 @@
                     <div class="text-xs text-slate-400 font-bold italic">
                         <i class="fa-solid fa-message mr-2"></i>0 respuestas
                     </div>
-                    <button class="bg-natureGreen/10 text-natureGreen px-6 py-2 rounded-xl text-xs font-black hover:bg-natureGreen hover:text-white transition-all shadow-sm">
+                    <a th:href="@{/pregunta/{id}(id=${p.idPregunta})}"
+                       class="bg-natureGreen/10 text-natureGreen px-6 py-2 rounded-xl text-xs font-black hover:bg-natureGreen hover:text-white transition-all shadow-sm">
                         DAR RESPUESTA
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

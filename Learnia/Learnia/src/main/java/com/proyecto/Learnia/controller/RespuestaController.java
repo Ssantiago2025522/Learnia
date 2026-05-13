@@ -16,6 +16,7 @@ public class RespuestaController {
     private RespuestaService respuestaService;
 
     @GetMapping
+    @ResponseBody
     public List<Respuesta> listar() {
         return respuestaService.listar();
     }
@@ -25,21 +26,24 @@ public class RespuestaController {
                           @RequestParam Long preguntaId) {
 
         respuestaService.guardar(preguntaId, contenido);
-        return "redirect:/feed";
+        return "redirect:/pregunta/" + preguntaId;
     }
 
     @GetMapping("/{id}")
+    @ResponseBody
     public Respuesta buscarPorId(@PathVariable Long id) {
         return respuestaService.buscarPorId(id);
     }
 
     @PutMapping("/{id}")
+    @ResponseBody
     public Respuesta actualizar(@PathVariable Long id,
                                 @RequestBody Respuesta respuesta) {
         return respuestaService.actualizar(id, respuesta);
     }
 
     @DeleteMapping("/{id}")
+    @ResponseBody
     public void eliminar(@PathVariable Long id) {
         respuestaService.eliminar(id);
     }
