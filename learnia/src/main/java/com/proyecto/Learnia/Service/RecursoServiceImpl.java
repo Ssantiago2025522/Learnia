@@ -1,7 +1,7 @@
-package com.proyecto.Learnia.Service;
+package com.proyecto.Learnia.service;
 
-import com.proyecto.Learnia.Entity.Recurso;
-import com.proyecto.Learnia.Entity.TipoRecurso;
+import com.proyecto.Learnia.entity.Recurso;
+import com.proyecto.Learnia.entity.TipoRecurso;
 import com.proyecto.Learnia.Repository.RecursoRepository;
 import org.springframework.stereotype.Service;
 

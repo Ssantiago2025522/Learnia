@@ -1,7 +1,7 @@
 package com.proyecto.Learnia.Repository;
 
-import com.proyecto.Learnia.Entity.Recurso;
-import com.proyecto.Learnia.Entity.TipoRecurso;
+import com.proyecto.Learnia.entity.Recurso;
+import com.proyecto.Learnia.entity.TipoRecurso;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.proyecto.Learnia.Entity;
+package com.proyecto.Learnia.entity;
 
 public enum TipoRecurso {
 
