@@ -102,7 +102,7 @@ public class RecursoServiceImpl implements RecursoService{
         recurso.setDescripcionRecurso(descripcion);
         recurso.setTipoRecurso(tipo);
 
-        recurso.setUrlArchivo(carpeta + "/" + nombreArchivo);
+        recurso.setUrlArchivo("/uploads/" + carpeta + "/" + nombreArchivo);
 
         recurso.setFechaSubida(LocalDateTime.now());
 
@@ -144,7 +144,7 @@ public class RecursoServiceImpl implements RecursoService{
         Recurso recurso = buscarPorIdRec(id);
 
         try {
-            Path rutaArchivo = Paths.get("uploads", recurso.getUrlArchivo());
+            Path rutaArchivo = Paths.get(recurso.getUrlArchivo().substring(1));
             Files.deleteIfExists(rutaArchivo);
         } catch (IOException e) {
             throw new RuntimeException("Error eliminando archivo");
