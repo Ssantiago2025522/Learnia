@@ -37,7 +37,6 @@
 </head>
 <body class="font-sans text-deepBlue antialiased">
 
-<!-- NAV -->
 <nav class="bg-white/80 backdrop-blur-md px-8 py-4 flex justify-between items-center sticky top-0 z-50 border-b border-slate-100 shadow-sm">
     <div class="flex items-center space-x-4">
         <a th:href="@{/menu}" class="w-10 h-10 flex items-center justify-center rounded-xl border border-slate-200 hover:bg-slate-50 transition">
@@ -64,7 +63,6 @@
 
 <main class="max-w-4xl mx-auto p-6 space-y-6">
 
-    <!-- PREGUNTA -->
     <div class="bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden">
         <div class="bg-deepBlue px-8 py-6">
             <div class="flex items-center gap-3 mb-3">
@@ -94,7 +92,6 @@
         </div>
     </div>
 
-    <!-- FORMULARIO RESPUESTA -->
     <div class="bg-white rounded-3xl border border-slate-100 shadow-sm p-8">
         <h2 class="text-sm font-black text-eduCian uppercase tracking-widest mb-5">
             <i class="fa-solid fa-pen-to-square mr-2"></i>Tu Respuesta
@@ -117,7 +114,6 @@
         </form>
     </div>
 
-    <!-- RESPUESTAS -->
     <div class="space-y-4">
         <div class="flex items-center gap-3 px-2">
             <h3 class="font-black text-deepBlue text-lg">Respuestas</h3>
@@ -125,7 +121,6 @@
                   th:text="${#lists.size(respuestas)}">0</span>
         </div>
 
-        <!-- Sin respuestas -->
         <div th:if="${#lists.isEmpty(respuestas)}"
              class="bg-white p-12 rounded-3xl border border-slate-100 text-center">
             <div class="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl text-slate-200">
@@ -135,11 +130,9 @@
             <p class="text-slate-400 text-sm">¡Sé el primero en ayudar!</p>
         </div>
 
-        <!-- Lista de respuestas -->
         <div th:each="r : ${respuestas}"
              class="bg-white p-6 rounded-3xl border border-slate-100 hover:shadow-md transition-all">
 
-            <!-- Cabecera de la respuesta -->
             <div class="flex items-center gap-3 mb-4">
                 <img th:src="${r.usuario.fotoUsuario != null and !#strings.isEmpty(r.usuario.fotoUsuario) ? r.usuario.fotoUsuario : '/img/default-avatar.png'}"
                      class="w-9 h-9 rounded-xl object-cover border border-slate-100"
@@ -156,15 +149,12 @@
                 </div>
             </div>
 
-            <!-- Contenido -->
             <p class="text-slate-600 font-medium leading-relaxed text-sm mb-4" th:text="${r.contenido}">
                 Contenido de la respuesta...
             </p>
 
-            <!-- BOTONES LIKE / DISLIKE -->
             <div class="flex items-center gap-2 pt-4 border-t border-slate-100">
 
-                <!-- LIKE -->
                 <button
                         th:id="'btn-like-' + ${r.idRespuesta}"
                         th:classappend="${votoUsuarioMap[r.idRespuesta] == 'LIKE'} ? 'bg-natureGreen text-white shadow-md shadow-natureGreen/30' : 'bg-slate-50 text-slate-400 hover:bg-natureGreen/10 hover:text-natureGreen'"
@@ -176,7 +166,6 @@
                           th:text="${votosMap[r.idRespuesta][0]}">0</span>
                 </button>
 
-                <!-- DISLIKE -->
                 <button
                         th:id="'btn-dislike-' + ${r.idRespuesta}"
                         th:classappend="${votoUsuarioMap[r.idRespuesta] == 'DISLIKE'} ? 'bg-terracota text-white shadow-md shadow-terracota/30' : 'bg-slate-50 text-slate-400 hover:bg-terracota/10 hover:text-terracota'"
@@ -188,7 +177,6 @@
                           th:text="${votosMap[r.idRespuesta][1]}">0</span>
                 </button>
 
-                <!-- Mensaje de voto ya registrado -->
                 <span th:if="${votoUsuarioMap[r.idRespuesta] != null}"
                       class="ml-2 text-[10px] text-slate-400 font-bold italic">
                     Ya votaste en esta respuesta
