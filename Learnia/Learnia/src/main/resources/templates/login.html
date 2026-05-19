@@ -194,8 +194,16 @@
       Credenciales incorrectas. Intenta de nuevo.
     </div>
 
+    <div th:if="${param.bloqueado}" class="mensaje error" style="background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;">
+      Tu cuenta ha sido <strong>bloqueada</strong> por un administrador. Contacta al soporte si crees que es un error.
+    </div>
+
+    <div th:if="${param.logout}" class="mensaje exito">
+      Sesion cerrada correctamente.
+    </div>
+
     <div th:if="${param.success}" class="mensaje exito">
-      ¡Registro completado! Ya puedes ingresar.
+      Registro completado. Ya puedes ingresar.
     </div>
 
     <form th:action="@{/login}" method="post">

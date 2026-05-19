@@ -21,16 +21,18 @@ public class Categoria {
     private Long idCategoria;
 
     @NotBlank(message = "El nombre no puede ir vacio")
-    @Size(min = 5,max = 20,message = "nombre de categoria incorrecto, el nombre de la categoria tiene que tener entre 5 y 20 caracteres ")
+    @Size(min = 2, max = 50, message = "El nombre debe tener entre 2 y 50 caracteres")
     @Column(name = "nombre")
     private String nombreCategoria;
 
     @NotBlank(message = "La descripcion no puede ir vacia")
-    @Size(min = 5,max = 100,message = "La descripcion tiene que tener entre 5 a 100 caracteres")
+    @Size(min = 5, max = 200, message = "La descripcion debe tener entre 5 y 200 caracteres")
     @Column(name = "descripcion")
     private String descripcionCategoria;
+
+    @Column(name = "activa", columnDefinition = "boolean default true")
+    private boolean activa = true;
 
     @OneToMany(mappedBy = "categoria")
     private List<Pregunta> preguntas;
 }
-

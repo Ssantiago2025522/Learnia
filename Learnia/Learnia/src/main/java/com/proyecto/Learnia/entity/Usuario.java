@@ -30,7 +30,7 @@ public class Usuario {
 
     @NotBlank(message = "El correo no puede estar vacio")
     @Email(message = "Formato de correo invalido")
-    @Size(min = 5, max = 100, message = "Numero de caracteres invalido en el correo" )
+    @Size(min = 5, max = 100, message = "Numero de caracteres invalido en el correo")
     @Column(name = "correo_usuario", unique = true)
     private String correoUsuario;
 
@@ -45,10 +45,19 @@ public class Usuario {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "rol")
-    private RolUsuario  rolUsuario;
+    private RolUsuario rolUsuario;
 
     @Column(name = "foto")
     private String fotoUsuario;
+
+    @Column(name = "en_linea", columnDefinition = "boolean default false")
+    private boolean enLinea = false;
+
+    @Column(name = "bloqueado", columnDefinition = "boolean default false")
+    private boolean bloqueado = false;
+
+    @Column(name = "ultimo_acceso")
+    private LocalDateTime ultimoAcceso;
 
     public Usuario(String nombreUsuario, String correoUsuario, String contrasenaUsuario) {
         this.nombreUsuario = nombreUsuario;
