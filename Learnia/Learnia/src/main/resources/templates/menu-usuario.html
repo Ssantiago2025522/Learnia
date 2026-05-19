@@ -65,29 +65,54 @@
                 <span class="text-sm font-bold">Todo</span>
             </button>
 
-            <!-- Botón para desplegar categorías dinámicas -->
-            <div class="relative">
-                <button onclick="toggleCategorias()"
-                        class="w-full flex items-center justify-between p-3 px-5 rounded-2xl text-slate-600 hover:bg-slate-100 transition-all border border-slate-200">
-                    <div class="flex items-center space-x-3">
-                        <i class="fa-solid fa-tags text-sm text-eduCian"></i>
-                        <span class="text-sm font-bold">Categorías</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-down text-xs text-slate-400" id="chevron-cat"></i>
-                </button>
-                <div id="categorias-dropdown" class="mt-2 space-y-1 pl-2">
-                    <div th:each="cat : ${categorias}">
-                        <button th:onclick="'filtrarPorCategoria(' + ${cat.idCategoria} + ', this)'"
-                                th:id="'btn-cat-' + ${cat.idCategoria}"
-                                class="w-full text-left flex items-center space-x-3 p-3 px-4 rounded-2xl text-slate-500 hover:bg-terracota/10 hover:text-terracota transition-all text-sm font-bold">
-                            <i class="fa-solid fa-circle text-[6px]"></i>
-                            <span th:text="${cat.nombreCategoria}">Categoría</span>
-                        </button>
-                    </div>
-                    <div th:if="${#lists.isEmpty(categorias)}" class="p-3 text-xs text-slate-400">
-                        No hay categorías activas
-                    </div>
-                </div>
+
+        </div>
+
+        <!-- Sección de Cursos -->
+        <div class="pt-2">
+            <h2 class="text-xs font-black text-slate-400 uppercase tracking-widest pl-2 mb-3">Cursos</h2>
+            <div class="flex lg:flex-col gap-2 overflow-x-auto pb-2 no-scrollbar">
+
+                <!-- Matemática: color índigo/violeta -->
+                <a th:href="@{/materias/matematica}"
+                   class="w-full flex items-center space-x-3 p-3 px-5 rounded-2xl text-slate-600 hover:text-white transition-all border border-slate-200 hover:border-transparent hover:shadow-md"
+                   style="background: white;"
+                   onmouseover="this.style.background='linear-gradient(to right,#7c3aed,#8b5cf6)'; this.style.color='white';"
+                   onmouseout="this.style.background='white'; this.style.color='';">
+                    <i class="fa-solid fa-calculator text-indigo-500 text-sm w-4"></i>
+                    <span class="text-sm font-bold">Matemática</span>
+                </a>
+
+                <!-- Física: color azul cielo -->
+                <a th:href="@{/materias/fisica}"
+                   class="w-full flex items-center space-x-3 p-3 px-5 rounded-2xl text-slate-600 transition-all border border-slate-200 hover:border-transparent hover:shadow-md"
+                   style="background: white;"
+                   onmouseover="this.style.background='linear-gradient(to right,#0284c7,#38bdf8)'; this.style.color='white';"
+                   onmouseout="this.style.background='white'; this.style.color='';">
+                    <i class="fa-solid fa-atom text-sky-500 text-sm w-4"></i>
+                    <span class="text-sm font-bold">Física</span>
+                </a>
+
+                <!-- Inglés: color ámbar/naranja -->
+                <a th:href="@{/materias/ingles}"
+                   class="w-full flex items-center space-x-3 p-3 px-5 rounded-2xl text-slate-600 transition-all border border-slate-200 hover:border-transparent hover:shadow-md"
+                   style="background: white;"
+                   onmouseover="this.style.background='linear-gradient(to right,#d97706,#f59e0b)'; this.style.color='white';"
+                   onmouseout="this.style.background='white'; this.style.color='';">
+                    <i class="fa-solid fa-language text-amber-500 text-sm w-4"></i>
+                    <span class="text-sm font-bold">Inglés</span>
+                </a>
+
+                <!-- Informática: color esmeralda/verde -->
+                <a th:href="@{/materias/informatica}"
+                   class="w-full flex items-center space-x-3 p-3 px-5 rounded-2xl text-slate-600 transition-all border border-slate-200 hover:border-transparent hover:shadow-md"
+                   style="background: white;"
+                   onmouseover="this.style.background='linear-gradient(to right,#059669,#10b981)'; this.style.color='white';"
+                   onmouseout="this.style.background='white'; this.style.color='';">
+                    <i class="fa-solid fa-terminal text-emerald-500 text-sm w-4"></i>
+                    <span class="text-sm font-bold">Informática</span>
+                </a>
+
             </div>
         </div>
     </aside>
