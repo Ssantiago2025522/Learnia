@@ -29,6 +29,9 @@
             <a href="/admin/categorias" class="flex items-center space-x-4 p-3 hover:bg-white/5 rounded-xl font-bold text-sm text-slate-300 transition-all">
                 <i class="fa-solid fa-tags"></i><span>Categorías</span>
             </a>
+            <a href="/admin/respuestas" class="flex items-center space-x-4 p-3 hover:bg-white/5 rounded-xl font-bold text-sm text-slate-300 transition-all">
+                <i class="fa-solid fa-comments"></i><span>Respuestas</span>
+            </a>
         </nav>
         <div class="pt-6 border-t border-white/10">
             <form th:action="@{/logout}" method="post">
@@ -51,7 +54,6 @@
             </div>
         </header>
 
-        <!-- Stats en tiempo real -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
             <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-md transition-all">
                 <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Total Usuarios</p>
@@ -75,7 +77,6 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-            <!-- Categorías -->
             <div class="lg:col-span-1 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm p-8">
                 <div class="flex justify-between items-center mb-6">
                     <h3 class="font-black text-lg italic">Categorías</h3>
@@ -102,7 +103,6 @@
                 </a>
             </div>
 
-            <!-- Usuarios Recientes -->
             <div class="lg:col-span-2 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden">
                 <div class="p-8 border-b border-slate-50 flex justify-between items-center">
                     <h3 class="font-black text-lg italic">Usuarios Recientes</h3>
@@ -154,11 +154,53 @@
                 </div>
             </div>
         </div>
+
+        <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden mt-10">
+            <div class="p-8 border-b border-slate-50 flex justify-between items-center">
+                <h3 class="font-black text-lg italic">Gestión de Respuestas</h3>
+                <div class="flex gap-2">
+                    <input type="number" id="buscar-respuesta-id" placeholder="ID..." class="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold w-20 focus:outline-none focus:border-eduCian">
+                    <button onclick="buscarRespuestaPorId()" class="bg-eduCian text-white px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider hover:bg-deepBlue transition-colors">
+                        Buscar
+                    </button>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-slate-50 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
+                    <tr>
+                        <th class="px-8 py-5">ID</th>
+                        <th class="px-8 py-5">Contenido</th>
+                        <th class="px-8 py-5">Pregunta ID</th>
+                        <th class="px-8 py-5 text-right">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-sm" id="tabla-respuestas">
+                    <tr th:each="r : ${respuestasRecientes}" th:id="'fila-respuesta-' + ${r.idRespuesta}" class="border-b border-slate-50 hover:bg-slate-50 transition-colors">
+                        <td class="px-8 py-5 font-bold text-slate-400" th:text="${r.idRespuesta}">#1</td>
+                        <td class="px-8 py-5">
+                            <div class="font-bold text-deepBlue max-w-xs truncate" th:text="${r.contenido}">Contenido</div>
+                        </td>
+                        <td class="px-8 py-5">
+                            <span class="bg-eduCian/10 text-eduCian px-3 py-1 rounded-full text-[10px] font-black" th:text="'?' + ${r.pregunta.idPregunta}">?0</span>
+                        </td>
+                        <td class="px-8 py-5 text-right flex justify-end gap-3">
+                            <button th:onclick="'eliminarRespuesta(' + ${r.idRespuesta} + ')'" class="text-slate-300 hover:text-terracota transition-colors">
+                                <i class="fa-solid fa-trash-can text-xs"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(respuestasRecientes)}" id="sin-respuestas-fila">
+                        <td colspan="4" class="px-8 py-10 text-center text-slate-400">No hay respuestas registradas.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </main>
 </div>
 
 <script>
-    // Stats en tiempo real cada 5 segundos
     function actualizarStats() {
         fetch('/api/admin/stats')
             .then(r => r.json())
@@ -171,6 +213,38 @@
             .catch(() => {});
     }
     setInterval(actualizarStats, 5000);
+
+    function eliminarRespuesta(id) {
+        if (confirm('¿Estás seguro de que deseas eliminar la respuesta con ID #' + id + '?')) {
+            fetch(`/api/respuesta/${id}`, { method: 'DELETE' })
+            .then(response => {
+                if (response.ok) {
+                    const fila = document.getElementById(`fila-respuesta-${id}`);
+                    if (fila) fila.remove();
+                } else {
+                    alert('No se pudo eliminar la respuesta.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    }
+
+    function buscarRespuestaPorId() {
+        const id = document.getElementById('buscar-respuesta-id').value;
+        if (!id) return alert('Por favor, ingresa un ID válido.');
+
+        fetch(`/api/respuesta/${id}`)
+            .then(response => {
+                if (!response.ok) throw new Error();
+                return response.json();
+            })
+            .then(data => {
+                alert(`Respuesta Encontrada (ID #${data.idRespuesta}):\n\nContenido: ${data.contenido}`);
+            })
+            .catch(() => {
+                alert('Error: No se encontró ninguna respuesta con ese ID.');
+            });
+    }
 </script>
 </body>
 </html>

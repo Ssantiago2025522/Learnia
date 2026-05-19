@@ -1,6 +1,5 @@
 package com.proyecto.Learnia.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -12,8 +11,11 @@ import com.proyecto.Learnia.service.RespuestaService;
 @RequestMapping("/respuestas")
 public class RespuestaController {
 
-    @Autowired
-    private RespuestaService respuestaService;
+    private final RespuestaService respuestaService;
+
+    public RespuestaController(RespuestaService respuestaService) {
+        this.respuestaService = respuestaService;
+    }
 
     @GetMapping
     @ResponseBody
@@ -22,9 +24,7 @@ public class RespuestaController {
     }
 
     @PostMapping
-    public String guardar(@RequestParam String contenido,
-                          @RequestParam Long preguntaId) {
-
+    public String guardar(@RequestParam String contenido, @RequestParam Long preguntaId) {
         respuestaService.guardar(preguntaId, contenido);
         return "redirect:/pregunta/" + preguntaId;
     }
@@ -37,8 +37,7 @@ public class RespuestaController {
 
     @PutMapping("/{id}")
     @ResponseBody
-    public Respuesta actualizar(@PathVariable Long id,
-                                @RequestBody Respuesta respuesta) {
+    public Respuesta actualizar(@PathVariable Long id, @RequestBody Respuesta respuesta) {
         return respuestaService.actualizar(id, respuesta);
     }
 
@@ -47,5 +46,4 @@ public class RespuestaController {
     public void eliminar(@PathVariable Long id) {
         respuestaService.eliminar(id);
     }
-
 }

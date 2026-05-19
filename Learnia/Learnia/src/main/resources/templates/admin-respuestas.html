@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Learnia | Admin - Respuestas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { deepBlue:'#2C3E50', terracota:'#D35400', natureGreen:'#27AE60', eduCian:'#2980B9' } } }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-deepBlue antialiased">
+<div class="flex">
+    <aside class="w-72 h-screen bg-deepBlue text-white p-8 sticky top-0 flex flex-col">
+        <div class="text-2xl font-black mb-12 tracking-tighter">
+            LEAR<span class="text-eduCian">NIA</span>
+            <span class="text-[10px] bg-terracota px-2 py-1 rounded ml-2 uppercase">Admin</span>
+        </div>
+        <nav class="space-y-4 flex-1">
+            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Gestión Principal</p>
+            <a href="/menu-admin" class="flex items-center space-x-4 p-3 hover:bg-white/5 rounded-xl font-bold text-sm text-slate-300 transition-all">
+                <i class="fa-solid fa-chart-line text-slate-400"></i><span>Dashboard</span>
+            </a>
+            <a href="/admin/usuarios" class="flex items-center space-x-4 p-3 hover:bg-white/5 rounded-xl font-bold text-sm text-slate-300 transition-all">
+                <i class="fa-solid fa-users"></i><span>Usuarios</span>
+            </a>
+            <a href="/admin/categorias" class="flex items-center space-x-4 p-3 hover:bg-white/5 rounded-xl font-bold text-sm text-slate-300 transition-all">
+                <i class="fa-solid fa-tags"></i><span>Categorías</span>
+            </a>
+            <a href="/admin/respuestas" class="flex items-center space-x-4 p-3 bg-white/10 rounded-xl font-bold text-sm">
+                <i class="fa-solid fa-comments text-eduCian"></i><span>Respuestas</span>
+            </a>
+        </nav>
+        <div class="pt-6 border-t border-white/10">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="flex items-center space-x-4 p-3 text-terracota font-bold text-sm w-full">
+                    <i class="fa-solid fa-power-off"></i><span>Cerrar Sesión</span>
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    <main class="flex-1 p-10">
+        <header class="flex justify-between items-center mb-10">
+            <div>
+                <h1 class="text-2xl font-black italic text-deepBlue">Gestión de Respuestas</h1>
+                <p class="text-slate-400 text-sm">Administra todas las respuestas de la plataforma</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="text-right">
+                    <p class="text-sm font-bold" th:text="${usuario.nombreUsuario}">Administrador</p>
+                    <p class="text-[10px] text-natureGreen font-black uppercase tracking-widest animate-pulse">Sistema en Tiempo Real</p>
+                </div>
+                <div class="w-12 h-12 bg-eduCian rounded-2xl flex items-center justify-center text-white font-bold shadow-lg shadow-eduCian/30">A</div>
+            </div>
+        </header>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-md transition-all">
+                <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Total Respuestas</p>
+                <p class="text-4xl font-black text-eduCian" th:text="${totalRespuestas}">0</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-md transition-all">
+                <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Resultado Búsqueda</p>
+                <p class="text-4xl font-black text-natureGreen" id="stat-filtradas" th:text="${totalRespuestas}">0</p>
+            </div>
+            <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100 hover:shadow-md transition-all">
+                <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-2">Buscar por ID</p>
+                <div class="flex gap-2">
+                    <input type="number" id="buscar-id" placeholder="ID..."
+                           class="px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold w-24 focus:outline-none focus:border-eduCian">
+                    <button onclick="buscarPorId()"
+                            class="bg-eduCian text-white px-3 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider hover:bg-deepBlue transition-colors">
+                        Buscar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filtro de búsqueda por texto -->
+        <div class="flex gap-3 mb-6">
+            <input type="text" id="buscar-texto" onkeyup="filtrarTabla()"
+                   placeholder="Buscar por contenido, usuario o pregunta..."
+                   class="flex-1 px-4 py-2.5 border border-slate-200 rounded-xl text-sm outline-none focus:ring-2 focus:ring-eduCian bg-white">
+            <button onclick="limpiarFiltro()"
+                    class="px-5 py-2 bg-white border border-slate-200 rounded-xl text-xs font-bold hover:bg-slate-50 transition-all">
+                <i class="fa-solid fa-xmark mr-1"></i>Limpiar
+            </button>
+        </div>
+
+        <!-- Tabla de respuestas -->
+        <div class="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left" id="tabla-respuestas">
+                    <thead class="bg-slate-50 text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">
+                    <tr>
+                        <th class="px-8 py-5">ID</th>
+                        <th class="px-8 py-5">Contenido</th>
+                        <th class="px-8 py-5">Usuario</th>
+                        <th class="px-8 py-5">Pregunta ID</th>
+                        <th class="px-8 py-5">Fecha</th>
+                        <th class="px-8 py-5 text-right">Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody class="text-sm" id="tbody-respuestas">
+                    <tr th:each="r : ${todasRespuestas}"
+                        th:id="'fila-' + ${r.idRespuesta}"
+                        class="respuesta-row border-b border-slate-50 hover:bg-slate-50 transition-colors">
+                        <td class="px-8 py-5 font-bold text-slate-400" th:text="${r.idRespuesta}">#1</td>
+                        <td class="px-8 py-5">
+                            <div class="font-bold text-deepBlue max-w-sm truncate" th:text="${r.contenido}">Contenido</div>
+                        </td>
+                        <td class="px-8 py-5">
+                            <div class="font-bold text-sm" th:text="${r.usuario.nombreUsuario}">Usuario</div>
+                            <div class="text-[10px] text-slate-400" th:text="${r.usuario.correoUsuario}">correo</div>
+                        </td>
+                        <td class="px-8 py-5">
+                            <span class="bg-eduCian/10 text-eduCian px-3 py-1 rounded-full text-[10px] font-black"
+                                  th:text="'?' + ${r.pregunta.idPregunta}">?0</span>
+                        </td>
+                        <td class="px-8 py-5 text-xs text-slate-500 font-bold"
+                            th:text="${#temporals.format(r.fechaRespuesta, 'dd/MM/yyyy HH:mm')}">fecha</td>
+                        <td class="px-8 py-5 text-right">
+                            <button th:onclick="'eliminarRespuesta(' + ${r.idRespuesta} + ')'"
+                                    class="px-3 py-1.5 bg-slate-100 text-slate-400 rounded-xl text-xs font-bold hover:bg-red-500 hover:text-white transition-all"
+                                    title="Eliminar">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div th:if="${#lists.isEmpty(todasRespuestas)}" class="px-8 py-10 text-center text-slate-400">
+                    No hay respuestas registradas.
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    function filtrarTabla() {
+        const q = document.getElementById('buscar-texto').value.toLowerCase();
+        const filas = document.querySelectorAll('.respuesta-row');
+        let visibles = 0;
+        filas.forEach(fila => {
+            const texto = fila.textContent.toLowerCase();
+            const mostrar = texto.includes(q);
+            fila.style.display = mostrar ? '' : 'none';
+            if (mostrar) visibles++;
+        });
+        document.getElementById('stat-filtradas').textContent = visibles;
+    }
+
+    function limpiarFiltro() {
+        document.getElementById('buscar-texto').value = '';
+        filtrarTabla();
+    }
+
+    function eliminarRespuesta(id) {
+        if (confirm('¿Estás seguro de que deseas eliminar la respuesta #' + id + '?')) {
+            fetch(`/api/respuesta/${id}`, { method: 'DELETE' })
+                .then(response => {
+                    if (response.ok) {
+                        const fila = document.getElementById('fila-' + id);
+                        if (fila) {
+                            fila.remove();
+                            const total = document.querySelectorAll('.respuesta-row').length;
+                            document.getElementById('stat-filtradas').textContent = total;
+                        }
+                    } else {
+                        alert('No se pudo eliminar la respuesta.');
+                    }
+                })
+                .catch(err => console.error('Error:', err));
+        }
+    }
+
+    function buscarPorId() {
+        const id = document.getElementById('buscar-id').value;
+        if (!id) return alert('Ingresa un ID válido.');
+        fetch(`/api/respuesta/${id}`)
+            .then(r => {
+                if (!r.ok) throw new Error();
+                return r.json();
+            })
+            .then(data => {
+                alert(`Respuesta #${data.idRespuesta}\n\nContenido: ${data.contenido}`);
+            })
+            .catch(() => alert('No se encontró ninguna respuesta con ese ID.'));
+    }
+</script>
+</body>
+</html>

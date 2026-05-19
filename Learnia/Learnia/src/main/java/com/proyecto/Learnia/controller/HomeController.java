@@ -144,7 +144,6 @@ public class HomeController {
         return "mis-preguntas";
     }
 
-    // API para impacto en tiempo real
     @GetMapping("/api/mi-impacto")
     @ResponseBody
     public java.util.Map<String, Long> miImpacto(@AuthenticationPrincipal UserDetails userDetails) {
@@ -191,6 +190,7 @@ public class HomeController {
 
         List<Usuario> usuariosRecientes = usuarioRepository.findTop5ByOrderByUltimoAccesoDesc();
         List<Categoria> categorias = categoriaRepository.findAll();
+        List<Respuesta> respuestasRecientes = respuestaRepository.findAll();
 
         model.addAttribute("usuario", usuario);
         model.addAttribute("totalUsuarios", totalUsuarios);
@@ -199,6 +199,7 @@ public class HomeController {
         model.addAttribute("categoriasActivas", categoriasActivas);
         model.addAttribute("usuariosRecientes", usuariosRecientes);
         model.addAttribute("categorias", categorias);
+        model.addAttribute("respuestasRecientes", respuestasRecientes);
 
         return "menu-admin";
     }
@@ -304,6 +305,18 @@ public class HomeController {
             categoriaRepository.save(c);
         });
         return "redirect:/admin/categorias";
+    }
+
+    @GetMapping("/admin/respuestas")
+    public String adminRespuestas(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+        Usuario admin = usuarioRepository.findByCorreoUsuario(userDetails.getUsername()).orElseThrow();
+        List<Respuesta> todas = respuestaRepository.findAll();
+
+        model.addAttribute("usuario", admin);
+        model.addAttribute("todasRespuestas", todas);
+        model.addAttribute("totalRespuestas", todas.size());
+
+        return "admin-respuestas";
     }
 
     @GetMapping("/api/admin/stats")
