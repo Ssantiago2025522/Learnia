@@ -11,12 +11,8 @@
             theme: {
                 extend: {
                     colors: {
-                        deepBlue: '#2C3E50',
-                        terracota: '#D35400',
-                        natureGreen: '#27AE60',
-                        eduCian: '#2980B9',
-                        solarYellow: '#F1C40F',
-                        softGray: '#F8FAFC'
+                        deepBlue: '#2C3E50', terracota: '#D35400', natureGreen: '#27AE60',
+                        eduCian: '#2980B9', solarYellow: '#F1C40F', softGray: '#F8FAFC'
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
@@ -188,7 +184,6 @@
     </div>
 </section>
 
-
 <section class="py-24 bg-slate-50/50" id="preguntas-recientes">
     <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-16">
@@ -200,11 +195,8 @@
             <p class="mt-4 text-xl text-gray-500 font-medium max-w-xl mx-auto">Lo que la comunidad está preguntando ahora mismo.</p>
         </div>
 
-
-        <div th:if="${preguntas != null and not #lists.isEmpty(preguntas)}"
-             class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div th:each="pregunta : ${preguntas}"
-                 class="glass-card rounded-3xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+        <div th:if="${preguntas != null and not #lists.isEmpty(preguntas)}" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div th:each="pregunta : ${preguntas}" class="glass-card rounded-3xl p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
                 <div class="flex items-start justify-between mb-4">
                     <span class="inline-block px-3 py-1 bg-eduCian/10 text-eduCian text-[10px] font-black uppercase tracking-widest rounded-full"
                           th:text="${pregunta.categoria?.nombreCategoria ?: 'General'}">Categoría</span>
@@ -223,19 +215,16 @@
             </div>
         </div>
 
-
-        <div th:if="${preguntas == null or #lists.isEmpty(preguntas)}"
-             class="text-center py-20">
+        <div th:if="${preguntas == null or #lists.isEmpty(preguntas)}" class="text-center py-20">
             <div class="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <i class="fa-regular fa-circle-question text-4xl text-gray-300"></i>
             </div>
             <h3 class="text-2xl font-black text-gray-400 mb-2">Aún no hay preguntas</h3>
             <p class="text-gray-400 mb-8">¡Sé el primero en hacer una pregunta a la comunidad!</p>
-            <a th:href="@{/preguntar}" class="inline-block bg-terracota text-white px-8 py-4 rounded-full font-bold hover:bg-orange-600 transition-all shadow-lg active:scale-95">
-                Hacer la primera pregunta
+            <a th:href="@{/login}" class="inline-block bg-terracota text-white px-8 py-4 rounded-full font-bold hover:bg-orange-600 transition-all shadow-lg active:scale-95">
+                Iniciar sesión para preguntar
             </a>
         </div>
-
 
         <div th:if="${preguntas != null and not #lists.isEmpty(preguntas)}" class="text-center mt-12">
             <a th:href="@{/login}" class="inline-flex items-center space-x-2 bg-deepBlue text-white px-10 py-4 rounded-full font-bold hover:bg-eduCian transition-all shadow-lg hover:shadow-eduCian/30 active:scale-95">
@@ -275,7 +264,6 @@
         const data = examplesData[el.getAttribute('data-category')] || examplesData.default;
         const card = document.getElementById('exampleCard');
         card.classList.remove('fade-in'); void card.offsetWidth; card.classList.add('fade-in');
-
         document.getElementById('exampleIcon').className = `fa-solid ${data.icon}`;
         document.getElementById('exampleIconContainer').className = `w-20 h-20 ${data.bgColor} rounded-[2rem] flex items-center justify-center text-white text-3xl shadow-2xl`;
         document.getElementById('exampleCategory').innerText = data.category;
@@ -290,12 +278,10 @@
         const rect = btn.getBoundingClientRect();
         const p = document.createElement('i');
         p.className = `fa-solid ${examplesData[cat]?.icon || 'fa-star'} particle`;
-
         let color = '#2980B9';
         if(cat === 'fisica') color = '#27AE60';
         if(cat === 'programacion') color = '#D35400';
         if(cat === 'ingles') color = '#2C3E50';
-
         p.style.color = color;
         p.style.left = (e.clientX - rect.left) + 'px';
         p.style.top = (e.clientY - rect.top) + 'px';

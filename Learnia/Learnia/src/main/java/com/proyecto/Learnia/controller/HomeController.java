@@ -144,7 +144,6 @@ public class HomeController {
         return "mis-preguntas";
     }
 
-    // API para impacto en tiempo real
     @GetMapping("/api/mi-impacto")
     @ResponseBody
     public java.util.Map<String, Long> miImpacto(@AuthenticationPrincipal UserDetails userDetails) {
@@ -208,14 +207,13 @@ public class HomeController {
         Usuario admin = usuarioRepository.findByCorreoUsuario(userDetails.getUsername()).orElseThrow();
         List<Usuario> todos = usuarioRepository.findAll();
         List<Usuario> enLinea = usuarioRepository.findByEnLineaTrue();
-        long totalBloqueados = todos.stream().filter(u -> u.isBloqueado()).count();
 
         model.addAttribute("usuario", admin);
         model.addAttribute("todosUsuarios", todos);
         model.addAttribute("enLinea", enLinea);
         model.addAttribute("totalUsuarios", todos.size());
         model.addAttribute("totalEnLinea", enLinea.size());
-        model.addAttribute("totalBloqueados", totalBloqueados);
+        model.addAttribute("totalBloqueados", todos.stream().filter(u -> u.isBloqueado()).count());
 
         return "admin-usuarios";
     }
@@ -234,7 +232,6 @@ public class HomeController {
     public String eliminarUsuario(@PathVariable Long id) {
         try {
             usuarioRepository.deleteById(id);
-        } catch (com.proyecto.Learnia.exception.SuccesException ignored) {
         } catch (Exception e) {
             return "redirect:/admin/usuarios?errorEliminar";
         }
@@ -251,6 +248,55 @@ public class HomeController {
             }
         });
         return "redirect:/admin/usuarios";
+    }
+
+    @GetMapping("/admin/preguntas")
+    public String adminPreguntas(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+        Usuario admin = usuarioRepository.findByCorreoUsuario(userDetails.getUsername()).orElseThrow();
+        List<Pregunta> preguntas = preguntaRepository.findAll();
+        List<Categoria> categorias = categoriaRepository.findAll();
+
+        long totalRespuestas = respuestaRepository.count();
+        long totalOcultas = preguntas.stream().filter(p -> p.isOculta()).count();
+
+        model.addAttribute("usuario", admin);
+        model.addAttribute("preguntas", preguntas);
+        model.addAttribute("categorias", categorias);
+        model.addAttribute("totalPreguntas", preguntas.size());
+        model.addAttribute("totalRespuestas", totalRespuestas);
+        model.addAttribute("totalOcultas", totalOcultas);
+
+        return "admin-preguntas";
+    }
+
+    @PostMapping("/admin/preguntas/{id}/ocultar")
+    public String ocultarPregunta(@PathVariable Long id) {
+        preguntaRepository.findById(id).ifPresent(p -> {
+            p.setOculta(!p.isOculta());
+            preguntaRepository.save(p);
+        });
+        return "redirect:/admin/preguntas";
+    }
+
+    @PostMapping("/admin/preguntas/{id}/eliminar")
+    public String eliminarPregunta(@PathVariable Long id) {
+        try {
+            respuestaRepository.deleteByPregunta_IdPregunta(id);
+            preguntaRepository.deleteById(id);
+        } catch (Exception e) {
+            return "redirect:/admin/preguntas?errorEliminar";
+        }
+        return "redirect:/admin/preguntas";
+    }
+
+    @PostMapping("/admin/respuestas/{id}/eliminar")
+    public String eliminarRespuesta(@PathVariable Long id) {
+        try {
+            respuestaRepository.deleteById(id);
+        } catch (Exception e) {
+            return "redirect:/admin/preguntas?errorEliminar";
+        }
+        return "redirect:/admin/preguntas";
     }
 
     @GetMapping("/admin/categorias")

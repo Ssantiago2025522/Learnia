@@ -5,6 +5,7 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "pregunta")
@@ -41,4 +42,10 @@ public class Pregunta {
     @NotNull(message = "La pregunta debe pertenecer a una categoría")
     private Categoria categoria;
 
+    @Column(name = "oculta", columnDefinition = "boolean default false")
+    private boolean oculta = false;
+
+    @OneToMany(mappedBy = "pregunta", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private List<Respuesta> respuestas;
 }

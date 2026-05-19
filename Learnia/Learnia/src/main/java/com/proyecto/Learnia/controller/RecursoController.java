@@ -3,10 +3,14 @@ package com.proyecto.Learnia.controller;
 import com.proyecto.Learnia.dto.RecursoDTO;
 import com.proyecto.Learnia.entity.Recurso;
 import com.proyecto.Learnia.entity.TipoRecurso;
+import com.proyecto.Learnia.entity.Usuario;
+import com.proyecto.Learnia.repository.UsuarioRepository;
 import com.proyecto.Learnia.service.RecursoService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,12 +23,15 @@ import java.util.List;
 public class RecursoController {
 
     private final RecursoService recursoService;
+    private final UsuarioRepository usuarioRepository;
 
-    public RecursoController(RecursoService recursoService) {
+    public RecursoController(RecursoService recursoService, UsuarioRepository usuarioRepository) {
         this.recursoService = recursoService;
+        this.usuarioRepository = usuarioRepository;
     }
 
     @GetMapping
+    @ResponseBody
     public List<Recurso> listar() {
         return recursoService.listar();
     }
@@ -37,93 +44,57 @@ public class RecursoController {
 
     @PostMapping("/subir")
     public String subirArhivo(
-
-            @RequestParam("archivo")
-            MultipartFile archivo,
-
-            @RequestParam("titulo")
-            String tituloRecurso,
-
-            @RequestParam("descripcion")
-            String descripcionRecurso,
-
-            @RequestParam("tipoRecurso")
-            TipoRecurso tipoRecurso,
-
-            @RequestParam
-            Long idUsuario,
-
-            @RequestParam
-            Long idCategoria
-
+            @RequestParam("archivo") MultipartFile archivo,
+            @RequestParam("titulo") String tituloRecurso,
+            @RequestParam("descripcionRecurso") String descripcionRecurso,
+            @RequestParam("tipoRecurso") TipoRecurso tipoRecurso,
+            @RequestParam("idCategoria") Long idCategoria,
+            @AuthenticationPrincipal UserDetails userDetails
     ) throws IOException {
 
-        Recurso recurso = recursoService.subirArchivo(
+        Usuario usuario = usuarioRepository.findByCorreoUsuario(userDetails.getUsername())
+                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
 
+        recursoService.subirArchivo(
                 archivo,
                 tituloRecurso,
                 descripcionRecurso,
                 tipoRecurso,
-                idUsuario,
+                usuario.getIdUsuario(),
                 idCategoria
         );
 
-        if (idCategoria == 1) {
-            return "redirect:/materias/matematica";
-        }
-
-        if (idCategoria == 2) {
-            return "redirect:/materias/fisica";
-        }
-
-        if (idCategoria == 3) {
-            return "redirect:/materias/informatica";
-        }
-
-        if (idCategoria == 4) {
-            return "redirect:/materias/ingles";
-        }
+        if (idCategoria == 1) return "redirect:/materias/matematica";
+        if (idCategoria == 2) return "redirect:/materias/fisica";
+        if (idCategoria == 3) return "redirect:/materias/informatica";
+        if (idCategoria == 4) return "redirect:/materias/ingles";
 
         return "redirect:/inicio";
     }
 
     @GetMapping("/{id}")
+    @ResponseBody
     public Recurso buscar(@PathVariable Integer id) {
         return recursoService.buscarPorIdRec(id.longValue());
     }
 
     @PutMapping("/{id}")
+    @ResponseBody
     public Recurso actualizar(@PathVariable Integer id, @Valid @RequestBody RecursoDTO dto) {
         return recursoService.actualizarReC(id.longValue(), dto);
     }
 
     @PostMapping("/eliminar/{id}")
     public String eliminarWeb(@PathVariable Long id) {
-
         Recurso recurso = recursoService.buscarPorIdRec(id);
-
         Long categoriaId = recurso.getCategoria().getIdCategoria();
-
         recursoService.eliminar(id);
 
-        if (categoriaId == 1) {
-            return "redirect:/materias/matematica";
-        }
-
-        if (categoriaId == 2) {
-            return "redirect:/materias/fisica";
-        }
-
-        if (categoriaId == 3) {
-            return "redirect:/materias/informatica";
-        }
-
-        if (categoriaId == 4) {
-            return "redirect:/materias/ingles";
-        }
+        if (categoriaId == 1) return "redirect:/materias/matematica";
+        if (categoriaId == 2) return "redirect:/materias/fisica";
+        if (categoriaId == 3) return "redirect:/materias/informatica";
+        if (categoriaId == 4) return "redirect:/materias/ingles";
 
         return "redirect:/inicio";
     }
-
-
 }

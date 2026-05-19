@@ -190,7 +190,6 @@
 
 <script>
     async function votar(idRespuesta, tipoVoto, idUsuario) {
-        // Evitar doble clic: deshabilitar ambos botones temporalmente
         const btnLike    = document.getElementById('btn-like-'    + idRespuesta);
         const btnDislike = document.getElementById('btn-dislike-' + idRespuesta);
         if (btnLike)    btnLike.disabled    = true;
@@ -208,7 +207,6 @@
             });
 
             if (res.status === 201 || res.ok) {
-                // Recarga para reflejar los nuevos conteos y estado del voto
                 location.reload();
             } else {
                 const data = await res.json().catch(() => ({}));

@@ -26,7 +26,6 @@
 <body class="bg-slate-50 font-sans text-deepBlue">
 <div class="flex min-h-screen">
 
-    <!-- Sidebar -->
     <aside class="w-72 bg-deepBlue text-white flex flex-col sticky top-0 h-screen shadow-2xl">
         <div class="p-8 text-center border-b border-white/10">
             <img th:src="${usuario.fotoUsuario != null and !#strings.isEmpty(usuario.fotoUsuario) ? usuario.fotoUsuario : '/img/default-avatar.png'}"
@@ -63,14 +62,12 @@
         </div>
     </aside>
 
-    <!-- Main -->
     <main class="flex-1 p-12">
         <header class="mb-10">
             <h1 class="text-4xl font-black text-deepBlue">Mis Preguntas</h1>
             <p class="text-slate-400 font-medium">Tu historial de dudas y aportes en Learnia</p>
         </header>
 
-        <!-- Stats -->
         <div class="grid grid-cols-2 gap-6 mb-10">
             <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex items-center space-x-4">
                 <div class="w-14 h-14 bg-eduCian/10 rounded-2xl flex items-center justify-center">
@@ -92,7 +89,6 @@
             </div>
         </div>
 
-        <!-- Tabs -->
         <div class="border-b border-slate-200 mb-8">
             <div class="flex space-x-8">
                 <button onclick="mostrarTab('dudas')" id="tab-dudas"
@@ -106,7 +102,6 @@
             </div>
         </div>
 
-        <!-- Tab: Dudas -->
         <div id="panel-dudas">
             <div th:if="${misPreguntas == null or #lists.isEmpty(misPreguntas)}"
                  class="bg-white p-16 rounded-[2.5rem] border border-slate-100 text-center">
@@ -145,7 +140,6 @@
             </div>
         </div>
 
-        <!-- Tab: Aportes -->
         <div id="panel-aportes" class="hidden">
             <div th:if="${misRespuestas == null or #lists.isEmpty(misRespuestas)}"
                  class="bg-white p-16 rounded-[2.5rem] border border-slate-100 text-center">
@@ -200,7 +194,6 @@
         activeTab.classList.remove('text-slate-400');
     }
 
-    // Actualizar estadísticas en tiempo real
     function actualizarImpacto() {
         fetch('/api/mi-impacto')
             .then(r => r.json())
