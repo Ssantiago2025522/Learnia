@@ -18,7 +18,6 @@ public class CategoriaController {
     private final CategoriaService categoriaService;
     private final PreguntaService preguntaService;
 
-    // FIX: se eliminó UsuarioService del constructor porque no se usaba en ningún método
     public CategoriaController(
             CategoriaService categoriaService,
             PreguntaService preguntaService
