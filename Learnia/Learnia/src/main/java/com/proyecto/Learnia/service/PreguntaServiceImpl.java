@@ -34,6 +34,15 @@ public class PreguntaServiceImpl implements PreguntaService {
         return preguntaRepository.findAll();
     }
 
+
+    @Override
+    public List<Pregunta> buscarPorCategoria(Long idCategoria) {
+
+        return preguntaRepository
+                .findByCategoria_IdCategoria(idCategoria);
+
+    }
+
     @Override
     public Pregunta buscarPorId(Long id) {
         return preguntaRepository.findById(id)

@@ -1,51 +1,51 @@
 package com.proyecto.Learnia.controller;
 
-import com.proyecto.Learnia.dto.RespuestaDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
 import com.proyecto.Learnia.entity.Respuesta;
 import com.proyecto.Learnia.service.RespuestaService;
-import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-
-@RestController
-@RequestMapping("/api/respuestas")
+@Controller
+@RequestMapping("/respuestas")
 public class RespuestaController {
 
-    private final RespuestaService respuestaService;
-
-    public RespuestaController(RespuestaService respuestaService) {
-        this.respuestaService = respuestaService;
-    }
+    @Autowired
+    private RespuestaService respuestaService;
 
     @GetMapping
+    @ResponseBody
     public List<Respuesta> listar() {
         return respuestaService.listar();
     }
 
     @PostMapping
-    public ResponseEntity<Respuesta> crear(@Valid @RequestBody RespuestaDTO respuestaDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(respuestaService.crear(respuestaDTO));
+    public String guardar(@RequestParam String contenido,
+                          @RequestParam Long preguntaId) {
+
+        respuestaService.guardar(preguntaId, contenido);
+        return "redirect:/pregunta/" + preguntaId;
     }
 
     @GetMapping("/{id}")
-    public Respuesta buscar(@PathVariable Long id) {
+    @ResponseBody
+    public Respuesta buscarPorId(@PathVariable Long id) {
         return respuestaService.buscarPorId(id);
     }
 
     @PutMapping("/{id}")
+    @ResponseBody
     public Respuesta actualizar(@PathVariable Long id,
-                                @Valid @RequestBody RespuestaDTO dto) {
-        return respuestaService.actualizar(id, dto);
+                                @RequestBody Respuesta respuesta) {
+        return respuestaService.actualizar(id, respuesta);
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseBody
     public void eliminar(@PathVariable Long id) {
         respuestaService.eliminar(id);
     }
+
 }

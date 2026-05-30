@@ -14,5 +14,6 @@ public class PreguntaDTO {
     private String descripcion;
     private LocalDateTime fechaPublicacion;
     private Long idUsuario;
+    @NotNull(message = "Selecciona una categoría")
     private Long idCategoria;
 }

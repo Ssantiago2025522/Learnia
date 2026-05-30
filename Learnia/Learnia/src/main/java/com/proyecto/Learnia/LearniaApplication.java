@@ -5,10 +5,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
 @Slf4j
-public class
-		LearniaApplication implements CommandLineRunner {
+@SpringBootApplication
+public class        LearniaApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(LearniaApplication.class, args);
@@ -16,6 +15,6 @@ public class
 
 	@Override
 	public void run(String... args) throws Exception {
-        log.info("Api funcionando correctamente");
-    }
+		log.info("Api funcionando de manera correcta");
+	}
 }
